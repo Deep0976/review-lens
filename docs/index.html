@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student Voice Copilot</title>
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --border: rgba(11,11,11,0.10); --accent: #2a78d6; --critical: #d03b3b;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #fff; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --border: rgba(255,255,255,0.10); --accent: #3987e5;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #fff; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --border: rgba(255,255,255,0.10); --accent: #3987e5;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 1080px; margin: 0 auto; padding: 32px 16px 64px; }
+h1 { font-size: 28px; margin: 0 0 4px; letter-spacing: -0.01em; }
+h2 { font-size: 18px; margin: 40px 0 4px; }
+.sub { color: var(--ink-2); margin: 0; }
+.note { color: var(--muted); font-size: 13px; margin: 0 0 16px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 24px; }
+.kpi b { display: block; font-size: 28px; font-weight: 600; }
+.kpi span { color: var(--ink-2); font-size: 13px; }
+.recs { display: grid; gap: 12px; }
+.rec h3 { margin: 0 0 6px; font-size: 16px; }
+.rec p { margin: 4px 0; color: var(--ink-2); }
+.rec p b { color: var(--ink); font-weight: 600; }
+.tag { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 99px; border: 1px solid var(--border); color: var(--ink-2); margin-right: 6px; }
+.tag.low { color: var(--critical); border-color: var(--critical); }
+blockquote { margin: 8px 0 0; padding: 6px 12px; border-left: 2px solid var(--grid); color: var(--ink-2); font-size: 14px; }
+blockquote small { display: block; color: var(--muted); font-size: 12px; }
+details summary { cursor: pointer; color: var(--accent); font-size: 14px; margin-top: 8px; }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--ink-2); margin-bottom: 12px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; font-size: 12px; color: var(--muted); font-weight: 500; padding: 8px 6px; border-bottom: 1px solid var(--grid); }
+td { padding: 10px 6px; border-bottom: 1px solid var(--grid); vertical-align: top; font-variant-numeric: tabular-nums; }
+tr.theme { cursor: pointer; }
+tr.theme:hover td { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+tr.theme:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.bar { display: flex; gap: 2px; height: 14px; margin-top: 6px; }
+.bar span { height: 100%; }
+.bar span:first-child { border-radius: 4px 0 0 4px; }
+.bar span:last-child { border-radius: 0 4px 4px 0; }
+.bar span:only-child { border-radius: 4px; }
+.num { text-align: right; white-space: nowrap; }
+.quotes td { background: var(--page); }
+#tip { position: fixed; pointer-events: none; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; font-size: 13px; box-shadow: 0 4px 16px rgba(0,0,0,.12); display: none; }
+@media (max-width: 640px) { .hide-sm { display: none; } h1 { font-size: 22px; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Student Voice Copilot</h1>
+  <p class="sub">What JEE/NEET students say about PW, Vedantu, Unacademy and ALLEN on the Play Store, grouped into themes by AI. Every insight links to real reviews.</p>
+  <div class="kpis" id="kpis"></div>
+
+  <h2>Recommended roadmap</h2>
+  <p class="note">The AI drafts these from the theme table below. Evidence ids are checked in code, so a recommendation without real quotes is marked low confidence.</p>
+  <div class="recs" id="recs"></div>
+
+  <h2>Themes</h2>
+  <p class="note" id="method"></p>
+  <div class="card">
+    <div class="legend" id="legend"></div>
+    <table>
+      <thead><tr><th>Pain points (half or more of reviews negative)</th><th class="num">Reviews</th><th class="num hide-sm">Avg ★</th><th class="num hide-sm">Negative</th><th class="num">Churn</th></tr></thead>
+      <tbody id="pain"></tbody>
+      <thead><tr><th style="padding-top:28px">Praise &amp; mixed</th><th class="num">Reviews</th><th class="num hide-sm">Avg ★</th><th class="num hide-sm">Negative</th><th class="num">Churn</th></tr></thead>
+      <tbody id="other"></tbody>
+    </table>
+  </div>
+</main>
+<div id="tip" role="tooltip"></div>
+<script>
+const APPS = ["PW", "Vedantu", "Unacademy", "ALLEN"];
+const color = a => `var(--s${APPS.indexOf(a) + 1})`;
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const quote = q => `<blockquote>“${esc(q.quote)}”<small>${esc(q.app)} · ${q.rating}★ · ${q.date}${q.churn ? " · churn signal" : ""} · <span title="${esc(q.text)}">full review on hover</span></small></blockquote>`;
+const tip = document.getElementById("tip");
+
+fetch("insights.json").then(r => r.json()).then(d => {
+  const pct = n => Math.round(n * 100) + "%";
+  document.getElementById("kpis").innerHTML = [
+    [d.analyzed.toLocaleString(), `reviews analysed (of ${d.total_reviews.toLocaleString()})`],
+    [d.themes.length, "themes found"],
+    [d.churn_reviews, "reviews with a churn signal"],
+    [(d.quote_attribution_rate * 100).toFixed(1) + "%", "quotes verified against source"],
+  ].map(([v, l]) => `<div class="card kpi"><b>${v}</b><span>${l}</span></div>`).join("");
+
+  const allQuotes = Object.fromEntries(d.themes.flatMap(t => t.quotes.map(q => [q.id, q])));
+  document.getElementById("recs").innerHTML = d.recommendations.map((r, i) => `
+    <div class="card rec">
+      <h3>${i + 1}. ${esc(r.title)}</h3>
+      <span class="tag">${esc(r.theme)}</span>${r.confidence === "low" ? '<span class="tag low">low confidence</span>' : ""}
+      <p><b>Problem:</b> ${esc(r.problem)}</p>
+      <p><b>Proposal:</b> ${esc(r.proposal)}</p>
+      <p><b>Metric:</b> ${esc(r.metric)}</p>
+      ${r.evidence_ids.map(id => allQuotes[id] ? quote(allQuotes[id]) : "").join("")}
+    </div>`).join("");
+
+  document.getElementById("method").textContent =
+    `${d.date_range[0]} to ${d.date_range[1]} · ${d.skipped_short} reviews under 4 words skipped · model ${d.model} · click a theme to read its quotes`;
+  document.getElementById("legend").innerHTML = APPS.map(a =>
+    `<span><i style="background:${color(a)}"></i>${a} (${d.apps[a]?.avg_rating ?? "-"}★ overall)</span>`).join("");
+
+  // each group gets its own bar scale so the huge generic-praise theme doesn't flatten the pain points
+  const isPain = t => t.neg_share >= 0.5 && t.name !== "Other / unclear";
+  const renderRows = list => { const max = Math.max(...list.map(t => t.count)); return list.map(t => `
+    <tr class="theme" tabindex="0" aria-expanded="false">
+      <td>${esc(t.name)} ${t.confidence === "low" ? '<span class="tag low">low confidence</span>' : ""}
+        <div class="bar" style="width:${(t.count / max) * 100}%">${APPS.filter(a => t.by_app[a]).map(a =>
+          `<span data-tip="${esc(a)}: ${t.by_app[a]} reviews" style="flex:${t.by_app[a]};background:${color(a)}"></span>`).join("")}</div></td>
+      <td class="num">${t.count}</td><td class="num hide-sm">${t.avg_rating}</td>
+      <td class="num hide-sm">${pct(t.neg_share)}</td><td class="num">${t.churn}</td>
+    </tr>
+    <tr class="quotes" hidden><td colspan="5">${t.quotes.slice(0, 6).map(quote).join("") || '<span class="note">No verified quotes.</span>'}</td></tr>`).join(""); };
+  document.getElementById("pain").innerHTML = renderRows(d.themes.filter(isPain));
+  document.getElementById("other").innerHTML = renderRows(d.themes.filter(t => !isPain(t)));
+
+  document.querySelectorAll("tr.theme").forEach(row => {
+    const toggle = () => { const q = row.nextElementSibling; q.hidden = !q.hidden; row.setAttribute("aria-expanded", !q.hidden); };
+    row.addEventListener("click", toggle);
+    row.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+  });
+  document.querySelectorAll("[data-tip]").forEach(s => {
+    s.addEventListener("mousemove", e => { tip.textContent = s.dataset.tip; tip.style.display = "block"; tip.style.left = e.clientX + 12 + "px"; tip.style.top = e.clientY + 12 + "px"; });
+    s.addEventListener("mouseleave", () => tip.style.display = "none");
+  });
+}).catch(() => {
+  document.getElementById("kpis").innerHTML = '<div class="card">No insights.json yet. Run <code>python analyze.py</code> first.</div>';
+});
+</script>
+</body>
+</html>

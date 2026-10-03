@@ -1,0 +1,62 @@
+[
+ {
+  "name": "General Appreciation & Faculty Praise",
+  "description": "Generic positive feedback regarding the brand, specific teachers, and overall platform utility."
+ },
+ {
+  "name": "App Stability & Crash Fixes",
+  "description": "Technical issues where the app force closes, crashes during form filling, or fails to open entirely."
+ },
+ {
+  "name": "Video Streaming & Playback Performance",
+  "description": "Issues with video lagging, buffering, recorded lectures not playing, or brightness controls during playback."
+ },
+ {
+  "name": "Course Discovery & Search Navigation",
+  "description": "Difficulty in finding specific batches, lack of a search bar, and confusing UI for navigating content."
+ },
+ {
+  "name": "Live Class Engagement Tools",
+  "description": "UI/UX issues within live sessions such as chat distractions, poll glitches, and orientation switching."
+ },
+ {
+  "name": "Support Ticket Resolution & Helpdesk",
+  "description": "The efficiency and politeness of the customer support team in resolving user queries via calls or tickets."
+ },
+ {
+  "name": "Sales Calls & Telemarketing Frequency",
+  "description": "Complaints regarding excessive spam calls, harassment from sales teams, and unwanted marketing after login."
+ },
+ {
+  "name": "Book Delivery & Logistics",
+  "description": "Delays or non-delivery of physical study materials, modules, and tracking issues for printed books."
+ },
+ {
+  "name": "Payments, Refunds & Auto-Renewal",
+  "description": "Issues with unauthorized auto-debits, failed refund processing, and perceived subscription scams."
+ },
+ {
+  "name": "Test Series & Academic Data Accuracy",
+  "description": "Missing test results, incorrect syllabus information, and errors in test schedules or performance graphs."
+ },
+ {
+  "name": "Mentorship & 1-on-1 Guidance",
+  "description": "Problems with assigned mentors not answering calls or difficulty in accessing personalized mentorship features."
+ },
+ {
+  "name": "Account Access & Device Restrictions",
+  "description": "Frustrations regarding single-device login policies and errors related to non-Play Store app versions."
+ },
+ {
+  "name": "Notification Relevance & Scheduling",
+  "description": "Complaints about missing class alerts or receiving too many irrelevant motivational/marketing notifications."
+ },
+ {
+  "name": "Study Resources & AI Doubt Solving",
+  "description": "Feedback on supplementary features like AI tutors, free PYQs, PDF notes, and digital doubt counters."
+ },
+ {
+  "name": "Other / unclear",
+  "description": "Does not fit any theme or is too vague"
+ }
+]
