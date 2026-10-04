@@ -50,9 +50,9 @@ Built for product managers, founders, researchers and shoppers who want the sign
 
 **Store icon (128x128):** `extension/icons/icon128.png`
 
-**Official URL / Homepage:** https://github.com/Deep0976/student-voice-copilot
+**Official URL / Homepage:** https://github.com/Deep0976/review-lens
 
-**Support URL:** https://github.com/Deep0976/student-voice-copilot/issues
+**Support URL:** https://github.com/Deep0976/review-lens/issues
 
 ## Privacy tab
 
@@ -78,7 +78,7 @@ Summarise the reviews and comments on the current web page into themes, an overv
 - [x] I do not use or transfer user data for purposes that are unrelated to my item's single purpose
 - [x] I do not use or transfer user data to determine creditworthiness or for lending purposes
 
-**Privacy policy URL:** https://deep0976.github.io/student-voice-copilot/privacy.html
+**Privacy policy URL:** https://deep0976.github.io/review-lens/privacy.html
 
 ## Distribution tab
 - Visibility: **Public** (or **Unlisted** first, to test the store install with friends before going public)

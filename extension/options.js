@@ -75,7 +75,7 @@ async function render() {
         <div class="set-row">${tileIcon(ICON.data)}<div><b>Saved reports</b><small>${plural(analyses.length, "report")} on this device, used for Compare. Only the last 20 are kept.</small></div>
           ${analyses.length ? '<button class="link danger" id="clear">Clear</button>' : "<span></span>"}</div>
         <div class="set-row">${tileIcon(ICON.shield)}<div><b>Privacy</b><small>Pages are read only when you click the icon. The text is analysed by Google Gemini and isn’t stored.</small></div>
-          <a href="https://deep0976.github.io/student-voice-copilot/privacy.html" target="_blank" rel="noopener">Policy ↗</a></div>
+          <a href="https://deep0976.github.io/review-lens/privacy.html" target="_blank" rel="noopener">Policy ↗</a></div>
       </div></section>
 
     <footer class="foot"><span class="fine">Review Lens v${chrome.runtime.getManifest().version}</span><a href="compare.html">Saved reports</a></footer>

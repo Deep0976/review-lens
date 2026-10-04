@@ -237,7 +237,7 @@ cd ../proxy && npx netlify-cli deploy --prod --dir .
 - Results stay in your browser. The optional own key is stored only in `chrome.storage` and sent only to Google.
 - No API keys are committed: `.env`, `worker/.dev.vars` and `extension/key.local.json` are gitignored, and `build.sh` refuses to package the key file.
 
-Full policy: [privacy.html](https://deep0976.github.io/student-voice-copilot/privacy.html)
+Full policy: [privacy.html](https://deep0976.github.io/review-lens/privacy.html)
 
 ## Roadmap
 
