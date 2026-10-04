@@ -3,7 +3,7 @@ chrome.runtime.onInstalled.addListener(({ reason }) => {
   if (reason === "install") chrome.runtime.openOptionsPage();
 });
 
-// Icon click: grab the page's text (or the user's selection) and open a report tab that analyses it.
+// Icon click: load more reviews on the page, grab its text (or the user's selection), open a report tab.
 chrome.action.onClicked.addListener(async tab => {
   let page;
   try {
@@ -17,34 +17,82 @@ chrome.action.onClicked.addListener(async tab => {
 });
 
 // Runs inside the page, so it must be self-contained.
-function extract() {
+async function extract() {
   const base = { title: document.title, url: location.href };
   const selection = getSelection().toString().trim();
   if (selection) return { ...base, text: selection, note: "Analysed your selection." };
 
-  const texts = sel => [...document.querySelectorAll(sel)].map(e => e.innerText.trim()).filter(Boolean);
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const $$ = sel => [...document.querySelectorAll(sel)];
+  const texts = sel => $$(sel).map(e => e.innerText.trim()).filter(Boolean);
   const host = location.hostname;
-  let site, heading, comments;
-  if (host.endsWith("youtube.com")) {
-    site = "YouTube";
-    heading = texts("ytd-watch-metadata h1, h1.ytd-watch-metadata")[0] || document.title;
-    comments = texts("ytd-comment-thread-renderer #content-text, ytd-comment-view-model #content-text");
-  } else if (host.endsWith("reddit.com")) {
-    site = "Reddit";
-    // new Reddit (shreddit) and old.reddit.com
-    heading = [...texts("shreddit-post h1, h1[slot='title'], .link .title a.title").slice(0, 1),
-               ...texts("shreddit-post div[slot='text-body'], .link .usertext-body .md").slice(0, 1)].join("\n\n") || document.title;
-    comments = texts("shreddit-comment div[slot='comment'], .comment .usertext-body .md");
-  }
-  if (site && comments.length >= 3) {
-    return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, note: `Read ${comments.length} ${site} comments.` };
-  }
-  // An open popup full of text (e.g. Play Store "See all reviews") is what the user is looking at
-  const dialog = [...document.querySelectorAll("[role='dialog'], dialog[open]")]
-    .map(e => e.innerText.trim()).filter(t => t.length > 1000).sort((a, b) => b.length - a.length)[0];
-  if (dialog) return { ...base, text: dialog, note: "Read the open reviews popup." };
-  return {
-    ...base, text: document.body.innerText,
-    hint: site ? `Only ${comments.length} ${site} comments were loaded. Scroll down until comments appear (on Reddit, click "more replies"), then click the icon again.` : "",
+  const startY = scrollY;
+  const deadline = Date.now() + 15000; // never keep the user waiting more than ~15s
+
+  const badge = document.createElement("div");
+  badge.style.cssText = "position:fixed;top:16px;right:16px;z-index:2147483647;background:#2a78d6;color:#fff;font:600 14px system-ui,sans-serif;padding:10px 14px;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.3)";
+  const show = n => { badge.textContent = `Review Lens: loading reviews… ${n ? `${n} found` : ""}`; };
+  show(0);
+  document.body.append(badge);
+
+  // Repeat `step` until `count` stops growing (`patience` times in a row), reaches `target`, or time runs out.
+  const loadMore = async (count, step, target, { wait = 1200, patience = 2, label = true } = {}) => {
+    let last = -1, stalls = 0;
+    while (Date.now() < deadline && stalls < patience) {
+      const n = count();
+      show(label ? n : 0);
+      if (n >= target) break;
+      stalls = n === last ? stalls + 1 : 0;
+      last = n;
+      step();
+      await sleep(wait);
+    }
   };
+  const toBottom = () => scrollTo(0, document.documentElement.scrollHeight);
+  // only "load more"-style buttons, so we never click anything that changes data
+  const clickMore = re => $$("button, faceplate-partial button, a.morecomments a").filter(b => re.test(b.innerText || "")).slice(0, 8).forEach(b => b.click());
+
+  try {
+    let site, heading, comments;
+    if (host.endsWith("youtube.com")) {
+      site = "YouTube";
+      // YouTube loads comments only as they scroll into view, so go a screen at a time
+      await loadMore(() => $$("ytd-comment-thread-renderer").length, () => scrollBy(0, innerHeight * 1.5), 100, { wait: 1500, patience: 4 });
+      badge.remove();
+      heading = texts("ytd-watch-metadata h1, h1.ytd-watch-metadata")[0] || document.title;
+      comments = texts("ytd-comment-thread-renderer #content-text, ytd-comment-view-model #content-text");
+    } else if (host.endsWith("reddit.com")) {
+      site = "Reddit";
+      await loadMore(() => $$("shreddit-comment, .comment").length,
+        () => { clickMore(/more repl|more comment|load more/i); toBottom(); }, 150);
+      badge.remove();
+      // new Reddit (shreddit) and old.reddit.com
+      heading = [...texts("shreddit-post h1, h1[slot='title'], .link .title a.title").slice(0, 1),
+                 ...texts("shreddit-post div[slot='text-body'], .link .usertext-body .md").slice(0, 1)].join("\n\n") || document.title;
+      comments = texts("shreddit-comment div[slot='comment'], .comment .usertext-body .md");
+    } else {
+      // Open the full reviews list if the page has one (e.g. Play Store "See all reviews")
+      const seeAll = $$("button, a, [role='button']").find(b => /^\s*see all reviews\s*$/i.test(b.innerText || ""));
+      if (seeAll && !$$("[role='dialog']").some(d => d.innerText.length > 1000)) { seeAll.click(); await sleep(1500); }
+      const dialog = $$("[role='dialog'], dialog[open]").filter(d => d.innerText.length > 500).sort((a, b) => b.innerText.length - a.innerText.length)[0];
+      if (dialog) {
+        const scroller = [dialog, ...dialog.querySelectorAll("*")].find(e => e.scrollHeight > e.clientHeight + 50 && /(auto|scroll)/.test(getComputedStyle(e).overflowY));
+        if (scroller) await loadMore(() => dialog.innerText.length, () => { scroller.scrollTop = scroller.scrollHeight; }, 80000, { label: false }); // 80000 = MAX_CHARS the analysis reads
+        badge.remove();
+        return { ...base, text: dialog.innerText.trim(), note: "Opened and read the full reviews list." };
+      }
+      await loadMore(() => document.body.innerText.length, toBottom, 80000, { label: false });
+      badge.remove();
+    }
+    if (site && comments.length >= 3) {
+      return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, note: `Loaded and read ${comments.length} ${site} comments.` };
+    }
+    return {
+      ...base, text: document.body.innerText,
+      hint: site ? `Only ${comments.length} ${site} comments could be loaded. If the video or thread has comments, scroll to them and click the icon again.` : "",
+    };
+  } finally {
+    badge.remove();
+    if (!host.endsWith("play.google.com")) scrollTo(0, startY); // put the page back where the user was
+  }
 }
