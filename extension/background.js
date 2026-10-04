@@ -1,6 +1,6 @@
 // New users land on the welcome/how-to page (no key needed).
 chrome.runtime.onInstalled.addListener(({ reason }) => {
-  if (reason === "install") chrome.runtime.openOptionsPage();
+  if (reason === "install") chrome.tabs.create({ url: "options.html?welcome=1" });
 });
 
 // Icon click: load more reviews on the page, grab its text (or the user's selection), open a report tab.

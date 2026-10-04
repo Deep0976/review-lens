@@ -1,12 +1,10 @@
 // Report page, built from the "Report Final" design: analysing state, result, and empty/error states.
 import { MAX_CHARS, fitItems, tally } from "./analysis.js";
 import { ask, esc, quoteLink, settings } from "./ui.js";
+import { LOGO, PLAY, check, pct, plural, siteOf, svg, toast, toneOf, topBar, when } from "./view.js";
 
 const root = document.getElementById("root");
 const EXAMPLE = "https://play.google.com/store/apps/details?id=com.unacademyapp&hl=en_IN";
-const svg = (paths, size = 18, w = 1.9) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
-const check = size => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="var(--pos)"/><path d="m8 12.5 2.6 2.5L16 9.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-const LOGO = `<div class="logo" aria-hidden="true"><i></i><i></i><i></i></div>`;
 
 // Theme tile icons from the design: bug, phone, headset, graduation cap, rupee, question
 const TICON = {
@@ -54,27 +52,6 @@ const ACTIONS = {
   saved: () => { location.href = "compare.html"; },
 };
 
-const SITES = [["play.google.com", "Google Play"], ["youtube.com", "YouTube"], ["reddit.com", "Reddit"], ["amazon.", "Amazon"], ["flipkart.com", "Flipkart"],
-  ["apps.apple.com", "App Store"], ["trustpilot.com", "Trustpilot"], ["quora.com", "Quora"], ["g2.com", "G2"], ["myntra.com", "Myntra"], ["nykaa.com", "Nykaa"]];
-const siteOf = url => {
-  try {
-    const h = new URL(url).hostname.replace(/^www\./, "");
-    return (SITES.find(([d]) => h.includes(d)) || [, h])[1];
-  } catch { return ""; }
-};
-const PLAY = '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 5 3.5z"/></svg>';
-const when = created => {
-  const d = new Date(created);
-  if (isNaN(d)) return created || ""; // older reports stored "dd|mm|yyyy"
-  const p = n => String(n).padStart(2, "0");
-  return `${p(d.getDate())}|${p(d.getMonth() + 1)}|${d.getFullYear()}, ${d.toLocaleTimeString("en-IN", { hour: "numeric", minute: "2-digit" }).toLowerCase()}`;
-};
-const pct = (n, total) => Math.round((n / (total || 1)) * 100);
-const plural = (n, one, many = one + "s") => `${n} ${n === 1 ? one : many}`;
-
-function topBar(crumb) {
-  return `<header class="bar">${LOGO}<div class="brand">Review Lens</div>${crumb ? `<div class="crumb">/ Reports / <b>${esc(crumb)}</b></div>` : ""}<div class="spacer"></div><span id="slot"></span></header>`;
-}
 
 function showState(key, page = {}) {
   const [icon, tone, title, body, [p, pa], [s, sa], foot, meter] = STATES[key];
@@ -92,7 +69,7 @@ function showAnalysing(page) {
   const site = siteOf(page.url);
   const n = page.items?.length;
   document.title = "Review Lens: Analysing…";
-  root.innerHTML = `${topBar("Analysing…")}<main class="an-grid">
+  root.innerHTML = `${topBar("Reports / Analysing…")}<main class="an-grid">
     <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
       <section class="panel" aria-live="polite">
         <div class="an-title"><div style="flex:1"><h1>${n ? `Analysing ${n} ${esc(site)} comments` : "Analysing this page"}</h1>
@@ -160,20 +137,14 @@ async function main() {
   render(a);
 }
 
-function sums(a) {
-  return a.themes.reduce((s, t) => ({ pos: s.pos + t.pos, mixed: s.mixed + t.mixed, neg: s.neg + t.neg }), { pos: 0, mixed: 0, neg: 0 });
-}
-
 function verdict(a, s, pains, likes) {
-  const negP = s.neg / a.total, posP = s.pos / a.total;
-  const tone = negP >= 0.5 ? "neg" : posP >= 0.5 ? "pos" : "mix";
-  const word = { neg: "Mostly negative.", pos: "Mostly positive.", mix: "Mixed reviews." }[tone];
+  const t = toneOf(a), tone = t.tone, word = t.word + ".";
   const parts = {
     neg: [`${s.neg} of ${a.total} opinions are negative.`, pains[0] && `Biggest complaint: ${pains[0].name}.`],
     pos: [`${s.pos} of ${a.total} opinions are positive.`, likes[0] && `Most praised: ${likes[0].name}.`],
     mix: [`${s.pos} positive and ${s.neg} negative out of ${a.total} opinions.`, pains[0] && `Biggest complaint: ${pains[0].name}.`],
   }[tone].filter(Boolean).join(" ");
-  const main = tone === "pos" ? [pct(s.pos, a.total), "positive"] : [pct(s.neg, a.total), "negative"];
+  const main = t.main;
   // donut: positive, mixed, negative with thin card-colored gaps between present segments
   let at = 0;
   const stops = [];
@@ -195,15 +166,8 @@ function asText(a, s, pains, likes, v, verified) {
   return lines.join("\n");
 }
 
-function toast(msg) {
-  const t = document.createElement("div");
-  t.className = "toast"; t.role = "status"; t.textContent = msg;
-  document.body.append(t);
-  setTimeout(() => t.remove(), 2200);
-}
-
 async function render(a) {
-  const s = sums(a);
+  const s = toneOf(a).s;
   const real = a.themes.filter(t => !/^other\b/i.test(t.name));
   const pains = real.filter(t => t.neg).sort((x, y) => y.neg - x.neg).slice(0, 3).map(t => ({ ...t, q: t.quotes.find(q => q.sentiment === "neg") || t.quotes[0] }));
   const likes = real.filter(t => t.pos).sort((x, y) => y.pos - x.pos).slice(0, 2).map(t => ({ ...t, q: t.quotes.find(q => q.sentiment === "pos") || t.quotes[0] }));
@@ -286,7 +250,7 @@ async function render(a) {
 
   document.getElementById("slot").outerHTML = `${showQuota ? `<span class="quota">${plural(quota.left, "free analysis", "free analyses")} left today</span>` : ""}
     <button class="btn" id="share">${svg('<path d="M12 3v12"/><path d="m8 7 4-4 4 4"/><path d="M20 14v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-5"/>', 14, 1.8)}Share</button>
-    <a class="btn primary" href="compare.html" style="text-decoration:none">Compare…</a>`;
+    <a class="btn primary" href="compare.html?with=${encodeURIComponent(a.id)}" style="text-decoration:none">Compare…</a>`;
 
   const copy = async () => {
     try { await navigator.clipboard.writeText(asText(a, s, pains, likes, v, verified)); toast("Copied. Paste it into WhatsApp, a doc or an email."); }
