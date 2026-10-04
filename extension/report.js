@@ -17,15 +17,15 @@ async function main() {
     if (page.error) return status(page.error);
     const truncated = page.text.length > MAX_CHARS;
     page.text = page.text.slice(0, MAX_CHARS);
-    status(`Reading ${page.selection ? "your selection" : "the page"} (${page.text.length.toLocaleString()} characters)… this takes 10-40 seconds.`);
+    status(`${page.note || "Reading the page."} Analysing ${page.text.length.toLocaleString()} characters… this takes 10-40 seconds.`);
     try {
-      a = { id, url: page.url, title: page.title, selection: page.selection, truncated,
+      a = { id, url: page.url, title: page.title, note: page.note, truncated,
             created: new Date().toLocaleDateString("en-GB").replaceAll("/", "|"),
             ...tally(await llm(analysisPrompt(page), await settings(), ANALYSIS_SCHEMA), page) };
     } catch (e) {
       return status(e.message);
     }
-    if (!a.total) return status("No reviews or comments found. Tip: scroll or click \"load more\" so the comments are on the page, or select just the reviews and click the icon again.");
+    if (!a.total) return status(page.hint || "No reviews or comments found. Tip: scroll or click \"load more\" so the comments are on the page, or select just the reviews and click the icon again.");
     analyses = [a, ...analyses].slice(0, 20); // keep the last 20 for comparison
     await chrome.storage.local.set({ analyses });
     await chrome.storage.session.remove(id);
@@ -53,7 +53,7 @@ function render(a) {
     <h2>AI summary</h2>
     <div class="card"><ul class="summary">${a.summary.map(s => `<li>${esc(s)}</li>`).join("")}</ul></div>
     <h2>Themes</h2>
-    <p class="note">${a.selection ? "Analysed your selection. " : ""}${a.truncated ? "Long page: only the first part was analysed. " : ""}${a.dropped ? `${a.dropped} quotes the AI returned were not found on the page and were dropped. ` : ""}Counts are computed from verified quotes. Click a theme to read them.</p>
+    <p class="note">${a.note ? esc(a.note) + " " : ""}${a.truncated ? "Long page: only the first part was analysed. " : ""}${a.dropped ? `${a.dropped} quotes the AI returned were not found on the page and were dropped. ` : ""}Counts are computed from verified quotes. Click a theme to read them.</p>
     <div class="card">
       <div class="legend">${SENT.map(([k, l]) => `<span><i style="background:var(--${k})"></i>${l}</span>`).join("")}</div>
       <table>

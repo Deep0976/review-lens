@@ -1,6 +1,13 @@
 import { settings } from "./ui.js";
 
 const f = document.getElementById("f");
+// Optional gitignored key.local.json next to the extension, so the key never has to be typed in
+if (!(await settings()).apiKey) {
+  try {
+    const { apiKey } = await (await fetch("key.local.json")).json();
+    if (apiKey) await chrome.storage.local.set({ apiKey });
+  } catch {}
+}
 const s = await settings();
 f.key.value = s.apiKey;
 f.model.value = s.model;
