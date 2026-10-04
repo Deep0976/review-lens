@@ -3,14 +3,14 @@
 Copy each field into https://chrome.google.com/webstore/devconsole
 
 ## Package
-Upload: `dist/review-lens-1.1.0.zip` (rebuild any time with `extension/build.sh`; it refuses to ship key.local.json)
+Upload: `dist/review-lens-1.2.2.zip` (rebuild any time with `extension/build.sh`; it refuses to ship key.local.json)
 
 ## Store listing tab
 
 **Name:** Review Lens
 
 **Summary (132 chars max):**
-Click on any review, Reddit or Quora page to get AI themes, a summary and verified quotes. Compare pages side by side.
+Turn the reviews and comments on any page into clear themes, a verdict and verified quotes. Compare pages side by side.
 
 **Category:** Tools (alternative: Productivity)
 
@@ -21,25 +21,23 @@ Click on any review, Reddit or Quora page to get AI themes, a summary and verifi
 Stop scrolling through hundreds of reviews. Review Lens reads the reviews and comments on the page you're on and turns them into clear themes, in one click.
 
 WHAT YOU GET
-• Themes: opinions grouped into specific, actionable themes like "Refund takes weeks" or "App crashes on tablets", with counts and a positive/mixed/negative split.
-• AI summary: 3-5 bullets on what people are saying overall.
-• Verified quotes: every quote is checked against the page. If the AI invents a quote, it's dropped, and "open on page" jumps straight to the original comment.
-• Compare: analyse 2-4 pages (two apps, two products, two Reddit threads) and see their themes side by side, as a share of each page's opinions.
-
-WORKS ON
-Google Play and App Store reviews, Amazon, Flipkart, Myntra and Nykaa reviews, Trustpilot, G2, Capterra, TripAdvisor, Reddit threads, YouTube comments, Quora answers, and most pages with comments.
-Tip: select some text first to analyse only that part.
+- A clear verdict: see at a glance whether people are mostly positive or negative, and why.
+- Themes: opinions grouped into specific themes like "Refund takes weeks" or "App crashes on tablets", with counts and a positive, mixed and negative split.
+- AI summary: a few short bullets on what people are saying overall.
+- Verified quotes: every quote is checked against the page. If the AI invents a quote, it is dropped, and "Open on page" jumps to the original comment.
+- Compare: analyse two to four pages and see their themes side by side.
+- Loads more for you: opens the full review list and loads more comments automatically before analysing.
 
 HOW TO USE
-1. Install. No sign-up, no API key: you get 5 free analyses every day.
-2. Open a review page, Reddit thread or YouTube video (scroll to load comments).
+1. Install. No sign-up and no API key: you get 5 free analyses every day.
+2. Open any page with reviews or comments.
 3. Click the Review Lens icon or press Alt+Shift+R.
-Power users: add your own free Gemini key in Settings for unlimited analyses.
+Power users can add their own free Gemini key in Settings for unlimited analyses.
 
 PRIVATE BY DESIGN
-• Reads a page only when you click the icon.
-• The text is analysed by Google Gemini and is never stored. No accounts, no tracking.
-• Your results stay in your browser.
+- Reads a page only when you click the icon.
+- The text is analysed by Google Gemini and is never stored. No accounts, no tracking.
+- Your results stay in your browser.
 
 Built for product managers, founders, researchers and shoppers who want the signal, not the noise.
 ```
@@ -86,3 +84,6 @@ Summarise the reviews and comments on the current web page into themes, an overv
 - Visibility: **Public** (or **Unlisted** first, to test the store install with friends before going public)
 - Regions: All regions
 - Pricing: Free
+
+## Lessons
+- Rejected 05|10|2026 for keyword spam (violation "Yellow Argon"): a list of many brand names in the description. Keep descriptions generic; don't list sites or brands.
