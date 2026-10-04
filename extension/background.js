@@ -63,13 +63,32 @@ async function extract() {
       comments = texts("ytd-comment-thread-renderer #content-text, ytd-comment-view-model #content-text");
     } else if (host.endsWith("reddit.com")) {
       site = "Reddit";
-      await loadMore(() => $$("shreddit-comment, .comment").length,
-        () => { clickMore(/more repl|more comment|load more/i); toBottom(); }, 150);
+      // Best source: the thread's own JSON (whole comment tree, no scrolling, no fragile selectors)
+      const thread = location.pathname.match(/^\/r\/[^/]+\/comments\/[^/]+/);
+      if (thread) {
+        try {
+          const [post, tree] = await (await fetch(`${thread[0]}.json?limit=500&depth=10&raw_json=1`, { credentials: "include" })).json();
+          const p = post.data.children[0].data;
+          heading = [p.title, p.selftext].filter(Boolean).join("\n\n");
+          comments = [];
+          const walk = list => (list || []).forEach(c => {
+            if (c.kind !== "t1") return; // "more" stubs are skipped
+            if (c.data.body && !["[deleted]", "[removed]"].includes(c.data.body)) comments.push(c.data.body.trim());
+            walk(c.data.replies?.data?.children);
+          });
+          walk(tree.data.children);
+          show(comments.length);
+        } catch { comments = []; }
+      }
+      if (!comments?.length) {
+        // Fallback: read the page (new Reddit "shreddit" and old.reddit.com)
+        await loadMore(() => $$("shreddit-comment, .comment").length,
+          () => { clickMore(/more repl|more comment|load more/i); toBottom(); }, 150);
+        heading = [...texts("shreddit-post h1, h1[slot='title'], .link .title a.title").slice(0, 1),
+                   ...texts("shreddit-post div[slot='text-body'], .link .usertext-body .md").slice(0, 1)].join("\n\n") || document.title;
+        comments = texts("shreddit-comment [slot='comment'], [id$='-comment-rtjson-content'], .comment .usertext-body .md");
+      }
       badge.remove();
-      // new Reddit (shreddit) and old.reddit.com
-      heading = [...texts("shreddit-post h1, h1[slot='title'], .link .title a.title").slice(0, 1),
-                 ...texts("shreddit-post div[slot='text-body'], .link .usertext-body .md").slice(0, 1)].join("\n\n") || document.title;
-      comments = texts("shreddit-comment div[slot='comment'], .comment .usertext-body .md");
     } else {
       // Open the full reviews list if the page has one (e.g. Play Store "See all reviews")
       const seeAll = $$("button, a, [role='button']").find(b => /^\s*see all reviews\s*$/i.test(b.innerText || ""));
