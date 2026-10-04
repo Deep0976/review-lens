@@ -33,11 +33,11 @@ export default {
     const PER_USER = Number(env.PER_USER) || 5; // free analyses per install per day
     const GLOBAL = Number(env.GLOBAL) || 200;   // hard daily cap for everyone, so the bill can't run away
     // ponytail: KV counters aren't atomic, so a burst can slightly overshoot the limits; use a Durable Object if that matters
-    const day = new Date().toISOString().slice(0, 10);
+    const day = new Date(Date.now() + 5.5 * 3600e3).toISOString().slice(0, 10); // daily limits reset at midnight India time
     const userKey = `u:${day}:${installId}`, globalKey = `g:${day}`;
     const [used, total] = (await Promise.all([env.LIMITS.get(userKey), env.LIMITS.get(globalKey)])).map(Number);
-    if (used >= PER_USER) return json({ error: `You've used today's ${PER_USER} free analyses. Add your own free Gemini key in Settings for unlimited use, or come back tomorrow.` }, 429);
-    if (total >= GLOBAL) return json({ error: "Review Lens has used up today's free analyses for everyone. Add your own free Gemini key in Settings to keep going, or try again tomorrow." }, 429);
+    if (used >= PER_USER) return json({ code: "daily_limit", error: `You've used today's ${PER_USER} free analyses. Add your own free Gemini key in Settings for unlimited use, or come back tomorrow.` }, 429);
+    if (total >= GLOBAL) return json({ code: "busy", error: "Review Lens has used up today's free analyses for everyone. Add your own free Gemini key in Settings to keep going, or try again tomorrow." }, 429);
 
     for (const model of MODELS) {
       try {
@@ -46,9 +46,9 @@ export default {
         await Promise.all([env.LIMITS.put(userKey, String(used + 1), ttl), env.LIMITS.put(globalKey, String(total + 1), ttl)]);
         return json({ out, left: PER_USER - used - 1 });
       } catch (e) {
-        if (e.code !== "fallover") return json({ error: "The AI service had a hiccup. Please try again in a minute." }, 502);
+        if (e.code !== "fallover") return json({ code: "ai_error", error: "The AI service had a hiccup. Please try again in a minute." }, 502);
       }
     }
-    return json({ error: "Today's free AI capacity is used up. Add your own free Gemini key in Settings, or try again tomorrow." }, 503);
+    return json({ code: "busy", error: "Today's free AI capacity is used up. Add your own free Gemini key in Settings, or try again tomorrow." }, 503);
   },
 };

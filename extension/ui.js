@@ -28,10 +28,11 @@ export async function ask(kind, payload) {
   try {
     r = await fetch(SERVER, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
   } catch {
-    throw new Error("Can't reach the Review Lens server. Check your internet connection. Some college or office networks block it: try mobile data, or add your own free key in Settings.");
+    throw Object.assign(new Error("Can't reach the Review Lens server."), { code: "offline" });
   }
   const d = await r.json().catch(() => ({}));
-  if (!r.ok) throw new Error(d.error || `Review Lens server error (${r.status}). Try again in a minute.`);
+  if (!r.ok) throw Object.assign(new Error(d.error || `Review Lens server error (${r.status}).`), { code: d.code || "ai_error" });
+  if (d.left !== undefined) await chrome.storage.local.set({ quota: { left: d.left, day: new Date().toDateString() } });
   return d;
 }
 

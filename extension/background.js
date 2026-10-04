@@ -12,6 +12,7 @@ chrome.action.onClicked.addListener(async tab => {
     page = { title: tab.title || "This page", url: tab.url || "", error: "Review Lens can't read this page. Browser pages like New Tab, Settings or the Web Store are off limits to extensions. Open a review page, a Reddit thread or a YouTube video and click the icon again." };
   }
   const id = crypto.randomUUID();
+  page.tabId = tab.id; // so "Back to the page" can return there
   await chrome.storage.session.set({ [id]: page });
   chrome.tabs.create({ url: `report.html?id=${id}`, index: tab.index + 1 });
 });
