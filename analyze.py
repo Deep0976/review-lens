@@ -1,4 +1,4 @@
-"""Student Voice Copilot: data/reviews.json -> docs/insights.json
+"""Review Lens Dashboard pipeline: data/reviews.json -> docs/insights.json
 
 Pass 1: LLM proposes themes from a sample of reviews (clustering).
 Pass 2: LLM tags every review with a theme, churn signal and an exact quote.
