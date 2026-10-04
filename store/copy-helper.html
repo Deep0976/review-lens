@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Store Copy Helper</title>
+<style>
+:root { color-scheme: light; --page: #f9f9f7; --card: #fff; --ink: #0b0b0b; --ink-2: #52514e; --line: #e1e0d9; --accent: #2a78d6; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: dark; --page: #0d0d0d; --card: #1a1a19; --ink: #fff; --ink-2: #c3c2b7; --line: #2c2c2a; --accent: #3987e5; } }
+:root[data-theme="dark"] { color-scheme: dark; --page: #0d0d0d; --card: #1a1a19; --ink: #fff; --ink-2: #c3c2b7; --line: #2c2c2a; --accent: #3987e5; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, sans-serif; }
+main { max-width: 820px; margin: 0 auto; padding: 28px 16px 64px; }
+h1 { font-size: 24px; margin: 0 0 4px; } h2 { font-size: 17px; margin: 32px 0 8px; }
+p { color: var(--ink-2); margin: 4px 0; }
+.f { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin: 10px 0; }
+.f header { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-weight: 600; }
+pre { white-space: pre-wrap; margin: 8px 0 0; font: 14px/1.5 system-ui, sans-serif; color: var(--ink-2); max-height: 220px; overflow: auto; }
+button { font: inherit; font-size: 13px; padding: 5px 12px; border-radius: 6px; border: 0; background: var(--accent); color: #fff; cursor: pointer; flex-shrink: 0; }
+button.done { background: #0ca30c; }
+.pick { font-weight: 600; color: var(--ink); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Review Lens: Web Store copy helper</h1>
+  <p>Click <b>Copy</b>, then paste into the matching field in the Developer Dashboard.</p>
+  <p>Files: zip = <code>student-voice-copilot/dist/review-lens-1.1.0.zip</code> · icon = <code>extension/icons/icon128.png</code> · screenshots = <code>store/1-report.png … 4-settings.png</code></p>
+
+  <h2>Step 1: New item</h2>
+  <p>Click <b>+ New item</b> and drag in <code>dist/review-lens-1.1.0.zip</code>.</p>
+
+  <h2>Step 2: Store listing tab</h2>
+  <div class="f"><header>Description<button>Copy</button></header><pre>Stop scrolling through hundreds of reviews. Review Lens reads the reviews and comments on the page you're on and turns them into clear themes, in one click.
+
+WHAT YOU GET
+• Themes: opinions grouped into specific, actionable themes like "Refund takes weeks" or "App crashes on tablets", with counts and a positive/mixed/negative split.
+• AI summary: 3-5 bullets on what people are saying overall.
+• Verified quotes: every quote is checked against the page. If the AI invents a quote, it's dropped, and "open on page" jumps straight to the original comment.
+• Compare: analyse 2-4 pages (two apps, two products, two Reddit threads) and see their themes side by side, as a share of each page's opinions.
+• Auto-loads reviews: opens "See all reviews" on Google Play, loads YouTube comments and reads whole Reddit threads for you.
+
+WORKS ON
+Google Play and App Store reviews, Amazon, Flipkart, Myntra and Nykaa reviews, Trustpilot, G2, Capterra, TripAdvisor, Reddit threads, YouTube comments, Quora answers, and most pages with comments.
+Tip: select some text first to analyse only that part.
+
+HOW TO USE
+1. Install. No sign-up, no API key: you get 5 free analyses every day.
+2. Open a review page, Reddit thread or YouTube video.
+3. Click the Review Lens icon or press Alt+Shift+R.
+Power users: add your own free Gemini key in Settings for unlimited analyses.
+
+PRIVATE BY DESIGN
+• Reads a page only when you click the icon.
+• The text is analysed by Google Gemini and is never stored. No accounts, no tracking.
+• Your results stay in your browser.
+
+Built for product managers, founders, researchers and shoppers who want the signal, not the noise.</pre></div>
+  <p>Category: <span class="pick">Tools</span> · Language: <span class="pick">English</span> · Store icon: <span class="pick">extension/icons/icon128.png</span> · Screenshots: <span class="pick">1-report, 2-themes, 3-compare, 4-settings</span> (in order)</p>
+  <div class="f"><header>Homepage URL<button>Copy</button></header><pre>https://github.com/Deep0976/student-voice-copilot</pre></div>
+  <div class="f"><header>Support URL<button>Copy</button></header><pre>https://github.com/Deep0976/student-voice-copilot/issues</pre></div>
+  <p>Then click <b>Save draft</b>.</p>
+
+  <h2>Step 3: Privacy tab</h2>
+  <div class="f"><header>Single purpose description<button>Copy</button></header><pre>Summarise the reviews and comments on the current web page into themes, an overview and verified quotes, and compare those summaries across pages.</pre></div>
+  <div class="f"><header>activeTab justification<button>Copy</button></header><pre>Read the current tab's text, only after the user clicks the extension icon or presses its shortcut.</pre></div>
+  <div class="f"><header>scripting justification<button>Copy</button></header><pre>Run a one-off function in the current tab on click to collect its visible text or comments, and to load more reviews (scrolling, opening "See all reviews").</pre></div>
+  <div class="f"><header>storage justification<button>Copy</button></header><pre>Keep a random install ID (for the free daily limit), the optional own Gemini key, settings and the last 20 analyses in the browser.</pre></div>
+  <div class="f"><header>Host permission justification<button>Copy</button></header><pre>If the user adds their own Gemini API key, send the page text directly to Google's Gemini API (generativelanguage.googleapis.com) to produce the analysis.</pre></div>
+  <p>Remote code: <span class="pick">No, I am not using remote code</span></p>
+  <p>Data usage, tick: <span class="pick">Website content</span> and <span class="pick">Authentication information</span>. Tick all <span class="pick">3 certification boxes</span>.</p>
+  <div class="f"><header>Privacy policy URL<button>Copy</button></header><pre>https://deep0976.github.io/student-voice-copilot/privacy.html</pre></div>
+  <p>Then click <b>Save draft</b>.</p>
+
+  <h2>Step 4: Distribution tab</h2>
+  <p>Visibility: <span class="pick">Unlisted</span> (switch to Public later) · Pricing: <span class="pick">Free</span> · Regions: <span class="pick">All regions</span></p>
+  <p>Click <b>Save draft</b>, then <b>Submit for review</b>.</p>
+</main>
+<script>
+document.querySelectorAll(".f button").forEach(b => b.addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(b.closest(".f").querySelector("pre").innerText); b.textContent = "Copied ✓"; b.classList.add("done"); }
+  catch { b.textContent = "Select & copy manually"; }
+}));
+</script>
+</body>
+</html>
