@@ -65,9 +65,12 @@ async function extract() {
       site = "Reddit";
       // Best source: the thread's own JSON (whole comment tree, no scrolling, no fragile selectors)
       const thread = location.pathname.match(/^\/r\/[^/]+\/comments\/[^/]+/);
+      var redditWhy = thread ? "" : "not a thread page"; // shown in the report so failures are diagnosable
       if (thread) {
         try {
-          const [post, tree] = await (await fetch(`${thread[0]}.json?limit=500&depth=10&raw_json=1`, { credentials: "include" })).json();
+          const res = await fetch(`${thread[0]}.json?limit=500&depth=10&raw_json=1`, { credentials: "include" });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const [post, tree] = await res.json();
           const p = post.data.children[0].data;
           heading = [p.title, p.selftext].filter(Boolean).join("\n\n");
           comments = [];
@@ -78,7 +81,7 @@ async function extract() {
           });
           walk(tree.data.children);
           show(comments.length);
-        } catch { comments = []; }
+        } catch (e) { comments = []; redditWhy = e.message.slice(0, 60); }
       }
       if (!comments?.length) {
         // Fallback: read the page (new Reddit "shreddit" and old.reddit.com)
@@ -104,10 +107,12 @@ async function extract() {
       badge.remove();
     }
     if (site && comments.length >= 3) {
-      return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, note: `Loaded and read ${comments.length} ${site} comments.` };
+      const how = site === "Reddit" && redditWhy ? ` (from the page; Reddit's data feed failed: ${redditWhy})` : "";
+      return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, note: `Loaded and read ${comments.length} ${site} comments${how}.` };
     }
     return {
       ...base, text: document.body.innerText,
+      note: site ? `Read the whole page: only ${comments.length} ${site} comments were found${site === "Reddit" && redditWhy ? ` (Reddit's data feed failed: ${redditWhy})` : ""}.` : "",
       hint: site ? `Only ${comments.length} ${site} comments could be loaded. If the video or thread has comments, scroll to them and click the icon again.` : "",
     };
   } finally {
