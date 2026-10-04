@@ -39,6 +39,10 @@ function extract() {
   if (site && comments.length >= 3) {
     return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, note: `Read ${comments.length} ${site} comments.` };
   }
+  // An open popup full of text (e.g. Play Store "See all reviews") is what the user is looking at
+  const dialog = [...document.querySelectorAll("[role='dialog'], dialog[open]")]
+    .map(e => e.innerText.trim()).filter(t => t.length > 1000).sort((a, b) => b.length - a.length)[0];
+  if (dialog) return { ...base, text: dialog, note: "Read the open reviews popup." };
   return {
     ...base, text: document.body.innerText,
     hint: site ? `Only ${comments.length} ${site} comments were loaded. Scroll down until comments appear (on Reddit, click "more replies"), then click the icon again.` : "",
