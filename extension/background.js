@@ -9,7 +9,7 @@ chrome.action.onClicked.addListener(async tab => {
   try {
     [{ result: page }] = await chrome.scripting.executeScript({ target: { tabId: tab.id }, func: extract });
   } catch {
-    page = { title: tab.title, url: tab.url, error: "Chrome doesn't let extensions read this page (for example chrome:// pages or the Web Store)." };
+    page = { title: tab.title || "This page", url: tab.url || "", error: "Review Lens can't read this page. Browser pages like New Tab, Settings or the Web Store are off limits to extensions. Open a review page, a Reddit thread or a YouTube video and click the icon again." };
   }
   const id = crypto.randomUUID();
   await chrome.storage.session.set({ [id]: page });

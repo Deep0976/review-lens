@@ -39,7 +39,7 @@ async function main() {
 
 function header(p) {
   document.getElementById("title").textContent = p.subject || p.title;
-  document.getElementById("source").innerHTML = `<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a>`;
+  document.getElementById("source").innerHTML = p.url?.startsWith("http") ? `<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title || p.url)}</a>` : "";
   document.title = `Review Lens: ${p.subject || p.title}`;
 }
 
