@@ -33,13 +33,26 @@ themes, an AI summary and quotes verified against the page. Select some text fir
 Every analysis is saved, so you can compare 2-4 pages side by side (e.g. PW vs Unacademy threads).
 
 **Install:** open `chrome://extensions` (or `brave://extensions`), turn on **Developer mode**, click
-**Load unpacked** and pick the `extension/` folder. Add your Gemini key in the settings page that opens.
-Shortcut: **Alt+Shift+R**.
+**Load unpacked** and pick the `extension/` folder. No sign-up or key needed: 5 free analyses a day.
+Shortcut: **Alt+Shift+R**. Store package: `extension/build.sh` builds `dist/review-lens-<version>.zip`.
 
 - Same guardrails as the dashboard: counts come from code, quotes must appear on the page, and each quote has an
   "open on page" link that scrolls to and highlights it.
-- Defaults to `gemini-flash-lite-latest` so it doesn't use up the daily job's `gemini-3-flash-preview` quota.
+- On YouTube and Reddit it reads only the comments (scroll to load them first).
 - `node extension/test.mjs` checks the guardrails; pass saved `{title,url,text}` JSON files to also run a live analysis.
+
+### Free tier server
+
+```
+extension -> review-lens-app.netlify.app (proxy/) -> review-lens.deep0976.workers.dev (worker/) -> Gemini
+```
+
+- `worker/` is a Cloudflare Worker holding the Gemini key as a secret. It builds the prompts itself (so it can't be
+  used as a general AI proxy), allows 5 analyses per install per day and 200 per day in total, and falls back across
+  free Gemini models. Deploy: `cd worker && npx wrangler deploy`.
+- `proxy/` is a one-line Netlify rewrite in front of it, because `*.workers.dev` is blocked on some college and ISP
+  networks. Deploy: `cd proxy && npx netlify-cli deploy --prod --dir .`
+- Users who add their own Gemini key in Settings skip the server entirely.
 
 ## Evals
 

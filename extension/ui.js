@@ -1,7 +1,7 @@
 // Small helpers shared by the extension pages.
 import { ANALYSIS_SCHEMA, COMPARE_SCHEMA, analysisPrompt, comparePrompt, llm, slim } from "./analysis.js";
 
-export const SERVER = "https://review-lens.REPLACE_ME.workers.dev"; // set at deploy time
+export const SERVER = "https://review-lens-app.netlify.app"; // Netlify proxy in front of the Cloudflare Worker (see proxy/)
 
 export const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -28,7 +28,7 @@ export async function ask(kind, payload) {
   try {
     r = await fetch(SERVER, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
   } catch {
-    throw new Error("Can't reach the Review Lens server. Check your internet connection and try again.");
+    throw new Error("Can't reach the Review Lens server. Check your internet connection. Some college or office networks block it: try mobile data, or add your own free key in Settings.");
   }
   const d = await r.json().catch(() => ({}));
   if (!r.ok) throw new Error(d.error || `Review Lens server error (${r.status}). Try again in a minute.`);

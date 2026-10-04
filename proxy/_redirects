@@ -1,0 +1,2 @@
+# Forward everything to the Cloudflare Worker. *.workers.dev is blocked on some college/ISP networks; netlify.app is not.
+/*  https://review-lens.deep0976.workers.dev/:splat  200!

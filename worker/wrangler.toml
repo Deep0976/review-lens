@@ -5,4 +5,4 @@ compatibility_date = "2026-09-01"
 # daily usage counters (per install and global)
 [[kv_namespaces]]
 binding = "LIMITS"
-id = "local-dev" # replaced with the real namespace id at deploy time
+id = "684c5974a6774a82850f9e0a11242085"
