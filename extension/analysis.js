@@ -110,7 +110,8 @@ Each source below has its own themes with exact opinion counts.
 
 Map every source theme to ONE shared theme so the sources can be compared side by side.
 Use 4-12 shared themes, specific enough to act on. Then write 3 short bullets on the most
-important differences between the sources. You may cite the counts given; do not invent numbers.
+important differences between the sources. Refer to each source by its subject (e.g. "Unacademy"),
+never as "Source 0". You may cite the counts given; do not invent numbers.
 
 Return JSON: {"common": [{"name": "...", "description": "..."}],
 "mapping": [{"source": 0, "theme": "exact source theme name", "common": "exact shared theme name"}],

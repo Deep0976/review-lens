@@ -1,3 +1,8 @@
+// New users land on settings to add their free Gemini key.
+chrome.runtime.onInstalled.addListener(({ reason }) => {
+  if (reason === "install") chrome.runtime.openOptionsPage();
+});
+
 // Icon click: grab the page's text (or the user's selection) and open a report tab that analyses it.
 chrome.action.onClicked.addListener(async tab => {
   const { apiKey } = await chrome.storage.local.get("apiKey");

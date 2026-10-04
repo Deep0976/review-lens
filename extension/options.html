@@ -9,7 +9,12 @@
 <body>
 <main style="max-width:560px">
   <h1>Review Lens settings</h1>
-  <p class="sub">Get a free Gemini API key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>.</p>
+  <p class="sub">Review Lens uses Google's Gemini AI with your own free key. It takes about a minute:</p>
+  <ol class="sub" style="padding-left:20px">
+    <li>Open <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> and sign in with Google.</li>
+    <li>Click <b>Create API key</b> and copy it.</li>
+    <li>Paste it below and click <b>Save</b>.</li>
+  </ol>
   <form id="f" class="card" style="margin-top:16px">
     <label for="key">Gemini API key</label>
     <input id="key" type="password" autocomplete="off" required>
@@ -18,7 +23,8 @@
     <p class="note" style="margin-top:6px">The free tier allows about 20 requests a day per model, and one analysis is one request. If you hit the limit, try another model, e.g. gemini-3-flash-preview.</p>
     <p style="margin:16px 0 0"><input type="submit" value="Save"> <span id="ok" class="note"></span></p>
   </form>
-  <p class="note" style="margin-top:16px">Privacy: when you click the icon, the page's visible text is sent to Google's Gemini API. The key is stored only in this browser.</p>
+  <p class="note" style="margin-top:16px">Privacy: only when you click the icon, the page's visible text is sent to Google's Gemini API. Your key and results stay in this browser. <a href="https://deep0976.github.io/student-voice-copilot/privacy.html" target="_blank" rel="noopener">Privacy policy</a></p>
+  <p class="note">How to use: open any review page, Reddit thread or YouTube video (scroll to load comments first) and click the Review Lens icon, or press Alt+Shift+R.</p>
 </main>
 <script type="module" src="options.js"></script>
 </body>

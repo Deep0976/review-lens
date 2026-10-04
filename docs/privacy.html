@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Review Lens Privacy</title>
+<style>
+:root { color-scheme: light; --page: #f9f9f7; --ink: #0b0b0b; --ink-2: #52514e; --accent: #2a78d6; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: dark; --page: #0d0d0d; --ink: #fff; --ink-2: #c3c2b7; --accent: #3987e5; } }
+:root[data-theme="dark"] { color-scheme: dark; --page: #0d0d0d; --ink: #fff; --ink-2: #c3c2b7; --accent: #3987e5; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
+h1 { font-size: 28px; margin: 0 0 4px; }
+h2 { font-size: 18px; margin: 32px 0 8px; }
+p, li { color: var(--ink-2); }
+a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Review Lens privacy policy</h1>
+  <p>Effective 04|10|2026</p>
+
+  <p>Review Lens is a browser extension that summarises the reviews and comments on a web page into themes.
+  It has no servers of its own, no accounts, no analytics and no ads.</p>
+
+  <h2>What data is used, and when</h2>
+  <ul>
+    <li><b>Page text.</b> Only when you click the Review Lens icon (or press its shortcut), the extension reads the
+    visible text of the current tab, or only the text you selected. On YouTube and Reddit it reads only the comments
+    and the video or post title. It never reads pages on its own or in the background.</li>
+    <li><b>Your Gemini API key.</b> You provide your own key. It is stored only in your browser
+    (<code>chrome.storage.local</code>) and is sent only to Google's Gemini API to make requests.</li>
+    <li><b>Analysis results.</b> Your last 20 analyses are stored only in your browser so you can compare them.
+    Removing the extension deletes them.</li>
+  </ul>
+
+  <h2>Who receives it</h2>
+  <p>The page text is sent directly from your browser to Google's Gemini API
+  (<code>generativelanguage.googleapis.com</code>) using your key, and the result comes back to your browser.
+  Nothing is sent to the developer or any other party. Google processes the request under the
+  <a href="https://ai.google.dev/gemini-api/terms">Gemini API Terms</a> and
+  <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. Note that on Gemini's free tier,
+  Google may use requests to improve its products, so avoid analysing pages with private information.</p>
+
+  <h2>What we don't do</h2>
+  <ul>
+    <li>We don't collect, store, sell or share your data.</li>
+    <li>We don't track browsing history or use cookies.</li>
+    <li>We don't use the data for advertising, credit decisions or anything other than the analysis you requested.</li>
+  </ul>
+
+  <h2>Permissions</h2>
+  <ul>
+    <li><b>activeTab</b> and <b>scripting</b>: read the current tab's text only after you click the icon.</li>
+    <li><b>storage</b>: keep your key, settings and recent analyses in your browser.</li>
+    <li><b>generativelanguage.googleapis.com</b>: send the analysis request to Gemini.</li>
+  </ul>
+
+  <h2>Contact</h2>
+  <p>Questions or concerns: open an issue at
+  <a href="https://github.com/Deep0976/student-voice-copilot/issues">github.com/Deep0976/student-voice-copilot</a>.</p>
+</main>
+</body>
+</html>

@@ -4,3 +4,4 @@ __pycache__/
 data/run1_*/
 dashboard.html
 extension/key.local.json
+dist/
