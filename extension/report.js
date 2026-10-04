@@ -1,4 +1,4 @@
-import { MAX_CHARS, tally } from "./analysis.js";
+import { MAX_CHARS, fitItems, tally } from "./analysis.js";
 import { ask, esc, quoteLink, toggleRows } from "./ui.js";
 
 const out = document.getElementById("out");
@@ -16,8 +16,9 @@ async function main() {
     if (!page) return status("This report has expired. Click the Review Lens icon on the page again.");
     header(page);
     if (page.error) return status(page.error);
-    const truncated = page.text.length > MAX_CHARS;
+    const truncated = page.items?.length ? fitItems(page.items).length < page.items.length : page.text.length > MAX_CHARS;
     page.text = page.text.slice(0, MAX_CHARS);
+    if (page.items?.length) page.items = fitItems(page.items);
     status(`${page.note || "Reading the page."} Analysing ${page.text.length.toLocaleString()} characters… this takes 10-40 seconds.`);
     try {
       const res = await ask("analyze", page);
@@ -56,7 +57,7 @@ function render(a, left) {
     <h2>AI summary</h2>
     <div class="card"><ul class="summary">${a.summary.map(s => `<li>${esc(s)}</li>`).join("")}</ul></div>
     <h2>Themes</h2>
-    <p class="note">${a.note ? esc(a.note) + " " : ""}${a.truncated ? "Long page: only the first part was analysed. " : ""}${a.dropped ? `${a.dropped} ${a.dropped === 1 ? "quote the AI returned was" : "quotes the AI returned were"} not found on the page and dropped. ` : ""}Counts are computed from verified quotes. Click a theme to read them.${left !== undefined ? ` <b>${left} free ${left === 1 ? "analysis" : "analyses"} left today.</b>` : ""}</p>
+    <p class="note">${a.note ? esc(a.note) + " " : ""}${a.of ? `Grouped ${a.labelled} of the ${a.of} comments analysed. ` : ""}${a.truncated ? (a.of ? "Very long thread: the first comments were analysed. " : "Long page: only the first part was analysed. ") : ""}${a.dropped ? `${a.dropped} ${a.dropped === 1 ? "quote the AI returned was" : "quotes the AI returned were"} not found on the page and dropped. ` : ""}Counts are computed from verified quotes. Click a theme to read them.${left !== undefined ? ` <b>${left} free ${left === 1 ? "analysis" : "analyses"} left today.</b>` : ""}</p>
     <div class="card">
       <div class="legend">${SENT.map(([k, l]) => `<span><i style="background:var(--${k})"></i>${l}</span>`).join("")}</div>
       <table>

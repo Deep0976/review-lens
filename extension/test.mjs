@@ -2,7 +2,7 @@
 // node extension/test.mjs page1.json…  -> also runs live analysis + comparison on saved {title,url,text} pages
 import assert from "node:assert/strict";
 import { readFileSync, writeFileSync } from "node:fs";
-import { ANALYSIS_SCHEMA, COMPARE_SCHEMA, OTHER, analysisPrompt, comparePrompt, isVerified, llm, mergeCompare, norm, tally } from "./analysis.js";
+import { ANALYSIS_SCHEMA, COMPARE_SCHEMA, OTHER, analysisPrompt, analysisSchema, comparePrompt, fitItems, isVerified, llm, mergeCompare, norm, tally } from "./analysis.js";
 
 assert(isVerified("Refund  TAKES weeks", norm("my refund takes weeks to arrive")));
 assert(!isVerified("refund is slow", norm("my refund takes weeks to arrive"))); // paraphrase rejected
@@ -35,6 +35,25 @@ assert.deepEqual(row.cells.map(c => c.count), [1, 3]);
 assert.equal(row.cells[1].share, 0.75);
 const other = m.rows.find(r => r.name === OTHER); // unmapped themes are kept in Other, never lost
 assert.deepEqual(other.cells.map(c => c.count), [2, 1]);
+// numbered-comments mode
+const items = { title: "t", url: "u", text: "x", items: ["Great teachers", "App crashes daily", "Refund pending for months", "lol"] };
+const li = tally({
+  themes: [{ name: "Teaching" }, { name: "Bugs" }],
+  labels: [
+    { i: 0, t: 0, s: "pos" }, { i: 1, t: 1, s: "neg" },
+    { i: 1, t: 0, s: "pos" },   // duplicate comment -> dropped
+    { i: 2, t: 7, s: "neg" },   // unknown theme -> Other
+    { i: 99, t: 0, s: "pos" },  // no such comment -> dropped
+  ],
+}, items);
+assert.equal(li.total, 3);
+assert.equal(li.dropped, 2);
+assert.equal(li.labelled, 3);
+assert.equal(li.of, 4);
+assert.deepEqual(li.themes.map(t => [t.name, t.count]), [["Teaching", 1], ["Bugs", 1], [OTHER, 1]]); // ties keep theme order
+assert.equal(li.themes.find(t => t.name === "Bugs").quotes[0].quote, "App crashes daily"); // quote is the real comment
+assert.equal(fitItems(Array(400).fill("a comment")).length, 300);
+assert.equal(fitItems(["", "  ", 5, "ok"]).length, 1);
 console.log("guardrails ok");
 
 const files = process.argv.slice(2);

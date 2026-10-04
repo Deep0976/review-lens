@@ -1,7 +1,7 @@
 // Review Lens free tier: the extension sends page text here, this Worker calls Gemini with a hidden key.
 // It builds the prompts itself (so it can't be used as a general AI proxy) and returns the raw model
 // JSON; quote verification and counting still happen in the extension, against the page text.
-import { ANALYSIS_SCHEMA, COMPARE_SCHEMA, MAX_CHARS, analysisPrompt, comparePrompt, llm, slim } from "../extension/analysis.js";
+import { COMPARE_SCHEMA, MAX_CHARS, analysisPrompt, analysisSchema, comparePrompt, fitItems, llm, slim } from "../extension/analysis.js";
 
 const MODELS = ["gemini-flash-lite-latest", "gemini-2.5-flash", "gemini-3-flash-preview"]; // cheapest first
 const CORS = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "POST, OPTIONS", "Access-Control-Allow-Headers": "content-type" };
@@ -20,8 +20,9 @@ export default {
     let prompt, schema;
     if (kind === "analyze" && typeof body.page?.text === "string" && body.page.text.trim()) {
       const p = body.page;
-      prompt = analysisPrompt({ title: String(p.title || "").slice(0, 300), url: String(p.url || "").slice(0, 1000), text: p.text.slice(0, MAX_CHARS) });
-      schema = ANALYSIS_SCHEMA;
+      const page = { title: String(p.title || "").slice(0, 300), url: String(p.url || "").slice(0, 1000), text: p.text.slice(0, MAX_CHARS), items: Array.isArray(p.items) ? fitItems(p.items) : [] };
+      prompt = analysisPrompt(page);
+      schema = analysisSchema(page);
     } else if (kind === "compare" && Array.isArray(body.analyses) && body.analyses.length >= 2) {
       prompt = comparePrompt(slim(body.analyses));
       schema = COMPARE_SCHEMA;

@@ -108,7 +108,7 @@ async function extract() {
     }
     if (site && comments.length >= 3) {
       const how = site === "Reddit" && redditWhy ? ` (from the page; Reddit's data feed failed: ${redditWhy})` : "";
-      return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, note: `Loaded and read ${comments.length} ${site} comments${how}.` };
+      return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, items: comments, note: `Loaded and read ${comments.length} ${site} comments${how}.` };
     }
     return {
       ...base, text: document.body.innerText,

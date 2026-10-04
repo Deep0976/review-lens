@@ -19,6 +19,30 @@ export const ANALYSIS_SCHEMA = obj({
   themes: arr(obj({ name: S("STRING"), description: S("STRING") })),
   opinions: arr(obj({ theme: S("STRING"), sentiment: { type: "STRING", enum: ["pos", "neg", "mixed"] }, quote: S("STRING") })),
 });
+// Numbered-comments mode: the model only labels each comment (tiny output), so it can cover hundreds
+export const ITEMS_SCHEMA = obj({
+  subject: S("STRING"),
+  summary: arr(S("STRING")),
+  themes: arr(obj({ name: S("STRING"), description: S("STRING") })),
+  labels: arr(obj({ i: S("INTEGER"), t: S("INTEGER"), s: { type: "STRING", enum: ["pos", "neg", "mixed"] } })),
+});
+export const MAX_ITEMS = 300;
+export const analysisSchema = page => (page.items?.length ? ITEMS_SCHEMA : ANALYSIS_SCHEMA);
+
+// Keep whole comments, at most MAX_ITEMS and MAX_CHARS in total
+export function fitItems(items) {
+  const out = [];
+  let chars = 0;
+  for (const c of items || []) {
+    if (typeof c !== "string" || !c.trim()) continue;
+    const t = c.trim().slice(0, 1000);
+    if (out.length >= MAX_ITEMS || chars + t.length > MAX_CHARS) break;
+    out.push(t);
+    chars += t.length;
+  }
+  return out;
+}
+
 export const COMPARE_SCHEMA = obj({
   common: arr(obj({ name: S("STRING"), description: S("STRING") })),
   mapping: arr(obj({ source: S("INTEGER"), theme: S("STRING"), common: S("STRING") })),
@@ -53,7 +77,25 @@ export async function llm(prompt, { apiKey, model }, responseSchema) {
   }
 }
 
-export const analysisPrompt = page => `Below is text copied from a web page.
+export const itemsPrompt = page => `Below are ${page.items.length} numbered comments or reviews from a web page.
+Title: ${page.title}
+URL: ${page.url}
+
+1. Group them into 4-10 themes. Each theme must be specific enough to act on
+   ("Refund takes weeks", not "Bad service"). Comments may be Hinglish, sarcastic or jokes.
+2. Label EVERY comment, from 0 to ${page.items.length - 1}: i = comment number, t = theme number
+   (0-based index into your themes list), s = sentiment ("pos", "neg" or "mixed").
+   Put spam, off-topic and one-word comments in an "Other / off-topic" theme rather than skipping them.
+3. summary: 3-5 short bullets on what people say overall. Do not state counts or percentages.
+4. subject: what is being discussed or reviewed, in a few words.
+
+Return JSON: {"subject": "...", "summary": ["..."], "themes": [{"name": "...", "description": "..."}],
+"labels": [{"i": 0, "t": 2, "s": "neg"}]}
+
+Comments:
+${page.items.map((c, i) => `[${i}] ${c.replace(/\s+/g, " ")}`).join("\n")}`;
+
+export const analysisPrompt = page => page.items?.length ? itemsPrompt(page) : `Below is text copied from a web page.
 Title: ${page.title}
 URL: ${page.url}
 
@@ -76,27 +118,16 @@ If there are no opinions, return "opinions": [].
 Page text:
 ${page.text}`;
 
-export function tally(out, page) {
-  const text = norm(page.text);
-  const themes = new Map(
-    [...(out.themes || []), { name: OTHER, description: "Did not fit a theme" }]
-      .map(t => [t.name, { name: t.name, description: t.description || "", count: 0, pos: 0, neg: 0, mixed: 0, quotes: [] }]),
-  );
-  const seen = new Set();
-  let dropped = 0;
-  for (const o of out.opinions || []) {
-    if (!isVerified(o.quote, text)) { dropped++; continue; }
-    const key = norm(o.quote);
-    if (seen.has(key)) continue; // same quote returned twice
-    seen.add(key);
-    const sentiment = ["pos", "neg", "mixed"].includes(o.sentiment) ? o.sentiment : "mixed";
-    const t = themes.get(themes.has(o.theme) ? o.theme : OTHER);
-    t.count++;
-    t[sentiment]++;
-    t.quotes.push({ quote: o.quote.trim(), sentiment });
-  }
+const themeMap = out => new Map(
+  [...(out.themes || []), { name: OTHER, description: "Did not fit a theme" }]
+    .map(t => [t.name, { name: t.name, description: t.description || "", count: 0, pos: 0, neg: 0, mixed: 0, quotes: [] }]),
+);
+const isOther = name => /^other\b/i.test(name); // "Other / unclear" or the model's own "Other / off-topic" go last
+const sentimentOf = s => (["pos", "neg", "mixed"].includes(s) ? s : "mixed");
+
+function finish(out, page, themes, dropped) {
   const list = [...themes.values()].filter(t => t.count)
-    .sort((a, b) => (a.name === OTHER) - (b.name === OTHER) || b.count - a.count);
+    .sort((a, b) => isOther(a.name) - isOther(b.name) || b.count - a.count);
   return {
     subject: out.subject || page.title,
     summary: out.summary || [],
@@ -105,6 +136,45 @@ export function tally(out, page) {
     neg: list.reduce((s, t) => s + t.neg, 0),
     dropped,
   };
+}
+
+// Numbered comments: labels point at real comments by index, so every quote is genuine by construction
+function tallyItems(out, page) {
+  const themes = themeMap(out);
+  const names = (out.themes || []).map(t => t.name);
+  const seen = new Set();
+  let dropped = 0;
+  for (const l of out.labels || []) {
+    const c = page.items[l.i];
+    if (!Number.isInteger(l.i) || c === undefined || seen.has(l.i)) { dropped++; continue; }
+    seen.add(l.i);
+    const t = themes.get(themes.has(names[l.t]) ? names[l.t] : OTHER);
+    const sentiment = sentimentOf(l.s);
+    t.count++;
+    t[sentiment]++;
+    t.quotes.push({ quote: c.length > 300 ? c.slice(0, 300) + "…" : c, sentiment });
+  }
+  return { ...finish(out, page, themes, dropped), labelled: seen.size, of: page.items.length };
+}
+
+export function tally(out, page) {
+  if (page.items?.length) return tallyItems(out, page);
+  const text = norm(page.text);
+  const themes = themeMap(out);
+  const seen = new Set();
+  let dropped = 0;
+  for (const o of out.opinions || []) {
+    if (!isVerified(o.quote, text)) { dropped++; continue; }
+    const key = norm(o.quote);
+    if (seen.has(key)) continue; // same quote returned twice
+    seen.add(key);
+    const sentiment = sentimentOf(o.sentiment);
+    const t = themes.get(themes.has(o.theme) ? o.theme : OTHER);
+    t.count++;
+    t[sentiment]++;
+    t.quotes.push({ quote: o.quote.trim(), sentiment });
+  }
+  return finish(out, page, themes, dropped);
 }
 
 export const comparePrompt = analyses => `You are comparing what people say on ${analyses.length} web pages.

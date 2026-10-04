@@ -1,5 +1,5 @@
 // Small helpers shared by the extension pages.
-import { ANALYSIS_SCHEMA, COMPARE_SCHEMA, analysisPrompt, comparePrompt, llm, slim } from "./analysis.js";
+import { COMPARE_SCHEMA, analysisPrompt, analysisSchema, comparePrompt, llm, slim } from "./analysis.js";
 
 export const SERVER = "https://review-lens-app.netlify.app"; // Netlify proxy in front of the Cloudflare Worker (see proxy/)
 
@@ -19,7 +19,7 @@ export async function ask(kind, payload) {
   const s = await settings();
   if (s.apiKey) {
     const out = kind === "analyze"
-      ? await llm(analysisPrompt(payload), s, ANALYSIS_SCHEMA)
+      ? await llm(analysisPrompt(payload), s, analysisSchema(payload))
       : await llm(comparePrompt(slim(payload)), s, COMPARE_SCHEMA);
     return { out };
   }
@@ -36,8 +36,9 @@ export async function ask(kind, payload) {
 }
 
 // Link that opens the source page scrolled to and highlighting the quote (Chrome text fragments)
+// (first ~10 words only: long or formatted comments rarely match as a whole)
 export const quoteLink = (url, quote) =>
-  `${url.split("#")[0]}#:~:text=${encodeURIComponent(quote).replace(/-/g, "%2D")}`;
+  `${url.split("#")[0]}#:~:text=${encodeURIComponent(quote.replace(/…$/, "").split(/\s+/).slice(0, 10).join(" ")).replace(/-/g, "%2D")}`;
 
 export function toggleRows(root) {
   root.querySelectorAll("tr.theme").forEach(row => {
