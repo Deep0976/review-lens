@@ -26,6 +26,21 @@ python3 -m http.server -d docs  # open http://localhost:8000
 - Roadmap evidence ids must belong to the cited theme. Recommendations without valid evidence are marked low confidence.
 - Themes backed by fewer than 10 reviews are flagged low confidence.
 
+## Review Lens (Chrome extension)
+
+The same idea on any page: click the icon on a Reddit thread, Quora answer, Play Store, Amazon or G2 page and get
+themes, an AI summary and quotes verified against the page. Select some text first to analyse only that part.
+Every analysis is saved, so you can compare 2-4 pages side by side (e.g. PW vs Unacademy threads).
+
+**Install:** open `chrome://extensions` (or `brave://extensions`), turn on **Developer mode**, click
+**Load unpacked** and pick the `extension/` folder. Add your Gemini key in the settings page that opens.
+Shortcut: **Alt+Shift+R**.
+
+- Same guardrails as the dashboard: counts come from code, quotes must appear on the page, and each quote has an
+  "open on page" link that scrolls to and highlights it.
+- Defaults to `gemini-flash-lite-latest` so it doesn't use up the daily job's `gemini-3-flash-preview` quota.
+- `node extension/test.mjs` checks the guardrails; pass saved `{title,url,text}` JSON files to also run a live analysis.
+
 ## Evals
 
 `analyze.py` writes `data/eval_sample.csv` (100 random reviews). Fill `human_theme` / `human_churn`, then run

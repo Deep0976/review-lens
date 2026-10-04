@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Review Lens",
+  "version": "0.1.0",
+  "description": "Click on any review, Reddit or Quora page to get AI themes, a summary and verified quotes. Compare pages side by side.",
+  "action": { "default_title": "Analyze reviews on this page (Alt+Shift+R)" },
+  "commands": { "_execute_action": { "suggested_key": { "default": "Alt+Shift+R" } } },
+  "background": { "service_worker": "background.js" },
+  "options_page": "options.html",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["https://generativelanguage.googleapis.com/*"]
+}

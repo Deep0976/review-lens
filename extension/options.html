@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Review Lens: Settings</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main style="max-width:560px">
+  <h1>Review Lens settings</h1>
+  <p class="sub">Get a free Gemini API key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>.</p>
+  <form id="f" class="card" style="margin-top:16px">
+    <label for="key">Gemini API key</label>
+    <input id="key" type="password" autocomplete="off" required>
+    <label for="model">Model</label>
+    <input id="model" type="text" required>
+    <p class="note" style="margin-top:6px">The free tier allows about 20 requests a day per model, and one analysis is one request. If you hit the limit, try another model, e.g. gemini-3-flash-preview.</p>
+    <p style="margin:16px 0 0"><input type="submit" value="Save"> <span id="ok" class="note"></span></p>
+  </form>
+  <p class="note" style="margin-top:16px">Privacy: when you click the icon, the page's visible text is sent to Google's Gemini API. The key is stored only in this browser.</p>
+</main>
+<script type="module" src="options.js"></script>
+</body>
+</html>
