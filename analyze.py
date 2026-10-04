@@ -220,6 +220,7 @@ def main():
         apps[r["app"]].append(r["rating"])
     insights = {
         "model": MODEL,
+        "updated": time.strftime("%d|%m|%Y"),
         "date_range": [min(r["date"] for r in allrevs), max(r["date"] for r in allrevs)],
         "total_reviews": len(allrevs),
         "skipped_short": len(allrevs) - len(revs),

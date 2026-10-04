@@ -115,7 +115,7 @@ fetch("insights.json").then(r => r.json()).then(d => {
     </div>`).join("");
 
   document.getElementById("method").textContent =
-    `${d.date_range[0]} to ${d.date_range[1]} · ${d.skipped_short} reviews under 4 words skipped · model ${d.model} · click a theme to read its quotes`;
+    `Updated daily · last run ${d.updated ?? d.date_range[1]} · newest 500 reviews per app (${d.date_range[0]} to ${d.date_range[1]}) · ${d.skipped_short} reviews under 4 words skipped · model ${d.model} · click a theme to read its quotes`;
   document.getElementById("legend").innerHTML = APPS.map(a =>
     `<span><i style="background:${color(a)}"></i>${a} (${d.apps[a]?.avg_rating ?? "-"}★ overall)</span>`).join("");
 

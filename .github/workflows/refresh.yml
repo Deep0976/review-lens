@@ -1,0 +1,32 @@
+name: Daily refresh
+
+on:
+  schedule:
+    - cron: "30 2 * * *"  # 08:00 IST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: refresh
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python scrape.py
+      - run: python analyze.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      # runs even if analyze hits the free-tier quota, so tagged reviews are cached for tomorrow
+      - if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs
+          git diff --cached --quiet || git commit -m "Daily refresh $(date -u +%d-%m-%Y)" && git push
