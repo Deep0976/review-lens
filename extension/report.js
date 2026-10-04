@@ -56,7 +56,7 @@ function render(a, left) {
     <h2>AI summary</h2>
     <div class="card"><ul class="summary">${a.summary.map(s => `<li>${esc(s)}</li>`).join("")}</ul></div>
     <h2>Themes</h2>
-    <p class="note">${a.note ? esc(a.note) + " " : ""}${a.truncated ? "Long page: only the first part was analysed. " : ""}${a.dropped ? `${a.dropped} quotes the AI returned were not found on the page and were dropped. ` : ""}Counts are computed from verified quotes. Click a theme to read them.${left !== undefined ? ` <b>${left} free ${left === 1 ? "analysis" : "analyses"} left today.</b>` : ""}</p>
+    <p class="note">${a.note ? esc(a.note) + " " : ""}${a.truncated ? "Long page: only the first part was analysed. " : ""}${a.dropped ? `${a.dropped} ${a.dropped === 1 ? "quote the AI returned was" : "quotes the AI returned were"} not found on the page and dropped. ` : ""}Counts are computed from verified quotes. Click a theme to read them.${left !== undefined ? ` <b>${left} free ${left === 1 ? "analysis" : "analyses"} left today.</b>` : ""}</p>
     <div class="card">
       <div class="legend">${SENT.map(([k, l]) => `<span><i style="background:var(--${k})"></i>${l}</span>`).join("")}</div>
       <table>
