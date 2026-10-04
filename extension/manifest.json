@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Review Lens",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Click on any review, Reddit or Quora page to get AI themes, a summary and verified quotes. Compare pages side by side.",
   "homepage_url": "https://github.com/Deep0976/student-voice-copilot",
   "icons": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },

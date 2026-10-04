@@ -44,7 +44,9 @@ export async function llm(prompt, { apiKey, model }, responseSchema) {
       }
     }
     const body = await r.text();
-    if (r.status === 429 && body.includes("PerDay")) throw new Error(`Daily free-tier limit reached for ${model}. Try tomorrow or pick another model in Settings.`);
+    // code "fallover": this model can't serve today, so the server tries the next one
+    if ((r.status === 429 && body.includes("PerDay")) || r.status === 404)
+      throw Object.assign(new Error(`Daily free-tier limit reached for ${model}. Try tomorrow or pick another model in Settings.`), { code: "fallover" });
     if (r.status === 400 && body.includes("API key")) throw new Error("Gemini rejected the API key. Check it in Settings.");
     if (![429, 500, 503].includes(r.status) || attempt === 2) throw new Error(`Gemini ${r.status}: ${body.slice(0, 200)}`);
     await new Promise(res => setTimeout(res, 5000 * 2 ** attempt));
@@ -122,6 +124,16 @@ ${JSON.stringify(analyses.map((a, i) => ({
   source: i, subject: a.subject, opinions: a.total,
   themes: a.themes.map(t => ({ theme: t.name, description: t.description, count: t.count, negative: t.neg })),
 })))}`;
+
+// Just the fields comparePrompt needs (drops quotes), capped so a request stays small
+export const slim = analyses => analyses.slice(0, 4).map(a => ({
+  subject: String(a.subject || "").slice(0, 120),
+  total: Number(a.total) || 0,
+  themes: (a.themes || []).slice(0, 15).map(t => ({
+    name: String(t.name || "").slice(0, 120), description: String(t.description || "").slice(0, 300),
+    count: Number(t.count) || 0, neg: Number(t.neg) || 0,
+  })),
+}));
 
 export function mergeCompare(out, analyses) {
   const names = [...new Set([...(out.common || []).map(c => c.name), OTHER])];

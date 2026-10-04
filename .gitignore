@@ -5,3 +5,6 @@ data/run1_*/
 dashboard.html
 extension/key.local.json
 dist/
+worker/.dev.vars
+worker/.wrangler/
+node_modules/

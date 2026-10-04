@@ -2,6 +2,7 @@
 # Builds the Chrome Web Store zip. Never ships key.local.json (your API key) or test files.
 set -e
 cd "$(dirname "$0")"
+if grep -q REPLACE_ME ui.js; then echo "ABORT: set SERVER in ui.js to the deployed Worker URL first"; exit 1; fi
 v=$(python3 -c "import json;print(json.load(open('manifest.json'))['version'])")
 out="../dist/review-lens-$v.zip"
 mkdir -p ../dist && rm -f "$out"

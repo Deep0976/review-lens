@@ -1,5 +1,5 @@
-import { COMPARE_SCHEMA, comparePrompt, llm, mergeCompare } from "./analysis.js";
-import { esc, settings } from "./ui.js";
+import { mergeCompare } from "./analysis.js";
+import { ask, esc } from "./ui.js";
 
 const list = document.getElementById("list");
 const go = document.getElementById("go");
@@ -25,7 +25,7 @@ go.addEventListener("click", async () => {
   go.disabled = true;
   out.innerHTML = '<p class="status card">Lining up themes… 10-30 seconds.</p>';
   try {
-    render(sel, mergeCompare(await llm(comparePrompt(sel), await settings(), COMPARE_SCHEMA), sel));
+    render(sel, mergeCompare((await ask("compare", sel)).out, sel));
   } catch (e) {
     out.innerHTML = `<p class="status card">${esc(e.message)}</p>`;
   }

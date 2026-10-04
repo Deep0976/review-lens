@@ -3,7 +3,7 @@
 Copy each field into https://chrome.google.com/webstore/devconsole
 
 ## Package
-Upload: `dist/review-lens-1.0.0.zip` (rebuild any time with `extension/build.sh`; it refuses to ship key.local.json)
+Upload: `dist/review-lens-1.1.0.zip` (rebuild any time with `extension/build.sh`; it refuses to ship key.local.json)
 
 ## Store listing tab
 
@@ -31,14 +31,15 @@ Google Play and App Store reviews, Amazon, Flipkart, Myntra and Nykaa reviews, T
 Tip: select some text first to analyse only that part.
 
 HOW TO USE
-1. Add your free Google Gemini API key in Settings (takes a minute: aistudio.google.com/apikey).
+1. Install. No sign-up, no API key: you get 5 free analyses every day.
 2. Open a review page, Reddit thread or YouTube video (scroll to load comments).
 3. Click the Review Lens icon or press Alt+Shift+R.
+Power users: add your own free Gemini key in Settings for unlimited analyses.
 
 PRIVATE BY DESIGN
 • Reads a page only when you click the icon.
-• Sends the text straight from your browser to Google Gemini with your own key. No servers of ours, no accounts, no tracking.
-• Your key and results stay in your browser.
+• The text is analysed by Google Gemini and is never stored. No accounts, no tracking.
+• Your results stay in your browser.
 
 Built for product managers, founders, researchers and shoppers who want the signal, not the noise.
 ```
@@ -47,7 +48,7 @@ Built for product managers, founders, researchers and shoppers who want the sign
 1. `store/1-report.png`: AI summary and themes for an app's reviews
 2. `store/2-themes.png`: verified quotes behind a theme
 3. `store/3-compare.png`: two apps compared side by side
-4. `store/4-settings.png`: one-minute setup
+4. `store/4-settings.png`: welcome page, no sign-up needed
 
 **Store icon (128x128):** `extension/icons/icon128.png`
 
@@ -63,14 +64,15 @@ Summarise the reviews and comments on the current web page into themes, an overv
 **Permission justifications:**
 - `activeTab`: read the current tab's text, only after the user clicks the extension icon or presses its shortcut.
 - `scripting`: run a one-off function in the current tab on click to collect its visible text or comments.
-- `storage`: keep the user's own Gemini API key, settings and last 20 analyses in the browser.
-- Host permission `https://generativelanguage.googleapis.com/*`: send the page text to Google's Gemini API to produce the analysis.
+- `storage`: keep a random install ID (for the free daily limit), the optional own Gemini key, settings and the last 20 analyses in the browser.
+- Host permission `https://generativelanguage.googleapis.com/*`: if the user adds their own key, send the page text directly to Google's Gemini API.
+- (No permission needed for the free-tier server: it allows cross-origin requests.)
 
 **Remote code:** No, I am not using remote code. (All JavaScript ships in the package; Gemini returns JSON data only.)
 
 **Data usage, tick:**
 - [x] Website content (the text of the page the user chooses to analyse)
-- [x] Authentication information (the user's own Gemini API key, stored locally)
+- [x] Authentication information (only if the user adds their own Gemini key; stored locally)
 - Everything else: leave unticked.
 
 **Certify all three:**

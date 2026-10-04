@@ -3,28 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Review Lens: Settings</title>
+<title>Review Lens Settings</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main style="max-width:560px">
-  <h1>Review Lens settings</h1>
-  <p class="sub">Review Lens uses Google's Gemini AI with your own free key. It takes about a minute:</p>
-  <ol class="sub" style="padding-left:20px">
-    <li>Open <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> and sign in with Google.</li>
-    <li>Click <b>Create API key</b> and copy it.</li>
-    <li>Paste it below and click <b>Save</b>.</li>
+<main style="max-width:600px">
+  <h1>Review Lens is ready</h1>
+  <p class="sub">No sign-up needed. You get 5 free analyses every day.</p>
+
+  <h2>How to use</h2>
+  <ol class="card" style="margin:0;padding:16px 16px 16px 36px">
+    <li>Open a review page, a Reddit thread or a YouTube video. On YouTube and Reddit, scroll down first so the comments load.</li>
+    <li>Click the Review Lens icon in the toolbar, or press <b>Alt+Shift+R</b>. Tip: pin it from the puzzle-piece menu.</li>
+    <li>Read the themes, the summary and the quotes. "Open on page" jumps to the original comment.</li>
+    <li>Analysed two pages? Compare them side by side from any report.</li>
   </ol>
-  <form id="f" class="card" style="margin-top:16px">
-    <label for="key">Gemini API key</label>
-    <input id="key" type="password" autocomplete="off" required>
-    <label for="model">Model</label>
+
+  <h2>Optional: unlimited use with your own key</h2>
+  <form id="f" class="card">
+    <p class="note" style="margin:0">Add a free Google Gemini key to skip the daily limit. Create one at
+      <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> (about a minute).
+      Leave it empty to use the free daily analyses.</p>
+    <label for="key">Gemini API key (optional)</label>
+    <input id="key" type="password" autocomplete="off" placeholder="Paste your key, or leave empty">
+    <label for="model">Model (used with your own key)</label>
     <input id="model" type="text" required>
-    <p class="note" style="margin-top:6px">The free tier allows about 20 requests a day per model, and one analysis is one request. If you hit the limit, try another model, e.g. gemini-3-flash-preview.</p>
     <p style="margin:16px 0 0"><input type="submit" value="Save"> <span id="ok" class="note"></span></p>
   </form>
-  <p class="note" style="margin-top:16px">Privacy: only when you click the icon, the page's visible text is sent to Google's Gemini API. Your key and results stay in this browser. <a href="https://deep0976.github.io/student-voice-copilot/privacy.html" target="_blank" rel="noopener">Privacy policy</a></p>
-  <p class="note">How to use: open any review page, Reddit thread or YouTube video (scroll to load comments first) and click the Review Lens icon, or press Alt+Shift+R.</p>
+  <p class="note" style="margin-top:16px">Privacy: Review Lens reads a page only when you click the icon. The text is analysed by Google's Gemini AI and isn't stored. <a href="https://deep0976.github.io/student-voice-copilot/privacy.html" target="_blank" rel="noopener">Privacy policy</a></p>
 </main>
 <script type="module" src="options.js"></script>
 </body>

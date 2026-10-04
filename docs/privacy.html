@@ -19,26 +19,32 @@ a { color: var(--accent); }
 <body>
 <main>
   <h1>Review Lens privacy policy</h1>
-  <p>Effective 04|10|2026</p>
+  <p>Effective 04|10|2026 (updated for v1.1: free tier without sign-up)</p>
 
   <p>Review Lens is a browser extension that summarises the reviews and comments on a web page into themes.
-  It has no servers of its own, no accounts, no analytics and no ads.</p>
+  It has no accounts, no analytics and no ads.</p>
 
   <h2>What data is used, and when</h2>
   <ul>
     <li><b>Page text.</b> Only when you click the Review Lens icon (or press its shortcut), the extension reads the
     visible text of the current tab, or only the text you selected. On YouTube and Reddit it reads only the comments
     and the video or post title. It never reads pages on its own or in the background.</li>
-    <li><b>Your Gemini API key.</b> You provide your own key. It is stored only in your browser
-    (<code>chrome.storage.local</code>) and is sent only to Google's Gemini API to make requests.</li>
+    <li><b>A random install ID.</b> On first use the extension creates a random ID (not linked to you, your
+    account or your device) so the free tier can count each install's daily analyses.</li>
+    <li><b>Your Gemini API key (optional).</b> If you add your own key, it is stored only in your browser
+    (<code>chrome.storage.local</code>) and is sent only to Google's Gemini API.</li>
     <li><b>Analysis results.</b> Your last 20 analyses are stored only in your browser so you can compare them.
     Removing the extension deletes them.</li>
   </ul>
 
   <h2>Who receives it</h2>
-  <p>The page text is sent directly from your browser to Google's Gemini API
-  (<code>generativelanguage.googleapis.com</code>) using your key, and the result comes back to your browser.
-  Nothing is sent to the developer or any other party. Google processes the request under the
+  <p><b>Free tier (default):</b> the page text and your random install ID are sent to the Review Lens server
+  (a Cloudflare Worker run by the developer), which forwards the text to Google's Gemini API and returns the result.
+  The server does not store or log the page text. It stores only a daily usage counter per install ID, which is
+  deleted automatically after 2 days.</p>
+  <p><b>With your own key:</b> the page text is sent directly from your browser to Google's Gemini API
+  (<code>generativelanguage.googleapis.com</code>), and nothing goes to the Review Lens server.</p>
+  <p>Cloudflare hosts the server under the <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare Privacy Policy</a>. Google processes the request under the
   <a href="https://ai.google.dev/gemini-api/terms">Gemini API Terms</a> and
   <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. Note that on Gemini's free tier,
   Google may use requests to improve its products, so avoid analysing pages with private information.</p>
@@ -53,7 +59,7 @@ a { color: var(--accent); }
   <h2>Permissions</h2>
   <ul>
     <li><b>activeTab</b> and <b>scripting</b>: read the current tab's text only after you click the icon.</li>
-    <li><b>storage</b>: keep your key, settings and recent analyses in your browser.</li>
+    <li><b>storage</b>: keep your install ID, optional key, settings and recent analyses in your browser.</li>
     <li><b>generativelanguage.googleapis.com</b>: send the analysis request to Gemini.</li>
   </ul>
 

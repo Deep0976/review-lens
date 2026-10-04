@@ -1,5 +1,5 @@
-import { ANALYSIS_SCHEMA, MAX_CHARS, analysisPrompt, llm, tally } from "./analysis.js";
-import { esc, quoteLink, settings, toggleRows } from "./ui.js";
+import { MAX_CHARS, tally } from "./analysis.js";
+import { ask, esc, quoteLink, toggleRows } from "./ui.js";
 
 const out = document.getElementById("out");
 const status = msg => { out.innerHTML = `<p class="status card">${esc(msg)}</p>`; };
@@ -9,6 +9,7 @@ async function main() {
   const id = new URLSearchParams(location.search).get("id");
   let { analyses = [] } = await chrome.storage.local.get("analyses");
   let a = analyses.find(x => x.id === id);
+  let left;
 
   if (!a) {
     const page = (await chrome.storage.session.get(id))[id];
@@ -19,9 +20,11 @@ async function main() {
     page.text = page.text.slice(0, MAX_CHARS);
     status(`${page.note || "Reading the page."} Analysing ${page.text.length.toLocaleString()} characters… this takes 10-40 seconds.`);
     try {
+      const res = await ask("analyze", page);
+      left = res.left;
       a = { id, url: page.url, title: page.title, note: page.note, truncated,
             created: new Date().toLocaleDateString("en-GB").replaceAll("/", "|"),
-            ...tally(await llm(analysisPrompt(page), await settings(), ANALYSIS_SCHEMA), page) };
+            ...tally(res.out, page) };
     } catch (e) {
       return status(e.message);
     }
@@ -31,7 +34,7 @@ async function main() {
     await chrome.storage.session.remove(id);
   }
   header(a);
-  render(a);
+  render(a, left);
 }
 
 function header(p) {
@@ -40,7 +43,7 @@ function header(p) {
   document.title = `Review Lens: ${p.subject || p.title}`;
 }
 
-function render(a) {
+function render(a, left) {
   const max = Math.max(...a.themes.map(t => t.count));
   const pct = n => Math.round((n / a.total) * 100) + "%";
   out.innerHTML = `
@@ -53,7 +56,7 @@ function render(a) {
     <h2>AI summary</h2>
     <div class="card"><ul class="summary">${a.summary.map(s => `<li>${esc(s)}</li>`).join("")}</ul></div>
     <h2>Themes</h2>
-    <p class="note">${a.note ? esc(a.note) + " " : ""}${a.truncated ? "Long page: only the first part was analysed. " : ""}${a.dropped ? `${a.dropped} quotes the AI returned were not found on the page and were dropped. ` : ""}Counts are computed from verified quotes. Click a theme to read them.</p>
+    <p class="note">${a.note ? esc(a.note) + " " : ""}${a.truncated ? "Long page: only the first part was analysed. " : ""}${a.dropped ? `${a.dropped} quotes the AI returned were not found on the page and were dropped. ` : ""}Counts are computed from verified quotes. Click a theme to read them.${left !== undefined ? ` <b>${left} free ${left === 1 ? "analysis" : "analyses"} left today.</b>` : ""}</p>
     <div class="card">
       <div class="legend">${SENT.map(([k, l]) => `<span><i style="background:var(--${k})"></i>${l}</span>`).join("")}</div>
       <table>
