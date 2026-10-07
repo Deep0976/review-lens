@@ -7,6 +7,7 @@ const root = document.getElementById("root");
 const FREE = 5;
 const MODELS = [["gemini-flash-lite-latest", "Flash-Lite · fast (default)"], ["gemini-3-flash-preview", "Gemini 3 Flash · sharper themes"], ["gemini-2.5-flash", "Gemini 2.5 Flash"]];
 const ICON = {
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-2.93 1.41-1.41M17.66 6.34l1.41-1.41M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41"/>',
   key: '<circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/>',
   kbd: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M7 16h10"/>',
   data: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>',
@@ -68,8 +69,10 @@ async function render() {
           ${s.apiKey ? '<button class="link danger" type="button" id="remove">Remove key</button>' : ""}<span id="msg" aria-live="polite"></span></div>
       </form></section>
 
-    <section class="sec"><div class="sec-h"><h2>Shortcut and data</h2></div>
+    <section class="sec"><div class="sec-h"><h2>Appearance, shortcut and data</h2></div>
       <div class="group">
+        <div class="set-row">${tileIcon(ICON.sun)}<div><b>Theme</b><small>Light is the default. System follows your computer's setting.</small></div>
+          <div class="seg" role="radiogroup" aria-label="Theme">${["light", "dark", "system"].map(t => `<button type="button" role="radio" data-theme-opt="${t}" aria-checked="${document.documentElement.dataset.theme === t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join("")}</div></div>
         <div class="set-row">${tileIcon(ICON.kbd)}<div><b>Keyboard shortcut</b><small>Runs Review Lens on the current page.</small></div>
           <div style="display:flex;gap:12px;align-items:center"><span class="kbd">Alt+Shift+R</span><button class="link" id="shortcuts">Change</button></div></div>
         <div class="set-row">${tileIcon(ICON.data)}<div><b>Saved reports</b><small>${plural(analyses.length, "report")} on this device, used for Compare. Only the last 20 are kept.</small></div>
@@ -116,6 +119,12 @@ function wire() {
     toast("Key removed. Using the free daily analyses.");
     render();
   });
+  document.querySelectorAll("[data-theme-opt]").forEach(b => b.addEventListener("click", () => {
+    const t = b.dataset.themeOpt;
+    try { localStorage.setItem("rl-theme", t); } catch {}
+    document.documentElement.dataset.theme = t;
+    document.querySelectorAll("[data-theme-opt]").forEach(x => x.setAttribute("aria-checked", String(x === b)));
+  }));
   document.getElementById("shortcuts").addEventListener("click", () => chrome.tabs.create({ url: "chrome://extensions/shortcuts" }));
   document.getElementById("clear")?.addEventListener("click", async () => {
     if (!confirm("Delete all saved reports on this device? This can’t be undone.")) return;
