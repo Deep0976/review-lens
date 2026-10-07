@@ -29,7 +29,7 @@ async function extract() {
   const host = location.hostname;
   const startY = scrollY;
   // never keep the user waiting too long: YouTube loads ~20 comments per step, so it gets longer to reach 300
-  const deadline = Date.now() + (host.endsWith("youtube.com") ? 35000 : 15000);
+  const deadline = Date.now() + (/(youtube|instagram)\.com$/.test(host) ? 35000 : 15000);
 
   const badge = document.createElement("div");
   badge.style.cssText = "position:fixed;top:16px;right:16px;z-index:2147483647;background:#2a78d6;color:#fff;font:600 14px system-ui,sans-serif;padding:10px 14px;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.3)";
@@ -84,6 +84,30 @@ async function extract() {
         return [stars && `${stars}★`, title, text].filter(Boolean).join(" · ");
       }).filter(t => t.length > 3);
       if (comments.length < 10) extra = " For more, sign in to Amazon, click “See more reviews” and run Review Lens on that page.";
+    } else if (host.endsWith("instagram.com")) {
+      site = "Instagram";
+      // a comment = the block around its "Reply" button that has the username link and a timestamp
+      const blocks = () => $$('[role="button"], button').filter(b => b.innerText.trim() === "Reply").map(b => {
+        let e = b;
+        for (let i = 0; i < 8 && e; i++) { e = e.parentElement; if (e?.querySelector('a[href^="/"]') && e.querySelector("time")) return e; }
+        return null;
+      }).filter(Boolean);
+      // more comments load when the spinner at the bottom of the comments panel comes into view
+      await loadMore(() => blocks().length, () => {
+        document.querySelector('svg[aria-label="Load more comments"]')?.closest('[role="button"], button')?.click();
+        document.querySelector('svg[aria-label="Loading..."]')?.scrollIntoView({ block: "end" });
+      }, 300, { wait: 900, patience: 5 });
+      badge.remove();
+      const meta = n => document.querySelector(`meta[${n}]`)?.content || "";
+      heading = meta('property="og:title"') || document.title;
+      total = (meta('name="description"').match(/([\d,.]+K?) comments/) || [])[1];
+      // keep only the comment text: drop username, time, "Edited", like counts, Reply / replies links
+      comments = blocks().map(e => {
+        const user = e.querySelector('a[href^="/"]')?.innerText.trim(), time = e.querySelector("time")?.innerText.trim();
+        return e.innerText.split("\n").map(l => l.trim()).filter(l => l && l !== user && l !== time
+          && !/^·?\s*Edited$/i.test(l) && !/^\d+\s*[smhdwy]\b/.test(l) && !/^[\d,.]+K?\s+likes?$/i.test(l)
+          && !/^(Reply|See translation|Hide replies)$/i.test(l) && !/^View (all )?[\d,]+ repl/i.test(l)).join(" ").replace(/^·\s*/, "");
+      }).filter(Boolean);
     } else if (host.endsWith("reddit.com")) {
       site = "Reddit";
       // Best source: the thread's own JSON (whole comment tree, no scrolling, no fragile selectors)
