@@ -13,3 +13,4 @@ node_modules/
 .netlify
 proxy/.netlify/
 .DS_Store
+worker/stats-link.local.txt

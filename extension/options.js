@@ -1,6 +1,6 @@
 // Settings / welcome page: plan, how to use, optional own Gemini key, shortcut and data.
 import { llm } from "./analysis.js";
-import { esc, settings } from "./ui.js";
+import { esc, settings, subscribe } from "./ui.js";
 import { check, plural, svg, toast, topBar } from "./view.js";
 
 const root = document.getElementById("root");
@@ -41,12 +41,21 @@ async function plan() {
 
 async function render() {
   const s = await settings();
-  const { analyses = [] } = await chrome.storage.local.get("analyses");
+  const { analyses = [], email = "" } = await chrome.storage.local.get(["analyses", "email"]);
   const models = MODELS.some(([id]) => id === s.model) ? MODELS : [...MODELS, [s.model, s.model]];
   root.innerHTML = `${topBar("Settings")}<main class="wrap" style="max-width:720px;gap:36px">
     ${new URLSearchParams(location.search).has("welcome") ? '<div class="page-h"><h1>Review Lens is ready</h1><p>No sign-up, no key. Open any page with reviews and click the icon: you get 5 free analyses every day.</p></div>' : '<div class="page-h"><h1>Settings</h1><p>Review Lens works without sign-up. Add your own key only if you want unlimited analyses.</p></div>'}
 
     <section class="plan" id="plan">${await plan()}</section>
+
+    <section class="sec"><div class="sec-h"><h2>Stay in the loop</h2><small>optional</small></div>
+      <form class="form" id="mail" autocomplete="on">
+        <div class="field"><label for="email">Email</label>
+          <div class="input-wrap"><input id="email" type="email" autocomplete="email" spellcheck="false" placeholder="you@example.com" value="${esc(email)}"></div>
+          <small>${email ? "You'll hear about new sites and features. " : "Share it only if you want news about new sites and features, a few emails a year at most. "}Never shared or sold. Remove it any time.</small></div>
+        <div class="form-actions"><button class="btn primary lg" type="submit">${email ? "Update email" : "Keep me posted"}</button>
+          ${email ? '<button class="link danger" type="button" id="unsub">Remove email</button>' : ""}<span id="mailmsg" aria-live="polite"></span></div>
+      </form></section>
 
     <section class="sec"><div class="sec-h"><h2>How to use</h2></div>
       <div class="group">
@@ -90,6 +99,19 @@ async function render() {
 function wire() {
   const f = document.getElementById("f"), key = f.querySelector("#key"), msg = document.getElementById("msg");
   const say = (text, ok) => { msg.className = ok ? "status-ok" : "status-err"; msg.innerHTML = ok ? `${check(14)}${esc(text)}` : esc(text); };
+  const mail = document.getElementById("mail"), mailmsg = document.getElementById("mailmsg");
+  const saveEmail = async (value, done) => {
+    mailmsg.className = "status-ok"; mailmsg.textContent = "Saving…";
+    try { await subscribe(value); toast(done); render(); }
+    catch (e) { mailmsg.className = "status-err"; mailmsg.textContent = /fetch/i.test(e.message) ? "Can't reach the Review Lens server. Try again." : e.message; }
+  };
+  mail.addEventListener("submit", e => {
+    e.preventDefault();
+    const value = mail.querySelector("#email").value.trim();
+    if (!value) { mailmsg.className = "status-err"; mailmsg.textContent = "Type your email first."; return; }
+    saveEmail(value, "Thanks! You'll hear about new features.");
+  });
+  document.getElementById("unsub")?.addEventListener("click", () => saveEmail("", "Email removed."));
   document.getElementById("show").addEventListener("click", e => {
     const showing = key.type === "text";
     key.type = showing ? "password" : "text";

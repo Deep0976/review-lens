@@ -14,8 +14,32 @@ async function installId() {
   return id;
 }
 
+// Small message to the Review Lens server (install ID + data); throws with the server's message
+async function post(kind, data) {
+  const r = await fetch(SERVER, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ installId: await installId(), kind, ...data }) });
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(d.error || `Review Lens server error (${r.status}).`);
+  return d;
+}
+
+// Optional email from Settings ("" removes it from the server)
+export async function subscribe(email) {
+  await post("subscribe", { email });
+  await chrome.storage.local.set({ email });
+}
+
+// Count this install as active today (anonymous: install ID only), at most once a day
+async function pingToday() {
+  const today = new Date().toDateString();
+  const { pinged } = await chrome.storage.local.get("pinged");
+  if (pinged === today) return;
+  await chrome.storage.local.set({ pinged: today });
+  post("ping", {}).catch(() => {});
+}
+
 // Own key -> call Gemini directly (unlimited). No key -> free hosted tier. Returns { out, left }.
 export async function ask(kind, payload) {
+  pingToday();
   const s = await settings();
   if (s.apiKey) {
     const out = kind === "analyze"

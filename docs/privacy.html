@@ -19,10 +19,11 @@ a { color: var(--accent); }
 <body>
 <main>
   <h1>Review Lens privacy policy</h1>
-  <p>Effective 04|10|2026 (updated for v1.1: free tier without sign-up)</p>
+  <p>Effective 07|10|2026 (updated for v1.3.8: optional email and anonymous usage count)</p>
 
   <p>Review Lens is a browser extension that summarises the reviews and comments on a web page into themes.
-  It has no accounts, no analytics and no ads.</p>
+  It has no accounts and no ads. It counts how many installs are in use each day without any personal data,
+  and it asks for your email only if you choose to share it.</p>
 
   <h2>What data is used, and when</h2>
   <ul>
@@ -33,6 +34,12 @@ a { color: var(--accent); }
     account or your device) so the free tier can count each install's daily analyses.</li>
     <li><b>Your Gemini API key (optional).</b> If you add your own key, it is stored only in your browser
     (<code>chrome.storage.local</code>) and is sent only to Google's Gemini API.</li>
+    <li><b>Daily active signal.</b> At most once a day, when you run an analysis, the extension sends only its
+    random install ID to the Review Lens server, so the developer can count active installs. No page text,
+    URL or personal data is included. These records are deleted automatically after 40 days.</li>
+    <li><b>Your email (optional).</b> Only if you type it into Settings. It is stored on the Review Lens server
+    with your install ID and is used only to tell you about new features. Clicking "Remove email" in Settings
+    deletes it from the server.</li>
     <li><b>Analysis results.</b> Your last 20 analyses are stored only in your browser so you can compare them.
     Removing the extension deletes them.</li>
   </ul>
@@ -43,7 +50,8 @@ a { color: var(--accent); }
   The server does not store or log the page text. It stores only a daily usage counter per install ID, which is
   deleted automatically after 2 days.</p>
   <p><b>With your own key:</b> the page text is sent directly from your browser to Google's Gemini API
-  (<code>generativelanguage.googleapis.com</code>), and nothing goes to the Review Lens server.</p>
+  (<code>generativelanguage.googleapis.com</code>). Only the daily active signal (and your email, if you shared it)
+  goes to the Review Lens server.</p>
   <p>Cloudflare hosts the server under the <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare Privacy Policy</a>. Google processes the request under the
   <a href="https://ai.google.dev/gemini-api/terms">Gemini API Terms</a> and
   <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. Note that on Gemini's free tier,
@@ -51,7 +59,7 @@ a { color: var(--accent); }
 
   <h2>What we don't do</h2>
   <ul>
-    <li>We don't collect, store, sell or share your data.</li>
+    <li>We don't sell or share your data, including your email. We don't store page text.</li>
     <li>We don't track browsing history or use cookies.</li>
     <li>We don't use the data for advertising, credit decisions or anything other than the analysis you requested.</li>
   </ul>
