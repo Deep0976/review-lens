@@ -29,7 +29,7 @@ async function extract() {
   const host = location.hostname;
   const startY = scrollY;
   // never keep the user waiting too long: YouTube loads ~20 comments per step, so it gets longer to reach 300
-  const deadline = Date.now() + (/(youtube|instagram)\.com$/.test(host) || location.pathname.startsWith("/maps") ? 35000 : host.endsWith("flipkart.com") ? 25000 : 15000);
+  const deadline = Date.now() + (/(youtube|instagram|x|twitter|linkedin)\.com$/.test(host) || location.pathname.startsWith("/maps") ? 35000 : host.endsWith("flipkart.com") ? 25000 : 15000);
 
   const badge = document.createElement("div");
   badge.style.cssText = "position:fixed;top:16px;right:16px;z-index:2147483647;background:#2a78d6;color:#fff;font:600 14px system-ui,sans-serif;padding:10px 14px;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.3)";
@@ -138,6 +138,60 @@ async function extract() {
         return `${stars ? `${stars}★ · ` : ""}${text}`;
       }).filter(Boolean);
       if (/limited view/i.test(document.body.innerText)) extra = " Google shows only a few reviews when you are signed out: sign in to Google and run it again for the full list.";
+    } else if (/(^|\.)(x|twitter)\.com$/.test(host) && /\/status\/\d+/.test(location.pathname)) {
+      site = "X";
+      // X keeps only on-screen posts in the page, so collect replies while scrolling
+      const got = new Map();
+      const collect = () => $$('article[data-testid="tweet"]').forEach(a => {
+        const t = a.querySelector('[data-testid="tweetText"]')?.innerText.trim();
+        const link = a.querySelector('a[href*="/status/"] time')?.closest("a")?.getAttribute("href");
+        if (t && link && !got.has(link)) got.set(link, t);
+      });
+      const mainId = location.pathname.match(/status\/(\d+)/)[1];
+      await loadMore(() => (collect(), got.size), () => {
+        $$('[role="button"]').filter(b => /^show (more )?replies$|^show additional replies/i.test(b.innerText.trim())).slice(0, 2).forEach(b => b.click());
+        scrollBy(0, innerHeight * 1.5);
+      }, 301, { wait: 1000, patience: 5 });
+      collect();
+      badge.remove();
+      const mainKey = [...got.keys()].find(k => k.includes(mainId));
+      heading = got.get(mainKey) || document.title;
+      comments = [...got].filter(([k]) => k !== mainKey).map(([, t]) => t);
+      total = (document.querySelector('[data-testid="reply"]')?.getAttribute("aria-label")?.match(/[\d,]+/) || [])[0];
+    } else if (host.endsWith("linkedin.com")) {
+      site = "LinkedIn";
+      // a comment = the block around its Reply button; its text is the "expandable-text-box" inside it
+      const blocks = () => $$("button").filter(b => /^reply$/i.test((b.getAttribute("aria-label") || b.innerText).trim())).map(b => {
+        let e = b;
+        for (let i = 0; i < 10 && e; i++) { e = e.parentElement; if (e?.querySelector('[data-testid="expandable-text-box"]')) return e; }
+        return null;
+      }).filter(Boolean);
+      await loadMore(() => blocks().length, () => {
+        $$("button").filter(b => /load more comments|show more comments|see more comments/i.test(b.innerText)).slice(0, 2).forEach(b => b.click());
+        toBottom();
+      }, 300, { wait: 1200, patience: 4 });
+      $$('[data-testid="expandable-text-button"]').forEach(b => b.click()); // "...more" only reveals text
+      await sleep(500);
+      badge.remove();
+      heading = $$('[data-testid="expandable-text-box"]')[0]?.innerText.trim() || document.title;
+      comments = [...new Set(blocks().map(b => b.querySelector('[data-testid="expandable-text-box"]')?.innerText.trim()).filter(Boolean))];
+      if (comments.length < 3) extra = " To read a post's comments, open that single post (click its time stamp) and run Review Lens there.";
+    } else if (host.endsWith("quora.com")) {
+      site = "Quora";
+      // an answer or post = the largest block that holds just one Upvote button
+      const items = () => [...new Set($$('button[aria-label="Upvote"]').map(u => {
+        let e = u, best = null;
+        while (e.parentElement && e.parentElement.querySelectorAll('[aria-label*="pvote" i]').length <= 2) { e = e.parentElement; best = e; }
+        return best;
+      }).filter(Boolean))];
+      await loadMore(() => items().length, toBottom, 100, { wait: 1200, patience: 3 });
+      $$("div,span").filter(e => e.children.length === 0 && /^\(more\)$/i.test(e.innerText.trim())).forEach(m => m.click());
+      await sleep(1200);
+      badge.remove();
+      heading = document.querySelector("h1")?.innerText.trim() || document.title;
+      // keep sentences; drop buttons, counts and short labels
+      comments = items().map(e => e.innerText.split("\n").map(l => l.trim()).filter(l => l.length >= 25
+        && !/^(Upvote|Share|Follow|Reply|Comment)/i.test(l) && !/^[\d.,]+K?\s*(upvotes?|comments?|shares?|views?)?$/i.test(l)).join(" ")).filter(t => t.length > 30);
     } else if (host.endsWith("instagram.com")) {
       site = "Instagram";
       // a comment = the block around its "Reply" button that has the username link and a timestamp
@@ -213,7 +267,7 @@ async function extract() {
     }
     if (site && comments.length >= 3) {
       const how = site === "Reddit" && redditWhy ? ` (from the page; Reddit's data feed failed: ${redditWhy})` : "";
-      return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, items: comments, note: `Loaded and read ${comments.length}${total ? ` of ${total}` : ""} ${site} ${/Amazon|Flipkart|Maps/.test(site) ? "reviews" : "comments"}${total ? " (most relevant first)" : ""}${how}.${extra}` };
+      return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, items: comments, note: `Loaded and read ${comments.length}${total ? ` of ${total}` : ""} ${site} ${/Amazon|Flipkart|Maps/.test(site) ? "reviews" : site === "X" ? "replies" : site === "Quora" ? "answers and posts" : "comments"}${total ? " (most relevant first)" : ""}${how}.${extra}` };
     }
     return {
       ...base, text: document.body.innerText,

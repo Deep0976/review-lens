@@ -50,7 +50,7 @@ async function render() {
 
     <section class="sec"><div class="sec-h"><h2>How to use</h2></div>
       <div class="group">
-        <div class="set-row"><div class="num">1</div><div><b>Open a page with reviews</b><small>A Play Store app, a YouTube video, a Reddit thread, Amazon or Flipkart reviews.</small></div><span></span></div>
+        <div class="set-row"><div class="num">1</div><div><b>Open a page with reviews</b><small>A Play Store app, Amazon, Flipkart or Google Maps reviews, a YouTube video, a Reddit thread, an X post, a LinkedIn post or a Quora page.</small></div><span></span></div>
         <div class="set-row"><div class="num">2</div><div><b>Click the Review Lens icon</b><small>Or press the shortcut. Pin the icon from the puzzle-piece menu so it’s always visible.</small></div><span class="kbd">Alt+Shift+R</span></div>
         <div class="set-row"><div class="num">3</div><div><b>Let it load the reviews</b><small>It opens “See all reviews”, scrolls YouTube comments and reads whole Reddit threads for you.</small></div><span></span></div>
         <div class="set-row"><div class="num">4</div><div><b>Read the verdict, then compare</b><small>Every quote opens the original comment. Analyse two pages to compare them side by side.</small></div><a href="compare.html">Compare</a></div>
