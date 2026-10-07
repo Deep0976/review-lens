@@ -53,6 +53,43 @@ async function extract() {
   const toBottom = () => scrollTo(0, document.documentElement.scrollHeight);
   // only "load more"-style buttons, so we never click anything that changes data
   const visible = e => (e.checkVisibility ? e.checkVisibility() : !!e.getClientRects().length);
+  // "show more"-style controls that stay on this page: they add reviews or open cut-off text, nothing else
+  const MORE = /^(show|load|view|see|read)\s*(\d+\s*)?more(\s+(reviews?|comments?|replies|answers|ratings))?$|^more\s+(reviews|comments)$/i;
+  const label = b => (b.innerText || b.getAttribute("aria-label") || "").trim().replace(/[\s….]+$/, "");
+  const leavesPage = b => b.tagName === "A" && !/^(#|javascript:|$)/i.test(b.getAttribute("href") || "") && (b.pathname !== b.ownerDocument.location.pathname || b.search !== b.ownerDocument.location.search);
+  const pressMore = (root = document) => [...root.querySelectorAll("button, a, [role='button']")].filter(b => MORE.test(label(b)) && !leavesPage(b) && visible(b)).slice(0, 10).forEach(b => b.click());
+  // Open a same-site page (e.g. the full reviews list) in a hidden frame and keep pressing `step` there
+  // until `count` stops growing. Returns its document, or null if it needs sign-in or won't load.
+  const frames = [];
+  const hiddenPage = (url, count, step, target, showCount = true) => new Promise(done => {
+    const f = document.createElement("iframe");
+    // inside the screen but invisible: pages only load more for content that is "in view"
+    f.style.cssText = "position:fixed;left:0;top:0;width:1200px;height:900px;border:0;opacity:0;pointer-events:none;z-index:-1";
+    f.src = url;
+    frames.push(f);
+    const timer = setTimeout(() => done(null), 10000);
+    f.onload = async () => {
+      f.onload = null;
+      clearTimeout(timer);
+      try {
+        const doc = f.contentDocument;
+        if (!doc || /signin|login/i.test(f.contentWindow.location.pathname)) return done(null);
+        await sleep(1500); // until the page's own script owns its buttons (an early click opens a new page instead)
+        let last = -1, stalls = 0;
+        while (Date.now() < deadline && stalls < 3 && f.contentDocument === doc) {
+          const n = count(doc);
+          if (n >= target) break;
+          stalls = n === last ? stalls + 1 : 0;
+          last = n;
+          if (showCount) show(n);
+          step(doc, f.contentWindow);
+          await sleep(1200);
+        }
+        done(doc);
+      } catch { done(null); } // another site's page can't be read
+    };
+    document.body.append(f);
+  });
   const clickMore = re => $$("button, faceplate-partial button, a.morecomments a").filter(b => re.test(b.innerText || "")).slice(0, 8).forEach(b => b.click());
 
   try {
@@ -83,39 +120,14 @@ async function extract() {
       const asin = (location.pathname.match(/\/(?:dp|gp\/product|product-reviews)\/([A-Z0-9]{10})/) || [])[1] || document.querySelector("#ASIN")?.value;
       // The full list lives on Amazon's reviews page, behind "Show more reviews". Open it in hidden frames
       // (same site, so we can read them) and press that button for the user: most helpful + most recent.
-      const lists = !asin ? [] : await Promise.all(["helpful", "recent"].map(sort => new Promise(done => {
-        const f = document.createElement("iframe");
-        f.style.cssText = "position:fixed;left:-10000px;top:0;width:1200px;height:900px;border:0";
-        f.src = `/product-reviews/${asin}/?sortBy=${sort}&reviewerType=all_reviews`;
-        f.onload = async () => {
-          f.onload = null;
-          clearTimeout(timer);
-          const doc = f.contentDocument;
-          if (!doc || /signin/.test(f.contentWindow.location.pathname)) return done({ f, doc: null });
-          await sleep(1500); // until Amazon's script owns the button (an early click opens a new page instead)
-          let last = -1, stalls = 0;
-          while (Date.now() < deadline && stalls < 3 && f.contentDocument === doc) {
-            const n = doc.querySelectorAll('[data-hook="review"]').length;
-            if (n >= 150) break;
-            stalls = n === last ? stalls + 1 : 0;
-            last = n;
-            show(n);
-            doc.querySelector('[data-hook="show-more-button"]')?.click();
-            await sleep(1200);
-          }
-          done({ f, doc });
-        };
-        f.onerror = () => done({ f, doc: null });
-        document.body.append(f);
-        const timer = setTimeout(() => done({ f, doc: null }), 10000); // the frame never loaded
-      })));
+      const lists = !asin ? [] : await Promise.all(["helpful", "recent"].map(sort => hiddenPage(`/product-reviews/${asin}/?sortBy=${sort}&reviewerType=all_reviews`,
+        d => d.querySelectorAll('[data-hook="review"]').length, d => d.querySelector('[data-hook="show-more-button"]')?.click(), 150)));
       // the same review shows on the product page and in both lists: keep it once
-      comments = [...new Set([document, ...lists.map(l => l.doc).filter(Boolean)].flatMap(d => [...d.querySelectorAll('[data-hook="review"]')].map(format)))].filter(t => t.length > 3);
-      total = (lists.find(l => l.doc)?.doc.querySelector('[data-hook="cr-filter-info-review-rating-count"]')?.innerText.match(/[\d,]+/) || [])[0];
-      lists.forEach(l => l.f.remove());
+      comments = [...new Set([document, ...lists.filter(Boolean)].flatMap(d => [...d.querySelectorAll('[data-hook="review"]')].map(format)))].filter(t => t.length > 3);
+      total = (lists.find(Boolean)?.querySelector('[data-hook="cr-filter-info-review-rating-count"]')?.innerText.match(/[\d,]+/) || [])[0];
       badge.remove();
       heading = document.querySelector("#productTitle")?.innerText.trim() || document.title;
-      extra = lists.some(l => l.doc) ? " Mix of the most helpful and most recent reviews; some quotes are on Amazon's review pages, not this one."
+      extra = lists.some(Boolean) ? " Mix of the most helpful and most recent reviews; some quotes are on Amazon's review pages, not this one."
         : " Amazon shows the full review list only when you're signed in: sign in to Amazon once and run Review Lens again.";
     } else if (host.endsWith("flipkart.com") && /\/(p|product-reviews)\//.test(location.pathname) && new URLSearchParams(location.search).get("pid")) {
       site = "Flipkart";
@@ -293,11 +305,17 @@ async function extract() {
       const dialog = openDialogs().sort((a, b) => b.innerText.length - a.innerText.length)[0];
       if (dialog) {
         const scroller = [dialog, ...dialog.querySelectorAll("*")].find(e => e.scrollHeight > e.clientHeight + 50 && /(auto|scroll)/.test(getComputedStyle(e).overflowY));
-        if (scroller) await loadMore(() => dialog.innerText.length, () => { scroller.scrollTop = scroller.scrollHeight; }, 80000, { label: false }); // 80000 = MAX_CHARS the analysis reads
+        if (scroller) await loadMore(() => dialog.innerText.length, () => { pressMore(dialog); scroller.scrollTop = scroller.scrollHeight; }, 80000, { label: false }); // 80000 = MAX_CHARS the analysis reads
         badge.remove();
         return { ...base, text: dialog.innerText.trim(), note: "Opened and read the full reviews list." };
       }
-      await loadMore(() => document.body.innerText.length, toBottom, 80000, { label: false });
+      // "See all 1,234 reviews" that leads to its own page on this site: read that page instead
+      const allLink = $$("a[href]").find(a => a.host === location.host && leavesPage(a) && label(a).length < 60 && /^(see|view|read|show)\s+(all|more)\b.*\b(reviews|ratings|comments)\b/i.test(label(a)));
+      const full = allLink && await hiddenPage(allLink.href, d => d.body.innerText.length, (d, w) => { pressMore(d); w.scrollTo(0, d.documentElement.scrollHeight); }, 80000, false);
+      if (full && full.body.innerText.length > document.body.innerText.length) {
+        return { ...base, text: full.body.innerText.trim(), note: `Opened “${label(allLink)}” and read the full list.` };
+      }
+      await loadMore(() => document.body.innerText.length, () => { pressMore(); toBottom(); }, 80000, { label: false });
       badge.remove();
     }
     if (site && comments.length >= 3) {
@@ -311,6 +329,7 @@ async function extract() {
     };
   } finally {
     badge.remove();
+    frames.forEach(f => f.remove());
     if (!host.endsWith("play.google.com")) scrollTo(0, startY); // put the page back where the user was
   }
 }
