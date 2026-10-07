@@ -29,7 +29,7 @@ async function extract() {
   const host = location.hostname;
   const startY = scrollY;
   // never keep the user waiting too long: YouTube loads ~20 comments per step, so it gets longer to reach 300
-  const deadline = Date.now() + (/(youtube|instagram)\.com$/.test(host) ? 35000 : host.endsWith("flipkart.com") ? 25000 : 15000);
+  const deadline = Date.now() + (/(youtube|instagram)\.com$/.test(host) || location.pathname.startsWith("/maps") ? 35000 : host.endsWith("flipkart.com") ? 25000 : 15000);
 
   const badge = document.createElement("div");
   badge.style.cssText = "position:fixed;top:16px;right:16px;z-index:2147483647;background:#2a78d6;color:#fff;font:600 14px system-ui,sans-serif;padding:10px 14px;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.3)";
@@ -114,6 +114,30 @@ async function extract() {
       const ratings = (document.body.innerText.match(/([\d,]+)\s+ratings/) || [])[1];
       comments = found.map(r => [r.rating && `${r.rating}★`, r.title, String(r.text || "").trim()].filter(Boolean).join(" · ")).filter(t => t.length > 3);
       extra = `${ratings ? ` Product has ${ratings} ratings.` : ""} Mix of the most helpful and most recent reviews; some quotes are on the Flipkart review pages, not this one.`;
+    } else if (/(^|\.)google\.[a-z.]+$/.test(host) && location.pathname.startsWith("/maps")) {
+      site = "Google Maps";
+      // open the place's Reviews tab if it isn't open yet
+      $$('button[role="tab"]').find(b => /reviews/i.test(b.innerText || b.getAttribute("aria-label") || "") && b.getAttribute("aria-selected") !== "true")?.click();
+      await sleep(1500);
+      const ids = () => new Set($$("[data-review-id]").map(e => e.getAttribute("data-review-id"))).size;
+      const panel = () => { let e = $$("[data-review-id]")[0]?.parentElement; while (e && !(e.scrollHeight > e.clientHeight + 50 && /(auto|scroll)/.test(getComputedStyle(e).overflowY))) e = e.parentElement; return e; };
+      await loadMore(ids, () => { const p = panel(); if (p) p.scrollTop = p.scrollHeight; }, 300, { wait: 900, patience: 5 });
+      // expand long reviews ("More" only opens text, it changes nothing)
+      $$("[data-review-id] button").filter(b => /^more$/i.test(b.innerText.trim())).forEach(b => b.click());
+      await sleep(400);
+      badge.remove();
+      heading = document.querySelector("h1")?.innerText.trim() || document.title;
+      total = (($$("button").map(b => b.getAttribute("aria-label") || b.innerText).find(t => /^[\d,]+ reviews$/i.test(t || "")) || "").match(/[\d,]+/) || [])[0];
+      const seen = new Set();
+      comments = $$("[data-review-id]").map(r => {
+        const id = r.getAttribute("data-review-id");
+        const text = r.querySelector(".wiI7pd")?.innerText.trim(); // the reviewer's text (comes before any owner reply)
+        if (!text || seen.has(id)) return "";
+        seen.add(id);
+        const stars = (r.querySelector('[role="img"][aria-label*="star"]')?.getAttribute("aria-label") || "").match(/^\d/)?.[0];
+        return `${stars ? `${stars}★ · ` : ""}${text}`;
+      }).filter(Boolean);
+      if (/limited view/i.test(document.body.innerText)) extra = " Google shows only a few reviews when you are signed out: sign in to Google and run it again for the full list.";
     } else if (host.endsWith("instagram.com")) {
       site = "Instagram";
       // a comment = the block around its "Reply" button that has the username link and a timestamp
@@ -189,7 +213,7 @@ async function extract() {
     }
     if (site && comments.length >= 3) {
       const how = site === "Reddit" && redditWhy ? ` (from the page; Reddit's data feed failed: ${redditWhy})` : "";
-      return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, items: comments, note: `Loaded and read ${comments.length}${total ? ` of ${total}` : ""} ${site} ${/Amazon|Flipkart/.test(site) ? "reviews" : "comments"}${total ? " (top comments first)" : ""}${how}.${extra}` };
+      return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, items: comments, note: `Loaded and read ${comments.length}${total ? ` of ${total}` : ""} ${site} ${/Amazon|Flipkart|Maps/.test(site) ? "reviews" : "comments"}${total ? " (most relevant first)" : ""}${how}.${extra}` };
     }
     return {
       ...base, text: document.body.innerText,

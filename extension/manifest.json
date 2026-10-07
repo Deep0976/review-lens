@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Review Lens",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "description": "Turn the reviews and comments on any page into clear themes, a verdict and verified quotes. Compare pages side by side.",
   "homepage_url": "https://github.com/Deep0976/review-lens",
   "icons": {
