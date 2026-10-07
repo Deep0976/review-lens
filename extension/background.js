@@ -29,7 +29,7 @@ async function extract() {
   const host = location.hostname;
   const startY = scrollY;
   // never keep the user waiting too long: YouTube loads ~20 comments per step, so it gets longer to reach 300
-  const deadline = Date.now() + (/(youtube|instagram)\.com$/.test(host) ? 35000 : 15000);
+  const deadline = Date.now() + (/(youtube|instagram)\.com$/.test(host) ? 35000 : host.endsWith("flipkart.com") ? 25000 : 15000);
 
   const badge = document.createElement("div");
   badge.style.cssText = "position:fixed;top:16px;right:16px;z-index:2147483647;background:#2a78d6;color:#fff;font:600 14px system-ui,sans-serif;padding:10px 14px;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.3)";
@@ -84,6 +84,36 @@ async function extract() {
         return [stars && `${stars}★`, title, text].filter(Boolean).join(" · ");
       }).filter(t => t.length > 3);
       if (comments.length < 10) extra = " For more, sign in to Amazon, click “See more reviews” and run Review Lens on that page.";
+    } else if (host.endsWith("flipkart.com") && /\/(p|product-reviews)\//.test(location.pathname) && new URLSearchParams(location.search).get("pid")) {
+      site = "Flipkart";
+      // Review pages embed the full reviews as data (10 per page, no "...more" cut-off), so fetch them directly
+      const base = location.pathname.replace("/p/", "/product-reviews/") + "?pid=" + new URLSearchParams(location.search).get("pid");
+      const pageReviews = async (sort, n) => {
+        const html = await (await fetch(`${base}&page=${n}&sortOrder=${sort}`, { credentials: "include" })).text();
+        const state = [...new DOMParser().parseFromString(html, "text/html").querySelectorAll("script")].map(x => x.textContent).find(t => t.includes("__INITIAL_STATE__"));
+        if (!state) return [];
+        const out = [];
+        const walk = o => { if (!o || typeof o !== "object") return; if (o.type === "ProductReviewValue") return void out.push(o); for (const k in o) walk(o[k]); };
+        walk(JSON.parse(state.slice(state.indexOf("{"), state.lastIndexOf("}") + 1)));
+        return out;
+      };
+      // Flipkart serves ~10 pages per sort order; "most helpful" + "most recent" gives ~200 different reviews
+      // without tilting sentiment (a "negative first" order would)
+      const seen = new Set(), found = [];
+      for (const sort of ["MOST_HELPFUL", "MOST_RECENT"]) {
+        for (let n = 1; n <= 10 && found.length < 300 && Date.now() < deadline; n++) {
+          let batch;
+          try { batch = (await pageReviews(sort, n)).filter(r => !seen.has(r.id) && seen.add(r.id)); } catch { break; }
+          if (batch.length < 3) break; // this order has run out (later pages repeat a featured review)
+          found.push(...batch);
+          show(found.length);
+        }
+      }
+      badge.remove();
+      heading = document.querySelector("h1")?.innerText.trim() || document.title;
+      const ratings = (document.body.innerText.match(/([\d,]+)\s+ratings/) || [])[1];
+      comments = found.map(r => [r.rating && `${r.rating}★`, r.title, String(r.text || "").trim()].filter(Boolean).join(" · ")).filter(t => t.length > 3);
+      extra = `${ratings ? ` Product has ${ratings} ratings.` : ""} Mix of the most helpful and most recent reviews; some quotes are on the Flipkart review pages, not this one.`;
     } else if (host.endsWith("instagram.com")) {
       site = "Instagram";
       // a comment = the block around its "Reply" button that has the username link and a timestamp
@@ -120,13 +150,16 @@ async function extract() {
           const [post, tree] = await res.json();
           const p = post.data.children[0].data;
           heading = [p.title, p.selftext].filter(Boolean).join("\n\n");
-          comments = [];
+          const found = [];
           const walk = list => (list || []).forEach(c => {
             if (c.kind !== "t1") return; // "more" stubs are skipped
-            if (c.data.body && !["[deleted]", "[removed]"].includes(c.data.body)) comments.push(c.data.body.trim());
+            if (c.data.body && !["[deleted]", "[removed]"].includes(c.data.body)) found.push([c.data.score || 0, c.data.body.trim()]);
             walk(c.data.replies?.data?.children);
           });
           walk(tree.data.children);
+          // analysis takes up to 300, so put the most-upvoted first (stable sort keeps thread order for ties)
+          comments = found.sort((a, b) => b[0] - a[0]).map(([, body]) => body);
+          if (comments.length > 300) extra = " The 300 most-upvoted were analysed.";
           show(comments.length);
         } catch (e) { comments = []; redditWhy = e.message.slice(0, 60); }
       }
@@ -156,7 +189,7 @@ async function extract() {
     }
     if (site && comments.length >= 3) {
       const how = site === "Reddit" && redditWhy ? ` (from the page; Reddit's data feed failed: ${redditWhy})` : "";
-      return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, items: comments, note: `Loaded and read ${comments.length}${total ? ` of ${total}` : ""} ${site} ${site === "Amazon" ? "reviews" : "comments"}${total ? " (top comments first)" : ""}${how}.${extra}` };
+      return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, items: comments, note: `Loaded and read ${comments.length}${total ? ` of ${total}` : ""} ${site} ${/Amazon|Flipkart/.test(site) ? "reviews" : "comments"}${total ? " (top comments first)" : ""}${how}.${extra}` };
     }
     return {
       ...base, text: document.body.innerText,
