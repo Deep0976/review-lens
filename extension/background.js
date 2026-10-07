@@ -28,7 +28,8 @@ async function extract() {
   const texts = sel => $$(sel).map(e => e.innerText.trim()).filter(Boolean);
   const host = location.hostname;
   const startY = scrollY;
-  const deadline = Date.now() + 15000; // never keep the user waiting more than ~15s
+  // never keep the user waiting too long: YouTube loads ~20 comments per step, so it gets longer to reach 300
+  const deadline = Date.now() + (host.endsWith("youtube.com") ? 35000 : 15000);
 
   const badge = document.createElement("div");
   badge.style.cssText = "position:fixed;top:16px;right:16px;z-index:2147483647;background:#2a78d6;color:#fff;font:600 14px system-ui,sans-serif;padding:10px 14px;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.3)";
@@ -54,11 +55,18 @@ async function extract() {
   const clickMore = re => $$("button, faceplate-partial button, a.morecomments a").filter(b => re.test(b.innerText || "")).slice(0, 8).forEach(b => b.click());
 
   try {
-    let site, heading, comments;
+    let site, heading, comments, total;
     if (host.endsWith("youtube.com")) {
       site = "YouTube";
-      // YouTube loads comments only as they scroll into view, so go a screen at a time
-      await loadMore(() => $$("ytd-comment-thread-renderer").length, () => scrollBy(0, innerHeight * 1.5), 100, { wait: 1500, patience: 4 });
+      // pause the video while loading (scrolling can trigger autoplay), resume afterwards
+      const video = document.querySelector("video.html5-main-video, video");
+      const wasPlaying = video && !video.paused;
+      video?.pause();
+      // a screen at a time until comments start loading, then jump to the bottom for each next batch of ~20
+      const n = () => $$("ytd-comment-thread-renderer").length;
+      await loadMore(n, () => (n() ? scrollTo(0, document.documentElement.scrollHeight) : scrollBy(0, innerHeight * 1.5)), 300, { wait: 700, patience: 5 }); // measured: 300 comments in ~32s
+      if (wasPlaying) video.play().catch(() => {});
+      total = (document.querySelector("ytd-comments-header-renderer #count")?.innerText.match(/[\d,]+/) || [])[0];
       badge.remove();
       heading = texts("ytd-watch-metadata h1, h1.ytd-watch-metadata")[0] || document.title;
       comments = texts("ytd-comment-thread-renderer #content-text, ytd-comment-view-model #content-text");
@@ -109,7 +117,7 @@ async function extract() {
     }
     if (site && comments.length >= 3) {
       const how = site === "Reddit" && redditWhy ? ` (from the page; Reddit's data feed failed: ${redditWhy})` : "";
-      return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, items: comments, note: `Loaded and read ${comments.length} ${site} comments${how}.` };
+      return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, items: comments, note: `Loaded and read ${comments.length}${total ? ` of ${total}` : ""} ${site} comments${total ? " (top comments first)" : ""}${how}.` };
     }
     return {
       ...base, text: document.body.innerText,
