@@ -52,10 +52,11 @@ async function extract() {
   };
   const toBottom = () => scrollTo(0, document.documentElement.scrollHeight);
   // only "load more"-style buttons, so we never click anything that changes data
+  const visible = e => (e.checkVisibility ? e.checkVisibility() : !!e.getClientRects().length);
   const clickMore = re => $$("button, faceplate-partial button, a.morecomments a").filter(b => re.test(b.innerText || "")).slice(0, 8).forEach(b => b.click());
 
   try {
-    let site, heading, comments, total;
+    let site, heading, comments, total, extra = "";
     if (host.endsWith("youtube.com")) {
       site = "YouTube";
       // pause the video while loading (scrolling can trigger autoplay), resume afterwards
@@ -70,6 +71,19 @@ async function extract() {
       badge.remove();
       heading = texts("ytd-watch-metadata h1, h1.ytd-watch-metadata")[0] || document.title;
       comments = texts("ytd-comment-thread-renderer #content-text, ytd-comment-view-model #content-text");
+    } else if (/(^|\.)amazon\./.test(host)) {
+      site = "Amazon";
+      await loadMore(() => $$('[data-hook="review"]').length, toBottom, 50, { patience: 2 });
+      badge.remove();
+      heading = document.querySelector("#productTitle")?.innerText.trim() || document.title;
+      comments = $$('[data-hook="review"]').map(r => {
+        const q = h => r.querySelector(h)?.innerText.trim() || "";
+        const stars = (q('[data-hook="review-star-rating"], [data-hook="cmps-review-star-rating"]').match(/^[\d.]+/) || [""])[0];
+        const title = q('[data-hook="reviewTitle"], [data-hook="review-title"]').replace(/^[\d.]+ out of 5 stars\s*/, "");
+        const text = q('[data-hook="reviewText"], [data-hook="review-body"]');
+        return [stars && `${stars}★`, title, text].filter(Boolean).join(" · ");
+      }).filter(t => t.length > 3);
+      if (comments.length < 10) extra = " For more, sign in to Amazon, click “See more reviews” and run Review Lens on that page.";
     } else if (host.endsWith("reddit.com")) {
       site = "Reddit";
       // Best source: the thread's own JSON (whole comment tree, no scrolling, no fragile selectors)
@@ -104,8 +118,9 @@ async function extract() {
     } else {
       // Open the full reviews list if the page has one (e.g. Play Store "See all reviews")
       const seeAll = $$("button, a, [role='button']").find(b => /^\s*see all reviews\s*$/i.test(b.innerText || ""));
-      if (seeAll && !$$("[role='dialog']").some(d => d.innerText.length > 1000)) { seeAll.click(); await sleep(1500); }
-      const dialog = $$("[role='dialog'], dialog[open]").filter(d => d.innerText.length > 500).sort((a, b) => b.innerText.length - a.innerText.length)[0];
+      const openDialogs = () => $$("[role='dialog'], dialog[open]").filter(d => visible(d) && d.innerText.length > 500);
+      if (seeAll && !openDialogs().some(d => d.innerText.length > 1000)) { seeAll.click(); await sleep(1500); }
+      const dialog = openDialogs().sort((a, b) => b.innerText.length - a.innerText.length)[0];
       if (dialog) {
         const scroller = [dialog, ...dialog.querySelectorAll("*")].find(e => e.scrollHeight > e.clientHeight + 50 && /(auto|scroll)/.test(getComputedStyle(e).overflowY));
         if (scroller) await loadMore(() => dialog.innerText.length, () => { scroller.scrollTop = scroller.scrollHeight; }, 80000, { label: false }); // 80000 = MAX_CHARS the analysis reads
@@ -117,7 +132,7 @@ async function extract() {
     }
     if (site && comments.length >= 3) {
       const how = site === "Reddit" && redditWhy ? ` (from the page; Reddit's data feed failed: ${redditWhy})` : "";
-      return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, items: comments, note: `Loaded and read ${comments.length}${total ? ` of ${total}` : ""} ${site} comments${total ? " (top comments first)" : ""}${how}.` };
+      return { ...base, text: `${heading}\n\nComments:\n\n${comments.join("\n\n---\n\n")}`, items: comments, note: `Loaded and read ${comments.length}${total ? ` of ${total}` : ""} ${site} ${site === "Amazon" ? "reviews" : "comments"}${total ? " (top comments first)" : ""}${how}.${extra}` };
     }
     return {
       ...base, text: document.body.innerText,
