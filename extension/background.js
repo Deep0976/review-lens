@@ -29,7 +29,7 @@ async function extract() {
   const host = location.hostname;
   const startY = scrollY;
   // never keep the user waiting too long: YouTube loads ~20 comments per step, so it gets longer to reach 300
-  const deadline = Date.now() + (/(youtube|instagram|x|twitter|linkedin)\.com$/.test(host) || location.pathname.startsWith("/maps") ? 35000 : host.endsWith("flipkart.com") ? 25000 : 15000);
+  const deadline = Date.now() + (/(^|\.)(youtube|instagram|x|twitter|linkedin)\.com$/.test(host) || location.pathname.startsWith("/maps") ? 35000 : host.endsWith("flipkart.com") || /(^|\.)amazon\./.test(host) ? 30000 : 15000);
 
   const badge = document.createElement("div");
   badge.style.cssText = "position:fixed;top:16px;right:16px;z-index:2147483647;background:#2a78d6;color:#fff;font:600 14px system-ui,sans-serif;padding:10px 14px;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.3)";
@@ -73,17 +73,50 @@ async function extract() {
       comments = texts("ytd-comment-thread-renderer #content-text, ytd-comment-view-model #content-text");
     } else if (/(^|\.)amazon\./.test(host)) {
       site = "Amazon";
-      await loadMore(() => $$('[data-hook="review"]').length, toBottom, 50, { patience: 2 });
-      badge.remove();
-      heading = document.querySelector("#productTitle")?.innerText.trim() || document.title;
-      comments = $$('[data-hook="review"]').map(r => {
+      const format = r => {
         const q = h => r.querySelector(h)?.innerText.trim() || "";
         const stars = (q('[data-hook="review-star-rating"], [data-hook="cmps-review-star-rating"]').match(/^[\d.]+/) || [""])[0];
         const title = q('[data-hook="reviewTitle"], [data-hook="review-title"]').replace(/^[\d.]+ out of 5 stars\s*/, "");
         const text = q('[data-hook="reviewText"], [data-hook="review-body"]');
         return [stars && `${stars}★`, title, text].filter(Boolean).join(" · ");
-      }).filter(t => t.length > 3);
-      if (comments.length < 10) extra = " For more, sign in to Amazon, click “See more reviews” and run Review Lens on that page.";
+      };
+      const asin = (location.pathname.match(/\/(?:dp|gp\/product|product-reviews)\/([A-Z0-9]{10})/) || [])[1] || document.querySelector("#ASIN")?.value;
+      // The full list lives on Amazon's reviews page, behind "Show more reviews". Open it in hidden frames
+      // (same site, so we can read them) and press that button for the user: most helpful + most recent.
+      const lists = !asin ? [] : await Promise.all(["helpful", "recent"].map(sort => new Promise(done => {
+        const f = document.createElement("iframe");
+        f.style.cssText = "position:fixed;left:-10000px;top:0;width:1200px;height:900px;border:0";
+        f.src = `/product-reviews/${asin}/?sortBy=${sort}&reviewerType=all_reviews`;
+        f.onload = async () => {
+          f.onload = null;
+          clearTimeout(timer);
+          const doc = f.contentDocument;
+          if (!doc || /signin/.test(f.contentWindow.location.pathname)) return done({ f, doc: null });
+          await sleep(1500); // until Amazon's script owns the button (an early click opens a new page instead)
+          let last = -1, stalls = 0;
+          while (Date.now() < deadline && stalls < 3 && f.contentDocument === doc) {
+            const n = doc.querySelectorAll('[data-hook="review"]').length;
+            if (n >= 150) break;
+            stalls = n === last ? stalls + 1 : 0;
+            last = n;
+            show(n);
+            doc.querySelector('[data-hook="show-more-button"]')?.click();
+            await sleep(1200);
+          }
+          done({ f, doc });
+        };
+        f.onerror = () => done({ f, doc: null });
+        document.body.append(f);
+        const timer = setTimeout(() => done({ f, doc: null }), 10000); // the frame never loaded
+      })));
+      // the same review shows on the product page and in both lists: keep it once
+      comments = [...new Set([document, ...lists.map(l => l.doc).filter(Boolean)].flatMap(d => [...d.querySelectorAll('[data-hook="review"]')].map(format)))].filter(t => t.length > 3);
+      total = (lists.find(l => l.doc)?.doc.querySelector('[data-hook="cr-filter-info-review-rating-count"]')?.innerText.match(/[\d,]+/) || [])[0];
+      lists.forEach(l => l.f.remove());
+      badge.remove();
+      heading = document.querySelector("#productTitle")?.innerText.trim() || document.title;
+      extra = lists.some(l => l.doc) ? " Mix of the most helpful and most recent reviews; some quotes are on Amazon's review pages, not this one."
+        : " Amazon shows the full review list only when you're signed in: sign in to Amazon once and run Review Lens again.";
     } else if (host.endsWith("flipkart.com") && /\/(p|product-reviews)\//.test(location.pathname) && new URLSearchParams(location.search).get("pid")) {
       site = "Flipkart";
       // Review pages embed the full reviews as data (10 per page, no "...more" cut-off), so fetch them directly
@@ -166,6 +199,8 @@ async function extract() {
         for (let i = 0; i < 10 && e; i++) { e = e.parentElement; if (e?.querySelector('[data-testid="expandable-text-box"]')) return e; }
         return null;
       }).filter(Boolean);
+      // feed and profile pages keep comments closed: "Comment" opens them (it only focuses the empty reply box)
+      if (!blocks().length) { $$("button").filter(b => /^comment$/i.test((b.getAttribute("aria-label") || b.innerText).trim())).slice(0, 10).forEach(b => b.click()); await sleep(2500); }
       await loadMore(() => blocks().length, () => {
         $$("button").filter(b => /load more comments|show more comments|see more comments/i.test(b.innerText)).slice(0, 2).forEach(b => b.click());
         toBottom();
@@ -175,7 +210,7 @@ async function extract() {
       badge.remove();
       heading = $$('[data-testid="expandable-text-box"]')[0]?.innerText.trim() || document.title;
       comments = [...new Set(blocks().map(b => b.querySelector('[data-testid="expandable-text-box"]')?.innerText.trim()).filter(Boolean))];
-      if (comments.length < 3) extra = " To read a post's comments, open that single post (click its time stamp) and run Review Lens there.";
+      if (!/\/feed\/update\//.test(location.pathname)) extra = " Comments from the posts on this page. For one post only, open it (click its time stamp) and run Review Lens there.";
     } else if (host.endsWith("quora.com")) {
       site = "Quora";
       // an answer or post = the largest block that holds just one Upvote button
