@@ -16,7 +16,9 @@ A Chrome extension that turns the reviews and comments on any page into a clear 
 ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-daily%20refresh-2088FF?logo=githubactions&logoColor=white)
 ![Tests](https://img.shields.io/badge/guardrail%20tests-passing-brightgreen)
-![Status](https://img.shields.io/badge/status-MVP%20·%20Chrome%20Web%20Store%20in%20review-orange)
+![Status](https://img.shields.io/badge/status-live%20MVP-brightgreen)
+
+<a href="https://chromewebstore.google.com/detail/cliojadokmnbekbgjlbbmgpldpcfooff"><img src="https://img.shields.io/badge/Add%20to%20Chrome-Chrome%20Web%20Store-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Add to Chrome" /></a>
 
 </div>
 
@@ -78,7 +80,7 @@ flowchart LR
 
 ## Product approach
 
-Review Lens was built solo, from a portfolio idea to a product submitted to the Chrome Web Store.
+Review Lens was built solo, from a portfolio idea to a product [live on the Chrome Web Store](https://chromewebstore.google.com/detail/cliojadokmnbekbgjlbbmgpldpcfooff).
 
 - **Started narrow, then generalised.** Version one was a Python pipeline and dashboard for one question: what do JEE/NEET students complain about in edtech apps? That validated the method on 2,000 real reviews. The extension then brought the same method to any page.
 - **Trust is the product.** The biggest risk with AI summaries is invented evidence. Every design decision protects that trust: counting in code, verifying quotes, labelling AI text, and "Open on page" links.
@@ -199,7 +201,9 @@ design/             UI/UX design brief
 
 ## Getting started
 
-**Use the extension (developer mode):**
+**Install from the [Chrome Web Store](https://chromewebstore.google.com/detail/cliojadokmnbekbgjlbbmgpldpcfooff)** (one click, works in Chrome and Brave).
+
+**Or load it in developer mode:**
 1. Clone this repo, or download the zip from `dist/`.
 2. Open `chrome://extensions` (or `brave://extensions`) and turn on **Developer mode**.
 3. Click **Load unpacked** and pick the `extension/` folder.
@@ -241,7 +245,8 @@ Full policy: [privacy.html](https://deep0976.github.io/review-lens/privacy.html)
 
 ## Roadmap
 
-- [ ] Chrome Web Store approval and the first 5 real users
+- [x] Chrome Web Store approval
+- [ ] First 5 real users and their feedback
 - [ ] Hand-labelled accuracy score in this README
 - [ ] Save report as image
 - [ ] Chrome side panel view
