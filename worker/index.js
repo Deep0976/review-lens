@@ -91,6 +91,8 @@ export default {
     if (used >= PER_USER) return json({ code: "daily_limit", error: `You've used today's ${PER_USER} free analyses. Add your own free Gemini key in Settings for unlimited use, or come back tomorrow.` }, 429);
     if (total >= GLOBAL) return json({ code: "busy", error: "Review Lens has used up today's free analyses for everyone. Add your own free Gemini key in Settings to keep going, or try again tomorrow." }, 429);
 
+    // any failure moves on to the next model; only "every model is out of quota" counts as busy
+    let hiccup = false;
     for (const model of MODELS) {
       try {
         const out = await llm(prompt, { apiKey: env.GEMINI_API_KEY, model }, schema);
@@ -98,9 +100,11 @@ export default {
         await Promise.all([env.LIMITS.put(userKey, String(used + 1), ttl), env.LIMITS.put(globalKey, String(total + 1), ttl)]);
         return json({ out, left: PER_USER - used - 1 });
       } catch (e) {
-        if (e.code !== "fallover") return json({ code: "ai_error", error: "The AI service had a hiccup. Please try again in a minute." }, 502);
+        console.error(`${model}: ${e.message}`); // visible in "npx wrangler tail"; never sent to users
+        if (e.code !== "fallover") hiccup = true;
       }
     }
+    if (hiccup) return json({ code: "ai_error", error: "The AI service had a hiccup. Please try again in a minute." }, 502);
     return json({ code: "busy", error: "Today's free AI capacity is used up. Add your own free Gemini key in Settings, or try again tomorrow." }, 503);
   },
 };

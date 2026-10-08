@@ -1,0 +1,4 @@
+{ "rewrites": [
+  { "source": "/", "destination": "/api/forward" },
+  { "source": "/:path((?!api/).+)", "destination": "/api/forward?path=:path" }
+] }

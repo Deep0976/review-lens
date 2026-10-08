@@ -1,7 +1,15 @@
 // Small helpers shared by the extension pages.
 import { COMPARE_SCHEMA, analysisPrompt, analysisSchema, comparePrompt, llm, slim } from "./analysis.js";
 
-export const SERVER = "https://review-lens-app.netlify.app"; // Netlify proxy in front of the Cloudflare Worker (see proxy/)
+// The free server is a Cloudflare Worker. Some networks (e.g. college NKN) block workers.dev, so a Vercel
+// function forwards to it (see proxy-vercel/). It allows 60 s; the old Netlify proxy gave up after ~26 s,
+// which a big 300-review analysis can exceed.
+const DIRECT = "https://review-lens.deep0976.workers.dev";
+const PROXY = "https://review-lens-api.vercel.app";
+// Use the Worker directly when this network can reach it (a quick GET), otherwise the proxy
+async function server() {
+  try { await fetch(DIRECT, { signal: AbortSignal.timeout(3000) }); return DIRECT; } catch { return PROXY; }
+}
 
 export const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -16,7 +24,7 @@ async function installId() {
 
 // Small message to the Review Lens server (install ID + data); throws with the server's message
 async function post(kind, data) {
-  const r = await fetch(SERVER, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ installId: await installId(), kind, ...data }) });
+  const r = await fetch(await server(), { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ installId: await installId(), kind, ...data }) });
   const d = await r.json().catch(() => ({}));
   if (!r.ok) throw new Error(d.error || `Review Lens server error (${r.status}).`);
   return d;
@@ -50,7 +58,7 @@ export async function ask(kind, payload) {
   const body = { installId: await installId(), kind, ...(kind === "analyze" ? { page: payload } : { analyses: slim(payload) }) };
   let r;
   try {
-    r = await fetch(SERVER, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+    r = await fetch(await server(), { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
   } catch {
     throw Object.assign(new Error("Can't reach the Review Lens server."), { code: "offline" });
   }
