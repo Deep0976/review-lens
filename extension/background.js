@@ -33,19 +33,25 @@ async function extract() {
 
   const badge = document.createElement("div");
   badge.style.cssText = "position:fixed;top:16px;right:16px;z-index:2147483647;background:#2a78d6;color:#fff;font:600 14px system-ui,sans-serif;padding:10px 14px;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.3)";
-  const show = n => { badge.textContent = `Review Lens: loading reviews… ${n ? `${n} found` : ""}`; };
+  const show = (n, waiting) => { badge.textContent = `Review Lens: loading reviews… ${n ? `${n} found` : ""}${waiting ? " (waiting for more to load)" : ""}`; };
   show(0);
   document.body.append(badge);
 
-  // Repeat `step` until `count` stops growing (`patience` times in a row), reaches `target`, or time runs out.
-  const loadMore = async (count, step, target, { wait = 1200, patience = 2, label = true } = {}) => {
-    let last = -1, stalls = 0;
-    while (Date.now() < deadline && stalls < patience) {
-      const n = count();
-      show(label ? n : 0);
+  // A spinner the page shows while it fetches more (indeterminate only: rating bars are progressbars too)
+  const busy = root => [...root.querySelectorAll('[role="progressbar"]:not([aria-valuenow]), [aria-busy="true"], tp-yt-paper-spinner[active], svg[aria-label="Loading..."]')].some(visible);
+  // Repeat `step` until `count` reaches `target` or stops growing. "Stops growing" is measured in time, not tries,
+  // so a slow connection gets its chance: 5 s with nothing new, or up to 20 s while the page shows it is loading.
+  // Past the deadline it keeps going only while new items are still arriving, for at most 25 s more.
+  const loadMore = async (count, step, target, { wait = 1200, label = true, root = document, alive = () => true } = {}) => {
+    let last = -1, grewAt = Date.now();
+    while (alive()) {
+      const n = count(), now = Date.now();
+      if (n > last) { last = n; grewAt = now; }
       if (n >= target) break;
-      stalls = n === last ? stalls + 1 : 0;
-      last = n;
+      const quiet = now - grewAt;
+      if (quiet > (busy(root) ? 20000 : 5000)) break; // nothing new for a while: the list has ended
+      if (now > deadline && (quiet > 5000 || now > deadline + 25000)) break; // out of time, unless still arriving
+      show(label ? n : 0, quiet > 3000);
       step();
       await sleep(wait);
     }
@@ -75,16 +81,7 @@ async function extract() {
         const doc = f.contentDocument;
         if (!doc || /signin|login/i.test(f.contentWindow.location.pathname)) return done(null);
         await sleep(1500); // until the page's own script owns its buttons (an early click opens a new page instead)
-        let last = -1, stalls = 0;
-        while (Date.now() < deadline && stalls < 3 && f.contentDocument === doc) {
-          const n = count(doc);
-          if (n >= target) break;
-          stalls = n === last ? stalls + 1 : 0;
-          last = n;
-          if (showCount) show(n);
-          step(doc, f.contentWindow);
-          await sleep(1200);
-        }
+        await loadMore(() => count(doc), () => step(doc, f.contentWindow), target, { label: showCount, root: doc, alive: () => f.contentDocument === doc });
         done(doc);
       } catch { done(null); } // another site's page can't be read
     };
@@ -102,7 +99,7 @@ async function extract() {
       video?.pause();
       // a screen at a time until comments start loading, then jump to the bottom for each next batch of ~20
       const n = () => $$("ytd-comment-thread-renderer").length;
-      await loadMore(n, () => (n() ? scrollTo(0, document.documentElement.scrollHeight) : scrollBy(0, innerHeight * 1.5)), 300, { wait: 700, patience: 5 }); // measured: 300 comments in ~32s
+      await loadMore(n, () => (n() ? scrollTo(0, document.documentElement.scrollHeight) : scrollBy(0, innerHeight * 1.5)), 300, { wait: 700 }); // measured: 300 comments in ~32s
       if (wasPlaying) video.play().catch(() => {});
       total = (document.querySelector("ytd-comments-header-renderer #count")?.innerText.match(/[\d,]+/) || [])[0];
       badge.remove();
@@ -166,7 +163,7 @@ async function extract() {
       await sleep(1500);
       const ids = () => new Set($$("[data-review-id]").map(e => e.getAttribute("data-review-id"))).size;
       const panel = () => { let e = $$("[data-review-id]")[0]?.parentElement; while (e && !(e.scrollHeight > e.clientHeight + 50 && /(auto|scroll)/.test(getComputedStyle(e).overflowY))) e = e.parentElement; return e; };
-      await loadMore(ids, () => { const p = panel(); if (p) p.scrollTop = p.scrollHeight; }, 300, { wait: 900, patience: 5 });
+      await loadMore(ids, () => { const p = panel(); if (p) p.scrollTop = p.scrollHeight; }, 300, { wait: 900 });
       // expand long reviews ("More" only opens text, it changes nothing)
       $$("[data-review-id] button").filter(b => /^more$/i.test(b.innerText.trim())).forEach(b => b.click());
       await sleep(400);
@@ -196,7 +193,7 @@ async function extract() {
       await loadMore(() => (collect(), got.size), () => {
         $$('[role="button"]').filter(b => /^show (more )?replies$|^show additional replies/i.test(b.innerText.trim())).slice(0, 2).forEach(b => b.click());
         scrollBy(0, innerHeight * 1.5);
-      }, 301, { wait: 1000, patience: 5 });
+      }, 301, { wait: 1000 });
       collect();
       badge.remove();
       const mainKey = [...got.keys()].find(k => k.includes(mainId));
@@ -216,7 +213,7 @@ async function extract() {
       await loadMore(() => blocks().length, () => {
         $$("button").filter(b => /load more comments|show more comments|see more comments/i.test(b.innerText)).slice(0, 2).forEach(b => b.click());
         toBottom();
-      }, 300, { wait: 1200, patience: 4 });
+      }, 300, { wait: 1200 });
       $$('[data-testid="expandable-text-button"]').forEach(b => b.click()); // "...more" only reveals text
       await sleep(500);
       badge.remove();
@@ -231,7 +228,7 @@ async function extract() {
         while (e.parentElement && e.parentElement.querySelectorAll('[aria-label*="pvote" i]').length <= 2) { e = e.parentElement; best = e; }
         return best;
       }).filter(Boolean))];
-      await loadMore(() => items().length, toBottom, 100, { wait: 1200, patience: 3 });
+      await loadMore(() => items().length, toBottom, 100, { wait: 1200 });
       $$("div,span").filter(e => e.children.length === 0 && /^\(more\)$/i.test(e.innerText.trim())).forEach(m => m.click());
       await sleep(1200);
       badge.remove();
@@ -251,7 +248,7 @@ async function extract() {
       await loadMore(() => blocks().length, () => {
         document.querySelector('svg[aria-label="Load more comments"]')?.closest('[role="button"], button')?.click();
         document.querySelector('svg[aria-label="Loading..."]')?.scrollIntoView({ block: "end" });
-      }, 300, { wait: 900, patience: 5 });
+      }, 300, { wait: 900 });
       badge.remove();
       const meta = n => document.querySelector(`meta[${n}]`)?.content || "";
       heading = meta('property="og:title"') || document.title;
