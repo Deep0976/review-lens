@@ -1,19 +1,19 @@
 {
  "model": "gemini-3-flash-preview",
- "updated": "24|10|2026",
+ "updated": "25|10|2026",
  "date_range": [
   "2026-07-25",
-  "2026-10-23"
+  "2026-10-24"
  ],
  "total_reviews": 2000,
- "skipped_short": 765,
- "analyzed": 1235,
- "quote_attribution_rate": 0.997,
+ "skipped_short": 763,
+ "analyzed": 1237,
+ "quote_attribution_rate": 0.998,
  "churn_reviews": 60,
  "apps": {
   "PW": {
    "reviews": 500,
-   "avg_rating": 4.38
+   "avg_rating": 4.34
   },
   "Vedantu": {
    "reviews": 500,
@@ -25,21 +25,21 @@
   },
   "ALLEN": {
    "reviews": 500,
-   "avg_rating": 4.32
+   "avg_rating": 4.33
   }
  },
  "themes": [
   {
    "name": "General Appreciation & Faculty Praise",
-   "count": 758,
+   "count": 764,
    "by_app": {
-    "Vedantu": 232,
+    "Vedantu": 235,
     "Unacademy": 147,
-    "ALLEN": 174,
-    "PW": 205
+    "ALLEN": 176,
+    "PW": 206
    },
-   "avg_rating": 4.77,
-   "churn": 11,
+   "avg_rating": 4.76,
+   "churn": 12,
    "neg_share": 0.04,
    "confidence": "ok",
    "quotes": [
@@ -48,7 +48,7 @@
      "app": "Unacademy",
      "rating": 5,
      "date": "2026-09-10",
-     "thumbs": 34,
+     "thumbs": 39,
      "quote": "The faculty are absolutely GOATED",
      "text": "Been using Unacademy for almost 1.5 years now, and honestly, it has been a huge part of my NEET journey. The faculty are absolutely GOATED... so many teachers explain concepts in such a clear and easy way. The variety of educators, lectures and resources is genuinely amazing..✨",
      "churn": false
@@ -64,6 +64,16 @@
      "churn": false
     },
     {
+     "id": "ae6274fd-66bb-428e-ab5c-9bbb57274e55",
+     "app": "Vedantu",
+     "rating": 5,
+     "date": "2026-08-29",
+     "thumbs": 8,
+     "quote": "best teacher of maths and science",
+     "text": "Vedantu is good learning and studying app with experience teachers master teachers they and one of the most master teacher pravin sir best teacher of maths and science they clear all the concepts I'm very happy with vedantu and their master teachers.",
+     "churn": false
+    },
+    {
      "id": "718dc1ad-1c24-4b20-a20c-77b5ca751dd2",
      "app": "Vedantu",
      "rating": 1,
@@ -72,16 +82,6 @@
      "quote": "waste of money and time.",
      "text": "The worst app I have ever used. The batch I purchased was a waste of money and time. The teaching is horrible, and the teachers waste time instead of teaching.",
      "churn": true
-    },
-    {
-     "id": "ae6274fd-66bb-428e-ab5c-9bbb57274e55",
-     "app": "Vedantu",
-     "rating": 5,
-     "date": "2026-08-29",
-     "thumbs": 7,
-     "quote": "best teacher of maths and science",
-     "text": "Vedantu is good learning and studying app with experience teachers master teachers they and one of the most master teacher pravin sir best teacher of maths and science they clear all the concepts I'm very happy with vedantu and their master teachers.",
-     "churn": false
     },
     {
      "id": "e01f3c1f-c856-4628-a81b-863254352703",
@@ -714,16 +714,6 @@
      "churn": false
     },
     {
-     "id": "761fa993-a01c-4ee3-b51c-52c74c7f1c1a",
-     "app": "Vedantu",
-     "rating": 5,
-     "date": "2026-07-25",
-     "thumbs": 1,
-     "quote": "good for students",
-     "text": "This app is good for students really and i allready download it studied with this app 🐊🐊🐊",
-     "churn": false
-    },
-    {
      "id": "6fbef8eb-4827-4d94-be67-7a878997901f",
      "app": "Unacademy",
      "rating": 5,
@@ -1174,16 +1164,6 @@
      "churn": false
     },
     {
-     "id": "5cd31c62-db96-4c13-807f-4690f257c93a",
-     "app": "Unacademy",
-     "rating": 5,
-     "date": "2026-08-30",
-     "thumbs": 1,
-     "quote": "Great learning app",
-     "text": "Great learning app and best for neet preparation especially",
-     "churn": false
-    },
-    {
      "id": "ab55c414-b891-4409-a840-ac51260a0551",
      "app": "ALLEN",
      "rating": 5,
@@ -1454,16 +1434,6 @@
      "churn": false
     },
     {
-     "id": "8e698209-1231-45f8-9e12-b6c369f1b0b6",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 1,
-     "quote": "best in quality among all educational apps",
-     "text": "In my opinion pw was the most affordable and best in quality among all educational apps",
-     "churn": false
-    },
-    {
      "id": "6eb26113-64cc-4fdb-bd2e-010e23b71678",
      "app": "Unacademy",
      "rating": 5,
@@ -1684,6 +1654,26 @@
      "churn": false
     },
     {
+     "id": "855b62e6-4aff-4961-9499-3bdcea6d84e5",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "1500₹ barbad hogye",
+     "text": "maine apni sister ko class 12th Bihar board ka Hindi medium wala batch dilwaya tha for Science 2027 exams kese ghatiya bakwas teachers rakhe hai kuch samjh hee nhi aata kya padhte ho sirf paisa lutte ho mere 1500₹ barbad hogye 👎🤬😤😡 Boycott PW",
+     "churn": true
+    },
+    {
+     "id": "245677d3-04b8-4d35-bc32-8dc033cea490",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "i hate the physics wallah app and it's teacher",
+     "text": "i hate the physics wallah app and it's teacher, don't have sense how to talk to a student",
+     "churn": false
+    },
+    {
      "id": "8a20a63f-3751-40e9-9d1d-4be58633a80f",
      "app": "Vedantu",
      "rating": 2,
@@ -1751,6 +1741,16 @@
      "thumbs": 0,
      "quote": "helpfull for make career",
      "text": "helpfull for make career",
+     "churn": false
+    },
+    {
+     "id": "d65bbcb9-9e79-4ba1-a57e-46ce8bf62d6b",
+     "app": "PW",
+     "rating": 3,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "PW isn't that good",
+     "text": "If you're looking for a Bihar state board exam preparation, PW isn't that good. I'm disappointed.",
      "churn": false
     },
     {
@@ -1984,16 +1984,6 @@
      "churn": false
     },
     {
-     "id": "94fac531-1113-4f2a-8bec-3c01f3ccb0c5",
-     "app": "PW",
-     "rating": 4,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "Great Value for Money Education",
-     "text": "Great Value for Money Education",
-     "churn": false
-    },
-    {
      "id": "4224c716-4785-43c0-b0f6-3a9043689aa9",
      "app": "ALLEN",
      "rating": 4,
@@ -2051,6 +2041,16 @@
      "thumbs": 0,
      "quote": "Courses are very easy to study",
      "text": "Courses are very easy to study 😄👍🏻",
+     "churn": false
+    },
+    {
+     "id": "9dfa4dd1-323f-495b-ac36-e3cb90660054",
+     "app": "Vedantu",
+     "rating": 4,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "teachers provide excellent guidance",
+     "text": "\"I have had a very good experience with the Vedantu app. The study materials are well-organized and sufficient for exam preparation. The online classes run smoothly, and the batches are well-structured. The teachers provide excellent guidance and explain concepts clearly. The app offers useful resources for students and helps them prepare effectively for competitive exams. Overall, it is a good learning platform for students.\"...",
      "churn": false
     },
     {
@@ -3344,16 +3344,6 @@
      "churn": false
     },
     {
-     "id": "f83e4622-400e-48bb-a982-0e06980ca510",
-     "app": "Vedantu",
-     "rating": 5,
-     "date": "2026-07-25",
-     "thumbs": 0,
-     "quote": "easy to score",
-     "text": "it is very easy to score it is a good app",
-     "churn": false
-    },
-    {
      "id": "1b3858d0-e387-461a-ba20-a797d5c6aeac",
      "app": "Unacademy",
      "rating": 5,
@@ -4584,16 +4574,6 @@
      "churn": false
     },
     {
-     "id": "f2bfdfb1-798a-4201-8be7-7211186b0a13",
-     "app": "ALLEN",
-     "rating": 5,
-     "date": "2026-08-17",
-     "thumbs": 0,
-     "quote": "very good app for learning",
-     "text": "its a very good app for learning and preparing for competitive exams thanks Allen I am very happy for this app .. pl",
-     "churn": false
-    },
-    {
      "id": "0b9b5b49-7d01-4132-81b0-ecc53df2f766",
      "app": "Unacademy",
      "rating": 5,
@@ -5454,56 +5434,6 @@
      "churn": false
     },
     {
-     "id": "79f50af3-7780-4792-932d-174564740200",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "Mara ghar ma sab ko bahut acha lagta haa",
-     "text": "Mara ghar ma sab ko bahut acha lagta haa",
-     "churn": false
-    },
-    {
-     "id": "38e7a772-8710-4a27-bac0-17193806704f",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "I am using this app from 2 years with great results",
-     "text": "I am using this app from 2 years with great results",
-     "churn": false
-    },
-    {
-     "id": "70a6b90c-8459-4a9a-99de-40886b841a95",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "Unbeatable Best online learning platform for every student!",
-     "text": "Unbeatable Best online learning platform for every student! ( as per person P.O.V) P W by Alakh Pandey Sir is truly revolutionizing education. Affordable, high-quality content that has helped millions of aspirants achieve their dreams. This kind of initiative should be promoted and given priority by the Government as well. Highly recommended for daily learning. Thank you PW team!",
-     "churn": false
-    },
-    {
-     "id": "7df8f43d-4f09-454e-a5f4-b05089e2477a",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "best app for education",
-     "text": "best app for education",
-     "churn": false
-    },
-    {
-     "id": "2f9281a7-bf00-4805-95e4-247dbe7eac8d",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "Nice platform for education",
-     "text": "Nice platform for education ... 👍,",
-     "churn": false
-    },
-    {
      "id": "02132ece-e37a-4100-b920-345a7008e506",
      "app": "Vedantu",
      "rating": 5,
@@ -5541,346 +5471,6 @@
      "thumbs": 0,
      "quote": "very useful app for preparing NEET and JEE",
      "text": "very useful app for preparing NEET and JEE and NCERT courses",
-     "churn": false
-    },
-    {
-     "id": "d46916c3-fe74-4f02-b6f9-646f605c85d1",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "बहुत mast hai pw app",
-     "text": "बहुत mast hai pw app ye le lo",
-     "churn": false
-    },
-    {
-     "id": "2a66e616-9f49-48a5-bc89-61a429ad13b7",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "It much help us to learn",
-     "text": "It much help us to learn, make notes, etc.",
-     "churn": false
-    },
-    {
-     "id": "22d44fd7-67c6-47fd-94c4-50ce702f795d",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "best app for education",
-     "text": "best app for education",
-     "churn": false
-    },
-    {
-     "id": "e5b5e8bc-7156-4450-827b-b1aaa7f9c834",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "This batch is really helpful..",
-     "text": "This batch is really helpful..",
-     "churn": false
-    },
-    {
-     "id": "6eecb8db-98b7-4014-8cb2-8dbe71665cef",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "best platform for online learning",
-     "text": "pw is one of the best platform for online learning ❤️",
-     "churn": false
-    },
-    {
-     "id": "51e83b5c-01a8-49a5-bb63-ebfd5de00962",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "teacher are very good",
-     "text": "this app make my study very well this is helpful app for all students I am very happy 😊 learn with physics wallah . teacher are very good and give fantastic 😍 explanation physics wallah thank you so much",
-     "churn": false
-    },
-    {
-     "id": "a49d7adf-f935-4c10-bd63-ad9b4ac30b93",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "bohat acha app hai padhne ke liye",
-     "text": "bohat acha app hai padhne ke liye",
-     "churn": false
-    },
-    {
-     "id": "eb185dd9-d3c8-4a93-a475-88b44900ac79",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "very very badhiya teachers",
-     "text": "very very badhiya teachers or ek number ki padhai",
-     "churn": false
-    },
-    {
-     "id": "424dfa2c-a949-44db-bc02-af39f79a0633",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "too nice physic wallah platform",
-     "text": "too nice physic wallah platform for learning",
-     "churn": false
-    },
-    {
-     "id": "b700b777-50e5-46a1-ab7c-18477724706f",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "faculties of PW are always best",
-     "text": "One of the best online education platform. The faculties of PW are always best and features are also good but there are some minor bugs in app. I prefer PW to all those students who want online study and very affordable price",
-     "churn": false
-    },
-    {
-     "id": "8323645e-31a9-418e-be0b-0274d7cbde17",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "pw is the best",
-     "text": "pw is the best",
-     "churn": false
-    },
-    {
-     "id": "cf9c4bd9-86ec-4b45-8383-2907e68593da",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "GOAT OF ONLINE CLASSES",
-     "text": "GOAT OF ONLINE CLASSES",
-     "churn": false
-    },
-    {
-     "id": "9a146599-8d69-43ef-8066-76bc8338978d",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "best app for future of students",
-     "text": "best app for future of students",
-     "churn": false
-    },
-    {
-     "id": "1dd71567-c567-46f4-8045-34ebfe56b9e4",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "Best app for Jee ,Neet",
-     "text": "Best app for Jee ,Neet and for other compitative exams and for also state boad exams😊🥰😎👍👌🤟😋🤩😘🥵",
-     "churn": false
-    },
-    {
-     "id": "8b1df0bc-d356-474b-9202-7c6054c9e930",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "helpful for our self's revision",
-     "text": "it very helpful for our self's revision or so many things",
-     "churn": false
-    },
-    {
-     "id": "8d07f1ae-1d53-4425-8092-1e49e71aca59",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "excellent teachers",
-     "text": "⭐⭐⭐⭐⭐ Amazing learning app with excellent teachers, easy explanations, and useful study materials. Very helpful for students and exam preparation! 📚✨",
-     "churn": false
-    },
-    {
-     "id": "b0da1232-f34a-4ec1-867e-12d302c6144a",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "Selection is from here only",
-     "text": "Selection is from here only RADHE RADHE RADHE 💚💚💚",
-     "churn": false
-    },
-    {
-     "id": "25bf7d21-23bb-4dc3-908c-e56af640c322",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "yah bahut achcha hai",
-     "text": "yah bahut achcha hai",
-     "churn": false
-    },
-    {
-     "id": "ed72a09e-7461-4b53-9c42-1c8d7872840c",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "bekar padate hai ye log",
-     "text": "bekar padate hai ye log",
-     "churn": false
-    },
-    {
-     "id": "eaa53416-92b8-4c0c-b5f6-1ef6ffde70cd",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "so much use full for students",
-     "text": "so much use full for students ❤️❤️",
-     "churn": false
-    },
-    {
-     "id": "4d9497d1-f341-45f3-bbd4-c76e266db004",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "greatest and use full",
-     "text": "greatest and use full",
-     "churn": false
-    },
-    {
-     "id": "dd782625-0cbe-4ae6-b206-2d96bf101bfb",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "bought Udaan batch 2027",
-     "text": "Best app ever bc I am a student of class 10th and I had bought Udaan batch 2027 for my preparation and now I am studying from this batch that gives me confirmation of rank 1",
-     "churn": false
-    },
-    {
-     "id": "ea8b713d-a8a0-4914-83d5-9c663227d3ee",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "best platfarm in india",
-     "text": "best platfarm in india",
-     "churn": false
-    },
-    {
-     "id": "1801083a-9c78-4322-878e-5f8f6e9a55b1",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "teachers are excellent",
-     "text": "PW is one of the best platforms for education it is very helpful for every student and teachers are excellent overall PW offers excellent education at an affordable fee.",
-     "churn": false
-    },
-    {
-     "id": "c3bd870c-3bc5-4123-b0d0-a3d0e9d41180",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "start my topper journey",
-     "text": "today's start my topper journey with PW",
-     "churn": false
-    },
-    {
-     "id": "34416519-8fe8-44c3-81be-8c6b330383ef",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "Best platform for study",
-     "text": "👍🏻 Best platform for study",
-     "churn": false
-    },
-    {
-     "id": "2f784f91-f4ce-4a94-98ef-7ed06d7d1baa",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "very nice platform",
-     "text": "very nice platform 👍",
-     "churn": false
-    },
-    {
-     "id": "94aa3cb0-c273-4e87-9847-c5e3fc8b83a9",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "GOOD PLATFORM TO STUDY",
-     "text": "GOOD PLATFORM TO STUDY",
-     "churn": false
-    },
-    {
-     "id": "1bb3b449-a16b-4332-8097-fc93e6455dae",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "one of the best aap ever...",
-     "text": "one of the best aap ever...",
-     "churn": false
-    },
-    {
-     "id": "55574381-a203-44ad-a4a5-1f383dd80979",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "app bhut acha hai",
-     "text": "dil se baat app bhut acha hai",
-     "churn": false
-    },
-    {
-     "id": "33c7fdc6-e223-4675-a658-e758df4516e9",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "this is app good",
-     "text": "this is app good",
-     "churn": false
-    },
-    {
-     "id": "a6038f69-a2ba-4843-98c2-0547b76a2251",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "amazing plateform for study",
-     "text": "amazing plateform for study and preparation for compitition",
-     "churn": false
-    },
-    {
-     "id": "f0338b66-2399-4680-a5a4-abe4683f9110",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "nice study app pw",
-     "text": "nice study app pw",
-     "churn": false
-    },
-    {
-     "id": "1c35d1ac-acdb-453e-bf76-c263c3e1f510",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "manzil milage yahi sa",
-     "text": "phadla chahe khi se manzil milage yahi sa",
      "churn": false
     },
     {
@@ -6121,156 +5711,6 @@
      "thumbs": 0,
      "quote": "provides us those faculties that we had never expected",
      "text": "this app helps to learn whatever we(students) wanted it provides us those faculties that we had never expected So,thanks 🙏 ALAKH SIR for everything ♥️♥️♥️♥️♥️",
-     "churn": false
-    },
-    {
-     "id": "99591c98-e11a-4646-8785-f458eb819f61",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "one of the best platform in the world",
-     "text": "this is the one of the best platform in the world",
-     "churn": false
-    },
-    {
-     "id": "825d4d15-ca38-45ed-9de2-f89cc05290bf",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "OM pandey is the best inorganic chemistry",
-     "text": "OM pandey is the best inorganic chemistry this is my favourite teacher all time",
-     "churn": false
-    },
-    {
-     "id": "97b8d8cd-74a2-4011-9aa8-a35fed11a2cf",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "best affordable course",
-     "text": "best affordable course present here",
-     "churn": false
-    },
-    {
-     "id": "63d990c5-4749-457b-91c9-8760139143f2",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "I understand good from PW",
-     "text": "I think when I start studying with PW I have understanding my chapter that taught in my class but my class teacher doesn't teach good science but I understand good from PW",
-     "churn": false
-    },
-    {
-     "id": "fb741b62-ac81-40e6-b2f5-7c8e30a51994",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "PW is the best app of the world",
-     "text": "PW is the best app of the world",
-     "churn": false
-    },
-    {
-     "id": "4aea6f77-4dda-4e51-b0fc-24679cd145be",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "this app is best to do 90+ score",
-     "text": "this app is best to do 90+ score",
-     "churn": false
-    },
-    {
-     "id": "a61186d5-bd3d-4817-adf4-60ba57bb6f3e",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "NO 1 platform",
-     "text": "NO 1 platform thanks alakh sir",
-     "churn": false
-    },
-    {
-     "id": "918859e5-343d-4486-bf91-2425292c35f4",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "very useful app for academics",
-     "text": "very useful app for academics",
-     "churn": false
-    },
-    {
-     "id": "f6d90aca-f66d-4ccb-89f5-fc8301551f98",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "it is to better than other class",
-     "text": "it is to better than other class",
-     "churn": false
-    },
-    {
-     "id": "f008dba8-d24c-48b9-9170-4cc7df371552",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "all the teachers are best",
-     "text": "all the teachers are best",
-     "churn": false
-    },
-    {
-     "id": "cec0592d-61fd-4b89-ae52-463efb0063ba",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "Best Online Learning App",
-     "text": "Best Online Learning App",
-     "churn": false
-    },
-    {
-     "id": "1723303f-278a-47e4-8436-0aa39d8dc0d8",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "best educational app",
-     "text": "This app was really a best educational app Thank you 😊 Alakh sir .",
-     "churn": false
-    },
-    {
-     "id": "4ad4b3cd-6322-421e-9456-1b7b0c916055",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "best content best teacher",
-     "text": "best content best teacher thankyou pw",
-     "churn": false
-    },
-    {
-     "id": "88fa8eb5-b7e1-4a03-91e1-aec32dadf1b0",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "itna achha platform bana ne ke liye",
-     "text": "thank you so much alakh sir itna achha platform bana ne ke liye 😭🩷",
-     "churn": false
-    },
-    {
-     "id": "75303157-405b-46c9-b2da-0c60f50a11ea",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "my whole studies are dependent on this app",
-     "text": "it really very useful because my whole studies are dependent on this app",
      "churn": false
     },
     {
@@ -7612,21 +7052,641 @@
      "quote": "Amazing experience",
      "text": "Amazing experience,my whole journey is fantastic I am almost done",
      "churn": false
+    },
+    {
+     "id": "ff50f1d6-dc4b-49b8-9adb-a492f1408d44",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "all OG",
+     "text": "👍 all OG .",
+     "churn": false
+    },
+    {
+     "id": "ee86f92e-800b-40cc-8440-3ad1ee83ab98",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "so good for students",
+     "text": "so good for students",
+     "churn": false
+    },
+    {
+     "id": "74e8af34-7ede-4a74-9758-df4c4df9baf6",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "unbelievable teachers explaination",
+     "text": "unbelievable teachers explaination and with experience faculties have pw",
+     "churn": false
+    },
+    {
+     "id": "0ee059bf-4ea5-4118-a49a-2dcadd8b6185",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "outstanding explanation",
+     "text": "all teachers are very nice and highly energetic and mind blowing outstanding explanation",
+     "churn": false
+    },
+    {
+     "id": "e66ee123-1e08-453b-a3f2-a6d2f176f31d",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "BEST APP FOR STUDY",
+     "text": "BEST APP FOR STUDY ACCORDING TO ME WHERE YOU WILL FIND BOTH KIND OF BATCHES FREE AND PAID",
+     "churn": false
+    },
+    {
+     "id": "9c778620-1e09-4367-9799-1e5b8c1c19d8",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "best education at affordable price",
+     "text": "best education at affordable price❤️❤️",
+     "churn": false
+    },
+    {
+     "id": "4e21b20a-ead5-4806-8cd2-53d34b322fcc",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "very very very very very very very strong",
+     "text": "very very very very very very very strong",
+     "churn": false
+    },
+    {
+     "id": "460bbff2-e08f-4701-9158-f777d0a8bc6b",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "amazing experience",
+     "text": "It was an amazing experience by using this app.This app provides a number of features to study , and this is Amazing For those who are the aspirants for some examination",
+     "churn": false
+    },
+    {
+     "id": "4f5fe4fe-6992-4327-9b05-f9518a5e8d0e",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "very nice I am impress",
+     "text": "very nice I am impress",
+     "churn": false
+    },
+    {
+     "id": "0260a495-6e78-4e60-a215-00f66ab05c03",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "pw is the best platform",
+     "text": "pw is the best platform to online study and very very most important every student 💓",
+     "churn": false
+    },
+    {
+     "id": "2c0db31e-c4d8-4823-8105-a3693db980e3",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "explanation bhi kafi achha hota hai",
+     "text": "Thanks Pw community and all teachers. Yaha pr bahut achhe se padhai hoti hai explanation bhi kafi achha hota hai .",
+     "churn": false
+    },
+    {
+     "id": "aa62add5-81a7-49fb-b7be-55a32bb65ca2",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "sir aap bahut axa padhate ho",
+     "text": "sir aap bahut axa padhate ho sab kuch samjh me aa raha hai ak bhi doute nahi hai",
+     "churn": false
+    },
+    {
+     "id": "408acc5f-0c9e-4c1d-bd36-842c8fb9a483",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "good teachers and good teaching",
+     "text": "good teachers and good teaching",
+     "churn": false
+    },
+    {
+     "id": "98af30d5-0b3a-4b0b-8dbb-1bdf282a19ad",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "best platform hai",
+     "text": "Ye up bord class 12th ke liye best platform hai...😊🥰👍🏻",
+     "churn": false
+    },
+    {
+     "id": "9d58a610-c403-4ba6-bbf8-b65e1db5457d",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "very good studies",
+     "text": "very good studies and goods teachers",
+     "churn": false
+    },
+    {
+     "id": "71fbbca8-a2cb-4853-b851-53e0636bd22d",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "this app is too good",
+     "text": "this app is too good",
+     "churn": false
+    },
+    {
+     "id": "18567d99-d47b-4c7f-8515-caa9587bdf46",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "teachers explain every concept in a simple and easy-to-understand way",
+     "text": "PW has been a great part of my learning journey. ❤️ The teachers explain every concept in a simple and easy-to-understand way. PW has helped me improve my understanding, build confidence, and prepare better for my exams. The lectures, notes, and important questions are very helpful for students like me. Thank you, PW, for making learning easier and motivating us to achieve our goals. 🙏✨ Thank you, PW, for being a part of my success journey! 💛🚀",
+     "churn": false
+    },
+    {
+     "id": "b3288c27-e7ff-412a-a40e-9476b3c55d40",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "life of education",
+     "text": "it is not just a app also it is a life of education",
+     "churn": false
+    },
+    {
+     "id": "f6b2270b-63d9-488b-8fae-b4c00e96fd61",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "Bestest leaning platform",
+     "text": "Bestest leaning platform in my way. I'm so grateful and thankful to PW",
+     "churn": false
+    },
+    {
+     "id": "51a75cbc-a1bd-46cc-a7b0-6181b5f1a345",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "best platform for students",
+     "text": "best platform for students for study online thank you alakh sir",
+     "churn": false
+    },
+    {
+     "id": "d049deeb-a2e7-4fca-b486-636ee6029c79",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "best E learning platform",
+     "text": "best E learning platform in India for students",
+     "churn": false
+    },
+    {
+     "id": "de94ee07-9077-4e20-830d-076d7f985972",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "Best education platform",
+     "text": "Best education platform 👏 I am so happy 😊 by taking a course form this app , I am able to improve my English/ develop myself in english",
+     "churn": false
+    },
+    {
+     "id": "a181b5ad-603c-4bc2-9ae2-c8cdb3c345d4",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "Wonderful, Excellent app",
+     "text": "Wonderful, Excellent app for students",
+     "churn": false
+    },
+    {
+     "id": "8adeedf5-d2cd-49ad-9244-a6b81d9344b4",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "good to study at your home",
+     "text": "it is good to study at your home",
+     "churn": false
+    },
+    {
+     "id": "bf9529a6-7c44-41b3-a404-610b45f6a1a0",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "best app for study",
+     "text": "i really like it this is best app for study for easy explanation",
+     "churn": false
+    },
+    {
+     "id": "e45d661d-076e-42a4-9c3a-2e435be8d30a",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "best app awlas",
+     "text": "best app awlas for kids and boys with family members study station and visit tha app",
+     "churn": false
+    },
+    {
+     "id": "3c1f428c-9ba7-4c74-87e5-5095976870da",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "kind of education I wanted",
+     "text": "I got the kind of education I wanted on this platform.",
+     "churn": false
+    },
+    {
+     "id": "0243e4be-1802-49c2-ab3d-9e507c6a580e",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "best online education app",
+     "text": "This is the best online education app in the world for neet, jee and other competitive here you can teach from India's best subjective teacher in affordable price. Thank you ALAKH SIR to help us. We love PW so much.",
+     "churn": false
+    },
+    {
+     "id": "0f195a03-ede1-4fcb-bfc6-1cfaa7b31e4b",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "very good for learning",
+     "text": "this app was very good for learning and good for preparation of jee and neet",
+     "churn": false
+    },
+    {
+     "id": "c782c674-377f-4fe7-b9f0-6551967319d0",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "best for study + best price",
+     "text": "best for study + best price most affordable price.... best teacher I love this app",
+     "churn": false
+    },
+    {
+     "id": "4cd7d370-f725-4e73-aa5a-4e0c13c2301f",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "very very very best platform",
+     "text": "very very very best platform pw",
+     "churn": false
+    },
+    {
+     "id": "78082957-f876-49ad-be42-30206e815fc5",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "Best platform of quality education",
+     "text": "Best platform of quality education",
+     "churn": false
+    },
+    {
+     "id": "1f6e5781-22bc-417e-9ebf-73beb170e6cf",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "Excellent guidance",
+     "text": "Excellent guidance for all examination and all facilities are helping with carrier choice and personal growth",
+     "churn": false
+    },
+    {
+     "id": "cb0ac331-2a6e-497f-aedd-13c03e4f8dc0",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "it is tooo good",
+     "text": "it is tooo good",
+     "churn": false
+    },
+    {
+     "id": "4ae941e2-5949-4726-97ae-8f61c123b696",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "all teacher teach properly",
+     "text": "this application is so good. here all teacher teach properly even they sings a songs for students",
+     "churn": false
+    },
+    {
+     "id": "f9beb74c-606d-4e9b-92cb-ec0b4526dff3",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "very amazing app",
+     "text": "This is very amazing app..... I love this so much",
+     "churn": false
+    },
+    {
+     "id": "6e36db45-6f12-44fb-9897-a3bdd7a11bdc",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "best learning platform",
+     "text": "India 🇮🇳 number trusty and best learning platform ✨ and affordable",
+     "churn": false
+    },
+    {
+     "id": "bf57ab6b-f989-4429-b2df-b5c8bf1ff514",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "improves the marks",
+     "text": "The PW app is very helpful for students it improves the marks .",
+     "churn": false
+    },
+    {
+     "id": "8e651418-2d58-4f68-a90d-f32e861389e0",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "faculty is very polite and helpful",
+     "text": "pw is the best institution for education all the faculty is very polite and helpful so much,also it's fees is affordable to anyone 💗💗",
+     "churn": false
+    },
+    {
+     "id": "436cb1d0-247b-4c08-b4bc-9613d616aa8c",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "very good teacher",
+     "text": "very good teacher are their specially rinku sir",
+     "churn": false
+    },
+    {
+     "id": "451d8f44-94f1-4a05-911b-bd7dc3f11662",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "very good Everyone should teach their child",
+     "text": "very good Everyone should teach their child in PW only",
+     "churn": false
+    },
+    {
+     "id": "aef56304-7bb2-40e5-a767-77c981c8c092",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "all teachers do very effort",
+     "text": "all teachers do very effort to teach their students",
+     "churn": false
+    },
+    {
+     "id": "952aa877-a106-4501-a701-ed132f83834f",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "this is the good learning platform",
+     "text": "this is the good learning platform",
+     "churn": false
+    },
+    {
+     "id": "9a58fe16-f2e7-413e-a173-701b20de6023",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "best lareing app",
+     "text": "best lareing app PW",
+     "churn": false
+    },
+    {
+     "id": "2eb3817e-0369-4e5f-af42-07fd5e27944f",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "PW bhauji best Sanstha hai",
+     "text": "PW bhauji best Sanstha hai",
+     "churn": false
+    },
+    {
+     "id": "a748ba03-4dcb-4069-b0e6-76807e994cb6",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "very good app for study",
+     "text": "very good app for study",
+     "churn": false
+    },
+    {
+     "id": "b710f455-c36a-4386-9272-5804b2e51cea",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "complex concepts incredibly easy to understand",
+     "text": "The lectures on the PW app make complex concepts incredibly easy to understand",
+     "churn": false
+    },
+    {
+     "id": "eab52796-2eb4-4374-b048-36724d3a5cec",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "best platform for preparation",
+     "text": "It is a best platform for preparation of competitive exam",
+     "churn": false
+    },
+    {
+     "id": "0b04589f-8dbc-4383-a0f3-dbb4df3b8d1d",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "make easy concepts to learning",
+     "text": "awesome 👌 bhai. experience with supremacy teacher and professor here . make easy concepts to learning .contents super ,pure explanation 👌 thank you its my own opinion . no paid promotion for growing their brand",
+     "churn": false
+    },
+    {
+     "id": "e1a1b9f0-6419-4ead-98b3-50395ac90d0e",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "app is vary helpful",
+     "text": "This app is vary helpful",
+     "churn": false
+    },
+    {
+     "id": "339e3bba-3193-44df-b5d9-07dc1e4ef623",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "best learning app",
+     "text": "best learning app for every student",
+     "churn": false
+    },
+    {
+     "id": "7f3246cc-8eb8-4d4c-bb6d-0b9a08749625",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "expierence is good",
+     "text": "expierence is good not any drawback",
+     "churn": false
+    },
+    {
+     "id": "b6bbc30a-9c5b-4fc1-9fb8-e3930b3dc5fb",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "teachers were very friendly",
+     "text": "This is the best app for online study . Its teachers were very friendly and best",
+     "churn": false
+    },
+    {
+     "id": "6acbba14-c3bd-49c7-bbea-fff369cb6c0e",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "future responsibilities",
+     "text": "A app which take all student's future responsibilities i am glad that i am a member of this big pw family",
+     "churn": false
+    },
+    {
+     "id": "0ec16a31-b63c-436a-bdcd-312c3a37ff71",
+     "app": "Vedantu",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "scored Good marks",
+     "text": "excellent due to this i scored Good marks",
+     "churn": false
+    },
+    {
+     "id": "b945353f-6728-4c80-bd9a-dc5fe19fc3f3",
+     "app": "Vedantu",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "teachers teaching us thank you",
+     "text": "this app is very best for study for students and teachers who attend lectures is amazing teachers teaching us thank you.",
+     "churn": false
+    },
+    {
+     "id": "582c74be-6a82-492c-a88d-5a1bfc467eb4",
+     "app": "Vedantu",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "amazing courses",
+     "text": "amazing courses, although UI can be better",
+     "churn": false
+    },
+    {
+     "id": "2c2ded12-caf6-4d47-b34d-2ccf720cb8e9",
+     "app": "Vedantu",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "got high scores",
+     "text": "i actually like it . more informative and we can re-watch the live if missed and i got high scores from attending provided tests",
+     "churn": false
+    },
+    {
+     "id": "cfb5db2f-c77a-4332-81e3-48e09da6ce03",
+     "app": "Unacademy",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "best app i had ever used",
+     "text": "the best app i had ever used",
+     "churn": false
+    },
+    {
+     "id": "1fed9490-a9f8-48df-bdb8-54fc184c75e2",
+     "app": "ALLEN",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "good and better learning programs",
+     "text": "good and better learning programs",
+     "churn": false
+    },
+    {
+     "id": "7c9a1a02-986c-422b-8c97-0394a8268c19",
+     "app": "ALLEN",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "This is the best learning junior app.",
+     "text": "This is the best learning junior app.",
+     "churn": false
+    },
+    {
+     "id": "ab829a9a-4675-4b49-b2b2-eb2c0914a53b",
+     "app": "ALLEN",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "this is very useful app for student",
+     "text": "this is very useful app for student",
+     "churn": false
     }
    ]
   },
   {
    "name": "Study Resources & AI Doubt Solving",
-   "count": 73,
+   "count": 69,
    "by_app": {
-    "Vedantu": 25,
+    "Vedantu": 24,
     "Unacademy": 9,
-    "ALLEN": 31,
-    "PW": 8
+    "ALLEN": 30,
+    "PW": 6
    },
-   "avg_rating": 4.21,
+   "avg_rating": 4.14,
    "churn": 2,
-   "neg_share": 0.22,
+   "neg_share": 0.23,
    "confidence": "ok",
    "quotes": [
     {
@@ -7634,7 +7694,7 @@
      "app": "Vedantu",
      "rating": 5,
      "date": "2026-08-30",
-     "thumbs": 30,
+     "thumbs": 34,
      "quote": "The doubt-solving feature is also very useful",
      "text": "Vedantu is a very helpful learning app. The teaching is excellent, clear, and easy to understand. Teachers explain concepts beautifully with simple examples, making even difficult topics easier to learn. The doubt-solving feature is also very useful and helps students clear their doubts quickly. Overall, it is a great platform for learning and improving understanding. Keep up the amazing work! 💙📚",
      "churn": false
@@ -7644,7 +7704,7 @@
      "app": "ALLEN",
      "rating": 4,
      "date": "2026-09-02",
-     "thumbs": 27,
+     "thumbs": 29,
      "quote": "allie ai sometimes gave me the wrong results",
      "text": "it was great but the break was not working and allie ai sometimes gave me the wrong results to me but so far everything was good . but I don't know much of it as I didn't pay for the online classes. 😅",
      "churn": false
@@ -7757,6 +7817,16 @@
      "thumbs": 2,
      "quote": "many study game",
      "text": "It is a very useful app not only for their competitive exams wit this there have many study game. So this is veri useful app",
+     "churn": false
+    },
+    {
+     "id": "14622a97-bc95-461c-9d44-d5e5e3344e98",
+     "app": "ALLEN",
+     "rating": 5,
+     "date": "2026-10-18",
+     "thumbs": 2,
+     "quote": "AI assistant Allie",
+     "text": "ALLEN App offers an excellent learning experience. The AI assistant Allie, Weak Topics Analysis, and Previous Test Performance Analysis are powerful tools that help students resolve doubts, identify weaknesses, and improve performance. These features are highly beneficial for students preparing for Olympiads, JEE, and NEET. Personalised insights and performance tracking make the app a valuable companion in a student's educational journey. Highly recommended!",
      "churn": false
     },
     {
@@ -8050,6 +8120,16 @@
      "churn": false
     },
     {
+     "id": "c4f2dac4-1167-426f-974c-008742a7cb28",
+     "app": "ALLEN",
+     "rating": 4,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "Please provide the notes of the online lectures",
+     "text": "Please provide the notes of the online lectures, it will be very helpful 🙏🏻🙏🏻",
+     "churn": false
+    },
+    {
      "id": "41f00528-9b46-4b13-a0e0-63d40e8ed610",
      "app": "Vedantu",
      "rating": 5,
@@ -8130,16 +8210,6 @@
      "churn": false
     },
     {
-     "id": "777c99b4-2115-4613-b25e-3ec277be6fb3",
-     "app": "Vedantu",
-     "rating": 5,
-     "date": "2026-07-25",
-     "thumbs": 0,
-     "quote": "solve any doubt",
-     "text": "vedantu maharashtra app is best for school and college students it solve any doubt for easy steps",
-     "churn": false
-    },
-    {
      "id": "af6fe24c-f635-4e1b-ab67-ea4aa2081eca",
      "app": "ALLEN",
      "rating": 5,
@@ -8190,16 +8260,6 @@
      "churn": false
     },
     {
-     "id": "d386be03-e72e-419f-897e-e23ad1739f72",
-     "app": "ALLEN",
-     "rating": 5,
-     "date": "2026-08-21",
-     "thumbs": 0,
-     "quote": "very useful for students who need reference books",
-     "text": "very useful for students who need reference books...I liked it being a student of grade 9..",
-     "churn": false
-    },
-    {
      "id": "f95f1878-3ec2-4ab4-b383-11e76830b63b",
      "app": "ALLEN",
      "rating": 5,
@@ -8207,16 +8267,6 @@
      "thumbs": 0,
      "quote": "best app for ques",
      "text": "best app for ques",
-     "churn": false
-    },
-    {
-     "id": "f831c2f3-1004-49a6-9597-a2849f4d933b",
-     "app": "ALLEN",
-     "rating": 5,
-     "date": "2026-08-16",
-     "thumbs": 0,
-     "quote": "you can ask doubt",
-     "text": "That's really best aap for study you can ask doubt",
      "churn": false
     },
     {
@@ -8270,16 +8320,6 @@
      "churn": false
     },
     {
-     "id": "14622a97-bc95-461c-9d44-d5e5e3344e98",
-     "app": "ALLEN",
-     "rating": 5,
-     "date": "2026-10-18",
-     "thumbs": 0,
-     "quote": "AI assistant Allie",
-     "text": "ALLEN App offers an excellent learning experience. The AI assistant Allie, Weak Topics Analysis, and Previous Test Performance Analysis are powerful tools that help students resolve doubts, identify weaknesses, and improve performance. These features are highly beneficial for students preparing for Olympiads, JEE, and NEET. Personalised insights and performance tracking make the app a valuable companion in a student's educational journey. Highly recommended!",
-     "churn": false
-    },
-    {
      "id": "0fd9bdbf-c5e9-4e05-b2ea-a01f85e7b69a",
      "app": "ALLEN",
      "rating": 5,
@@ -8297,26 +8337,6 @@
      "thumbs": 0,
      "quote": "clearing their doubts",
      "text": "it is very good online app for students to study,and clearing their doubts",
-     "churn": false
-    },
-    {
-     "id": "a9e70b01-0fbf-4388-adbd-61ddcc9beadb",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "the AI also help so much and the doubt box option is really very impressive",
-     "text": "The app is really soo good it will improve our children's this app will clear our doubts it improve my child very much it is really a good app the poll at the end of the class is fantastic the video call at the last for students to ask their doubts and the AI also help so much and the doubt box option is really very impressive👍🤩😍🤩😍😍😍😍 😻🧿🫀❤🌸🎀🧿😻",
-     "churn": false
-    },
-    {
-     "id": "68852e38-350c-4993-9ce6-fdc71cd79414",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "books and study materials are helpful",
-     "text": "PW Book App is a very useful and student-friendly platform for JEE aspirants. The books and study materials are helpful for understanding concepts and preparing for exams. The app makes learning more convenient and supports students in their preparation. Thank you, Physics Wallah, for providing such a helpful platform for students. Please keep improving and adding more useful features.",
      "churn": false
     },
     {
@@ -8353,16 +8373,16 @@
   },
   {
    "name": "App Stability & Crash Fixes",
-   "count": 53,
+   "count": 54,
    "by_app": {
     "Vedantu": 9,
     "Unacademy": 14,
-    "ALLEN": 12,
-    "PW": 18
+    "ALLEN": 11,
+    "PW": 20
    },
-   "avg_rating": 2.23,
+   "avg_rating": 2.09,
    "churn": 3,
-   "neg_share": 0.72,
+   "neg_share": 0.74,
    "confidence": "ok",
    "quotes": [
     {
@@ -8373,16 +8393,6 @@
      "thumbs": 19,
      "quote": "thank-you team allen for fixing this",
      "text": "(thank-you team allen for fixing this , editing my review to five stars 🤩)",
-     "churn": false
-    },
-    {
-     "id": "4f4734a8-9e25-4e03-add7-45f3c7424d45",
-     "app": "PW",
-     "rating": 3,
-     "date": "2026-10-19",
-     "thumbs": 8,
-     "quote": "The app doesn't work properly",
-     "text": "The app doesn't work properly I have watched the whole class but the xp doesn't count because there are lot of issues in with connectivity",
      "churn": false
     },
     {
@@ -8526,16 +8536,6 @@
      "churn": false
     },
     {
-     "id": "78e57041-0aff-467a-a66c-1fdf1fa85bf7",
-     "app": "PW",
-     "rating": 3,
-     "date": "2026-10-20",
-     "thumbs": 1,
-     "quote": "This app crashes frequently",
-     "text": "This app crashes frequently and sometimes it doesn't shows classes completed and pending properly . Giving 3 stars only for the faculties + DPP and test. Crux - Teachers and materials are good (arjuna 1.0 2027 jee) but app is not so good.",
-     "churn": false
-    },
-    {
      "id": "444e69ae-52f3-4597-9cda-6daaeb745664",
      "app": "Vedantu",
      "rating": 1,
@@ -8626,26 +8626,6 @@
      "churn": false
     },
     {
-     "id": "4d3386ab-8948-479c-9342-b98cadbdc3e3",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "open ni ho ra hai",
-     "text": "open ni ho ra hai",
-     "churn": false
-    },
-    {
-     "id": "ebda0d60-c845-44c2-ab49-7c5dfcb52a8d",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "its so glitchy",
-     "text": "awfull app , its so glitchy, so many times I would tap on the batch I have yet it would take so long to open or not show touch registered and suddenly all the delayed taps would start acting up and show a bunch of same bach which I wanted to open, batch description is pain in head most of the time it won't show weekly schedule and even when I would tap on it like hell it wouldn't open fix it ewww",
-     "churn": false
-    },
-    {
      "id": "46126898-0ba3-4ba6-aae8-2afa78d8d637",
      "app": "Unacademy",
      "rating": 1,
@@ -8716,13 +8696,63 @@
      "churn": false
     },
     {
-     "id": "c82793e7-2bc1-45aa-9416-3a9dd840c726",
-     "app": "ALLEN",
-     "rating": 2,
-     "date": "2026-08-16",
+     "id": "46701400-9eb6-40e1-876b-384ff76a04f9",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-24",
      "thumbs": 0,
-     "quote": "app is not working properly",
-     "text": "allen app is not working properly it show network issue",
+     "quote": "black screen ajati h",
+     "text": "but black screen ajati h chlta hi nhi",
+     "churn": false
+    },
+    {
+     "id": "125d8bbd-9978-4e12-a1eb-272462c7b1f2",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "IT CRASHES ALL THE TIME",
+     "text": "IT CRASHES ALL THE TIME IN MY IPAD AND UI IS NOT GOOD 😡CONTENT IS GOOD 😊😊",
+     "churn": false
+    },
+    {
+     "id": "88da505d-8c74-4b50-b687-42292bc23cf6",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "always holds a tech issue",
+     "text": "always holds a tech issue even after having full network",
+     "churn": false
+    },
+    {
+     "id": "8154e3dc-4e2f-42c1-99ad-dea414b2a406",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "app is crashed",
+     "text": "the app is crashed most of the time",
+     "churn": false
+    },
+    {
+     "id": "10d55d00-464a-4827-a8c6-4e4b1a1aaf6b",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "not open my aap",
+     "text": "not open my aap in my phone 😭my backlogs create",
+     "churn": false
+    },
+    {
+     "id": "fea15d34-b3f6-4de4-a1b4-39fcaf4be350",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "laggy interface",
+     "text": "so much laggy interface",
      "churn": false
     },
     {
@@ -8756,26 +8786,6 @@
      "churn": false
     },
     {
-     "id": "548d4547-81a1-414d-a70a-fda7b8fd73f8",
-     "app": "PW",
-     "rating": 3,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "it demands a lots of updates",
-     "text": "it demands a lots of updates",
-     "churn": false
-    },
-    {
-     "id": "50aa1a16-300b-4000-b3b2-6cc1730e732c",
-     "app": "PW",
-     "rating": 3,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "app showing so much error",
-     "text": "Easily we understand the interface in just a few minutes and no doubt about Alakh sir and his team qualification and the teaching way is too good 😉 but unfortunately this app showing so much error 😕 plz correct it",
-     "churn": false
-    },
-    {
      "id": "34f91a58-30be-4e09-8adf-a84f9b2e1f14",
      "app": "PW",
      "rating": 3,
@@ -8783,6 +8793,26 @@
      "thumbs": 0,
      "quote": "app is not opening in my mobile",
      "text": "app is not opening in my mobile please look into this matter asap",
+     "churn": false
+    },
+    {
+     "id": "7b350ab8-080b-46cc-91a8-3faa39f989ba",
+     "app": "PW",
+     "rating": 3,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "technical anomalies",
+     "text": "the app has lots of technical anomalies",
+     "churn": false
+    },
+    {
+     "id": "29bad60a-6e8c-41ba-a5b6-8cd222b10802",
+     "app": "PW",
+     "rating": 3,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "crashes too bad",
+     "text": "when I open the app it shows network issues but I have a router at my home and also it crashes too bad when I try to re login after downloading the app it shows too many requests has been made how can it be possible please check this problem it irritates a lot",
      "churn": false
     },
     {
@@ -8836,6 +8866,16 @@
      "churn": false
     },
     {
+     "id": "4fca3130-3d3e-4030-be70-fd2aa0db6652",
+     "app": "PW",
+     "rating": 4,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "always wanted updates",
+     "text": "it is good but not in all aspects because It always wanted updates",
+     "churn": false
+    },
+    {
      "id": "0823dd44-76c3-4fe6-98d2-da88545db79f",
      "app": "Vedantu",
      "rating": 5,
@@ -8866,16 +8906,6 @@
      "churn": false
     },
     {
-     "id": "b1af073b-cd53-4700-9925-e2796ba36d87",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "my app isn't working",
-     "text": "my app isn't working how should I fix it????",
-     "churn": false
-    },
-    {
      "id": "af3288b2-55c2-4fc2-9be6-29c8217322b8",
      "app": "PW",
      "rating": 5,
@@ -8903,10 +8933,10 @@
    "by_app": {
     "Vedantu": 11,
     "Unacademy": 10,
-    "ALLEN": 22,
-    "PW": 6
+    "ALLEN": 20,
+    "PW": 8
    },
-   "avg_rating": 3.39,
+   "avg_rating": 3.35,
    "churn": 1,
    "neg_share": 0.45,
    "confidence": "ok",
@@ -8972,6 +9002,26 @@
      "churn": false
     },
     {
+     "id": "822f9e1c-f1cc-401f-86b4-dd5a8f8c42de",
+     "app": "Unacademy",
+     "rating": 1,
+     "date": "2026-09-15",
+     "thumbs": 1,
+     "quote": "They don't provide us with the tests that we missed",
+     "text": "This app is the worst. They don't provide us with the tests that we missed to give due to certain circumstances. It was okay for the first two tests but the test that happened last Sunday is still not available (It's been two days now). I paid ₹3000 for one of their test series and my experience so far is really not good. This app just annoys the hell outta me.",
+     "churn": false
+    },
+    {
+     "id": "7d8c7d53-b188-4970-9858-16bcb223a1f1",
+     "app": "ALLEN",
+     "rating": 1,
+     "date": "2026-10-01",
+     "thumbs": 1,
+     "quote": "testing system is very very bad",
+     "text": "testing system is very very bad and seek improvement and in my schedule the classes are shown in such a way that the ch name is there and a pic above it the ch changes but from 7 months the pic remains the same.... there also should be a welcome note on first page like welcome back _.... And know ur faculty forum. and old batches that are expires should be erased ... there are many things to improve but still no improvement even after informing.... hope this time it improves",
+     "churn": false
+    },
+    {
      "id": "ebcf71f8-0018-4b66-bdfc-9ae4035510e3",
      "app": "ALLEN",
      "rating": 1,
@@ -8989,16 +9039,6 @@
      "thumbs": 1,
      "quote": "my strike and xp nor increasing",
      "text": "because my strike and xp nor increasing on seeing video eg the strike is increasing on seeing 10 mins video and I have seen 2 hour video but strike not increased and there option to report I would like to say pw to improve but there teaching is very good . my strike is157 and I attend the class but it become 0 bad app and",
-     "churn": false
-    },
-    {
-     "id": "f148588d-fded-4525-8fbb-1fe5e9def457",
-     "app": "ALLEN",
-     "rating": 3,
-     "date": "2026-08-16",
-     "thumbs": 1,
-     "quote": "my many marks are deducted",
-     "text": "Today there was an olympiad practice test in allen Ashiana Digha after test when result came I saw that my many marks are deducted and it was showed that I marked on another omr bubble but I had ticked on my paper when chected total of 12 to 13 matks were deducted which included 2 wrong questions .This happens many time .It should be worked on.",
      "churn": false
     },
     {
@@ -9052,26 +9092,6 @@
      "churn": false
     },
     {
-     "id": "822f9e1c-f1cc-401f-86b4-dd5a8f8c42de",
-     "app": "Unacademy",
-     "rating": 1,
-     "date": "2026-09-15",
-     "thumbs": 0,
-     "quote": "They don't provide us with the tests that we missed",
-     "text": "This app is the worst. They don't provide us with the tests that we missed to give due to certain circumstances. It was okay for the first two tests but the test that happened last Sunday is still not available (It's been two days now). I paid ₹3000 for one of their test series and my experience so far is really not good. This app just annoys the hell outta me.",
-     "churn": false
-    },
-    {
-     "id": "7d8c7d53-b188-4970-9858-16bcb223a1f1",
-     "app": "ALLEN",
-     "rating": 1,
-     "date": "2026-10-01",
-     "thumbs": 0,
-     "quote": "testing system is very very bad",
-     "text": "testing system is very very bad and seek improvement and in my schedule the classes are shown in such a way that the ch name is there and a pic above it the ch changes but from 7 months the pic remains the same.... there also should be a welcome note on first page like welcome back _.... And know ur faculty forum. and old batches that are expires should be erased ... there are many things to improve but still no improvement even after informing.... hope this time it improves",
-     "churn": false
-    },
-    {
      "id": "a496d886-c805-4738-9b96-c50a6dcf5950",
      "app": "ALLEN",
      "rating": 1,
@@ -9099,16 +9119,6 @@
      "thumbs": 0,
      "quote": "shows percentage of my jee test instead of percentile",
      "text": "shows percentage of my jee test instead of percentile eww",
-     "churn": false
-    },
-    {
-     "id": "64aaebdf-26c9-4ced-a002-f337130e44a5",
-     "app": "ALLEN",
-     "rating": 1,
-     "date": "2026-08-17",
-     "thumbs": 0,
-     "quote": "galat information dalte h",
-     "text": "galat information dalte h aur phir khud hi ni mante hai",
      "churn": false
     },
     {
@@ -9159,6 +9169,26 @@
      "thumbs": 0,
      "quote": "suddenly test appears that the person has missed",
      "text": "there is no option for downloading lectures in laptop in pw app and in offline courses the test has not announced and suddenly test appears that the person has missed",
+     "churn": false
+    },
+    {
+     "id": "4c848528-91d8-42be-a509-01ae3de6a85b",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "provide only limited test",
+     "text": "very bad test series taken fee for all test but provide only limited test and said providing very soon but no response",
+     "churn": false
+    },
+    {
+     "id": "80ba64bd-4f9a-4cfc-a1cf-94103b4c2513",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "test planar are not working",
+     "text": "please check in the description of batch section the weekly schedule, test planar are not working please check it fast",
      "churn": false
     },
     {
@@ -9405,16 +9435,16 @@
   },
   {
    "name": "Video Streaming & Playback Performance",
-   "count": 48,
+   "count": 43,
    "by_app": {
-    "Vedantu": 4,
+    "Vedantu": 5,
     "Unacademy": 16,
     "ALLEN": 5,
-    "PW": 23
+    "PW": 17
    },
-   "avg_rating": 2.33,
+   "avg_rating": 2.4,
    "churn": 1,
-   "neg_share": 0.75,
+   "neg_share": 0.77,
    "confidence": "ok",
    "quotes": [
     {
@@ -9455,16 +9485,6 @@
      "thumbs": 2,
      "quote": "Lectures are not running",
      "text": "Extremely disappointing experience with this study platform. It is honestly one of the worst platforms I have used for online learning. Not even a single live class is properly available on my laptop. Lectures are not running, and almost all the videos available are shown as archived recordings. What is the point of subscribing to an educational platform if students cannot access their classes properly? The most frustrating part is the support service. I have tried contacting the support team",
-     "churn": false
-    },
-    {
-     "id": "1072da80-e66b-4433-a78b-54a522039a36",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-20",
-     "thumbs": 2,
-     "quote": "white pannel ban raha hai lecture ke left side mein",
-     "text": "white pannel ban raha hai lecture ke left side mein wide mein dekhne time",
      "churn": false
     },
     {
@@ -9618,26 +9638,6 @@
      "churn": false
     },
     {
-     "id": "0a6f07f5-0f03-45f2-b6d9-50585e31ec3e",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "notification bar is seeing",
-     "text": "if I am watching lecture the notification bar is seeing",
-     "churn": false
-    },
-    {
-     "id": "43112c66-625b-4d26-b84c-1c4a07ed442b",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "white stripe is seen",
-     "text": "sir when I watch lecture on my tablate there is a white stripe is seen which is very disturbing please fix this as soon as possible",
-     "churn": false
-    },
-    {
      "id": "0c6c0236-ceb3-4a90-a455-348a68533298",
      "app": "PW",
      "rating": 1,
@@ -9645,16 +9645,6 @@
      "thumbs": 0,
      "quote": "can't even let me watch lecture twice peacefully",
      "text": "the app is good by the new next lecture update can't even let me watch lecture twice peacefully",
-     "churn": false
-    },
-    {
-     "id": "0261b30d-b927-4fb1-bc46-2b6eb5ba14c1",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "every time I open any lecture it takes so much time to load",
-     "text": "The teachers are good but the problem is the app every time I open any lecture it takes so much time to load. also my phone is new and the internet connection is good. I cleared the cache also. loading video is the only and major problem in the app. it's the same after 1 week. sirf 2-3 din ke liye thik hua tha. then wapas pehle jesa ho gaya. edit. now also The problem. at pw gmail also it's not resolved.",
      "churn": false
     },
     {
@@ -9768,13 +9758,13 @@
      "churn": false
     },
     {
-     "id": "653162fe-9cb8-4e3b-b1d8-8726007235f2",
-     "app": "PW",
-     "rating": 3,
-     "date": "2026-10-19",
+     "id": "f5d44a18-6bbe-4536-bec9-8f4893839024",
+     "app": "Vedantu",
+     "rating": 2,
+     "date": "2026-10-23",
      "thumbs": 0,
-     "quote": "bring back the feature where we can continue watching videos where we left off",
-     "text": "very good app, but u guys need to work on the khazana section, one thing you can do is bring back the feature where we can continue watching videos where we left off also lot of videos are just put there multiple times like videos of network theory of pankaj sir 2026 videos are given 2 times instead put his 2024 videos recently the videos for edc of kamesh sir, were swapped with someone else's lectures",
+     "quote": "lectures do too much lag",
+     "text": "During paid batches, lectures do too much lag... but teachers are best.....",
      "churn": false
     },
     {
@@ -9795,16 +9785,6 @@
      "thumbs": 0,
      "quote": "option of next lecture and attempt dpp on screen this is so annoying",
      "text": "why after update when I watch lecture there is option of next lecture and attempt dpp on screen this is so annoying coming on my screen please remove it if i want to watch next lecture or want to attempt dpp I will, don't need to show this on my screen when I am watching lecture I have to focus on lecture fully, please remove it.",
-     "churn": false
-    },
-    {
-     "id": "a112f215-86b1-46dd-b9a8-e82fc8346c15",
-     "app": "PW",
-     "rating": 4,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "the white border that surrounds the ppt screen is really distracting",
-     "text": "everything is best , but in the latest update , the white border that surrounds the ppt screen is really distracting. please remove it .",
      "churn": false
     },
     {
@@ -9858,16 +9838,6 @@
      "churn": false
     },
     {
-     "id": "914008dc-4172-4b74-b00f-570212c0f7d4",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "problems with video playback",
-     "text": "it is kind of good , i like it however i do have problems with video playback on website itself it just stops itself,earlier I thought maybe turning off GPU acceleration would help but it persisted . Although,I do have a workaround with waydroid to use android but I would love if there was a native desktop PW app available as .exe for windows and on flatpak as well so that it would also run on any linux distro.",
-     "churn": false
-    },
-    {
      "id": "48c20d4e-a604-4b84-9cf5-cc6e08a32883",
      "app": "PW",
      "rating": 5,
@@ -9878,16 +9848,6 @@
      "churn": false
     },
     {
-     "id": "966e8c1e-9964-4eeb-ba6d-6baa84241ef4",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "pls remove the icon of next lectures nad attemt dpp",
-     "text": "pls remove the icon of next lectures nad attemt dpp",
-     "churn": false
-    },
-    {
      "id": "082a3f13-7c7b-457c-a89a-12c217380a93",
      "app": "PW",
      "rating": 5,
@@ -9895,6 +9855,26 @@
      "thumbs": 0,
      "quote": "buffering issue",
      "text": "the app runs good on my realme phone but when I log app on Redmi pad 2 pro 5g tablet then there is problems in video playing like buffering issue or other this of app is phenomenal ♥️",
+     "churn": false
+    },
+    {
+     "id": "f435d5a5-8bc0-4492-8027-4998cedab8e1",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "LECTURE SPEED feature",
+     "text": "Please provide a LECTURE SPEED feature of up to 4x.",
+     "churn": false
+    },
+    {
+     "id": "700915f2-269c-4195-81a1-ea1ac812aee7",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "lecture shuru se start ho jata hai",
+     "text": "Dear Physics Wallah Team, aapke app me ek bahut badi problem aa rahi hai jo pehle nahi thi. Jab hum lecture dekhte hain aur kisi doosre app par meaning ya doubt dekhne ke liye jaate hain, toh wapas PW app me aane par lecture shuru se start ho jata hai (refresh ho jata hai). Pehle jahan se lecture band hota tha wahi se wapas start hota tha. Isse hamara bahut time barbaad hota hai aur padhai me pareshani hoti hai. Please is bug ko jald se jald update karke theek karein please 😭 🙏",
      "churn": false
     }
    ]
@@ -9908,7 +9888,7 @@
     "ALLEN": 13,
     "PW": 3
    },
-   "avg_rating": 1.63,
+   "avg_rating": 1.53,
    "churn": 19,
    "neg_share": 0.87,
    "confidence": "ok",
@@ -10014,16 +9994,6 @@
      "churn": true
     },
     {
-     "id": "7fc42c43-d9cd-4b43-849e-dc3f3b8d931a",
-     "app": "Unacademy",
-     "rating": 1,
-     "date": "2026-08-30",
-     "thumbs": 1,
-     "quote": "say no refund policy",
-     "text": "scam say something and did other things not to buy a subscription from here this app does not deserve 1 star when u subscribe there after no call attend and say no refund policy Therefore I suggest not buying those that want complete subject wise",
-     "churn": true
-    },
-    {
      "id": "929a3b99-e4c5-4cc3-8dad-35362b69316f",
      "app": "ALLEN",
      "rating": 1,
@@ -10082,6 +10052,16 @@
      "quote": "सबसे घटिया और फ्रॉड हैं ये ऐप",
      "text": "सबसे घटिया और फ्रॉड हैं ये ऐप, शिक्षा के नाम पर लुटेरे हैं, 1/10/2026 से आज तक क्लास नहीं चली, क्लैट की ऑनलाइन क्लास का बैच लिया था, मैं तो यही कहूंगा दोस्तों इस ऑनलाइन ऐप पर क्लास भूलकर भी न ले, ये फ्रॉड है, किसी से बात करने के लिए कोई कॉन्टैक्ट नंबर भी नहीं है इनका, कभी गलती से कॉल लग जाए तो वही घटिया और घिसा पीटा जवाब मिलता हम जल्दी कोई हल निकाल देंगे, मैं तो अपने बेटे के लिए इस कोचिंग सेंटर में फंस गया, और पैसे भी मारे गये, कृपया कोई भी इस संस्थान से कोचिंग नहीं लो तो बहुत ही बढ़िया और बेहत।",
      "churn": false
+    },
+    {
+     "id": "2e17c216-28d7-44dd-9cf4-da00a57ebd76",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 1,
+     "quote": "It's a scam",
+     "text": "It's a scam. I paid 12000 rupees for the same batch my friend paid 4000 for and now when I see the app again after some months, I see 2200 for the same. And it does not even give refunds. Teaching quality is not equal for students who don't want to give JEE or NEET. Teaching is concept heavy and out of syllabus most of the time. 1.5 hours of lectures are gone till 2.5 hours. Moreover, when I have deleted my account and the app, they still call for offline tests. Really disappointed.",
+     "churn": true
     },
     {
      "id": "60586ea8-dd00-4088-8201-3d3362a4e4ca",
@@ -10244,6 +10224,16 @@
      "churn": true
     },
     {
+     "id": "4ad21e8d-5034-49cd-b851-3819df811744",
+     "app": "Unacademy",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "total scam",
+     "text": "worst ...totally fraud app prime subscription k nam pr total scam hai...YouTube pr sari classes available hai...inka help system problem solve hi nhi kerta....",
+     "churn": false
+    },
+    {
      "id": "313e89c9-3ece-4c8f-8d21-cfcec41d9900",
      "app": "ALLEN",
      "rating": 3,
@@ -10282,31 +10272,21 @@
      "quote": "price is very expensive",
      "text": "but the price is very expensive",
      "churn": false
-    },
-    {
-     "id": "c58b7900-c50b-45e7-8a72-e19a6ae419c3",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "financial problem jada hai",
-     "text": "Sir my name is Deepak Gautam me UP ke basti jile se garam bhawnapur se hun sir mere ghar me financial problem jada hai jis ki vajah se me nda 2 surya batch nahi le pa raha hun sir meri padhai na ruk ne paye is ke liye meri help kariye please Alakh sir 🙏😭 Sir plz help kar do 🙏🙏🙏😭😭😭",
-     "churn": false
     }
    ]
   },
   {
    "name": "Support Ticket Resolution & Helpdesk",
-   "count": 38,
+   "count": 37,
    "by_app": {
     "Vedantu": 2,
     "Unacademy": 24,
     "ALLEN": 6,
-    "PW": 6
+    "PW": 5
    },
-   "avg_rating": 1.61,
+   "avg_rating": 1.62,
    "churn": 7,
-   "neg_share": 0.82,
+   "neg_share": 0.81,
    "confidence": "ok",
    "quotes": [
     {
@@ -10314,7 +10294,7 @@
      "app": "ALLEN",
      "rating": 1,
      "date": "2026-09-18",
-     "thumbs": 9,
+     "thumbs": 10,
      "quote": "when i contact allen online team they didn't solve issue",
      "text": "VERY BAD EXPERIENCE😡,I am student of Allen and this is very much annoying app. I had allen's online course and i am constantly facing so much problems and when i contact allen online team they didn't solve issue & ignore, the concept videos suddenly disappeared while i was studying instead of paying them and having paid batch and app also have many glitches and don't function properly. when i contact the team they didn't provide solution instead of calling them 7 times a day. they don't help😡",
      "churn": false
@@ -10580,16 +10560,6 @@
      "churn": false
     },
     {
-     "id": "6bb254a4-0708-4107-b46c-a17d79810986",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "tecnical spot to hai hi nahi",
-     "text": "tecnical spot to hai hi nahi",
-     "churn": false
-    },
-    {
      "id": "4841e74f-1afd-42e4-8915-c5344d239e24",
      "app": "Unacademy",
      "rating": 1,
@@ -10610,16 +10580,6 @@
      "churn": false
     },
     {
-     "id": "428ab8e6-15d3-4668-96d4-ed852cabd5ae",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "jab customer care pai call kro to kahenge humne to bheja tha",
-     "text": "physics wallah chor hai SHIKSHA MAHOTSAV mai 9 rs dikhate hai order krne par parcal hi nahi aata aur jab customer care pai call kro to kahenge humne to bheja tha parcal but apne receive nahi kiya",
-     "churn": false
-    },
-    {
      "id": "0f80742f-8b06-4694-a64e-0b41e634629f",
      "app": "PW",
      "rating": 1,
@@ -10637,6 +10597,16 @@
      "thumbs": 0,
      "quote": "generating tickets over ticket",
      "text": "I have raised an issue from H&S, instead of solving already raised ticket they are generating tickets over ticket to show that they solve issue within 24 hours yet a week passed no solution",
+     "churn": false
+    },
+    {
+     "id": "d635d9f8-dc36-4e70-8bf0-c64225fb15ff",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "koi solution nhi de rhe",
+     "text": "mujhe 2 den se technical issue aa rha h me bahut bar complain kr chuki hu but koi solution nhi de rhe me apni class nhi kr pa rhi hu......very disappoint....",
      "churn": false
     },
     {
@@ -10700,7 +10670,7 @@
     "ALLEN": 9,
     "PW": 6
    },
-   "avg_rating": 2.22,
+   "avg_rating": 2.25,
    "churn": 3,
    "neg_share": 0.72,
    "confidence": "ok",
@@ -10896,36 +10866,6 @@
      "churn": false
     },
     {
-     "id": "affbcd88-0b09-47a0-a767-d74c054c4751",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "pw cash wala option hi nhi dhik rha",
-     "text": "pw cash wala option hi nhi dhik rha",
-     "churn": false
-    },
-    {
-     "id": "039726d8-1408-45c4-a94c-ccc42053a18a",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "completely frustrating",
-     "text": "Subject: Extremely Serious Complaint Regarding NEET 360 Batch – Unacceptable Experience To the PW Team, Honestly, I am extremely angry and disappointed with this experience. I purchased your NEET 360 Class 11 batch for ₹999 today, trusting PW to provide a proper and organised preparation course for NEET 2028. But what I found after purchasing the batch is completely frustrating. Your batch clearly mentions that it started on 30 September 2026. However, when I opened the lectures, I found vide",
-     "churn": false
-    },
-    {
-     "id": "40308699-a67c-4c3a-8602-b4efd88497fa",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "kuch b show nahi ho raha hai",
-     "text": "Maine upcoming batch 2.0 ujjawala batch ssc and railway ki batch kharidliya infinity ki lekin kuch b show nahi ho raha hai ki empty vdo dikhata hai disappointed 3999 ki batch kharid nhu",
-     "churn": false
-    },
-    {
      "id": "8965a14b-7b11-4ab0-a65b-cb081c5a599d",
      "app": "Unacademy",
      "rating": 1,
@@ -10953,6 +10893,36 @@
      "thumbs": 0,
      "quote": "hard find class recorded lec",
      "text": "worst UI and very hard find class recorded lec",
+     "churn": false
+    },
+    {
+     "id": "61a4b262-cc15-4766-a2cc-3a2691645f90",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "unable to access Uday Bangla 2.0",
+     "text": "Dear PW Support Team, I purchased the Uday Bangla Batch for Semester 1 and Semester 2. Semester 1 has ended, but I am unable to access Uday Bangla 2.0 for Semester 2, which started on 22 October. Please help me get access to the batch as soon as possible, as I don't want to miss my classes. Thank you.",
+     "churn": false
+    },
+    {
+     "id": "b7981fdc-a6f8-4ec1-bc20-0c202e4cc043",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "batch description me koi function nhi karta",
+     "text": "bahut bura app hai koi kaam ka nhi hai batch description me koi function nhi karta very bad",
+     "churn": false
+    },
+    {
+     "id": "d5a87f99-251b-410b-a6bc-fe0cd11041f5",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "batch search krne m problm",
+     "text": "PW app jab jab update deta h tab tab dikkat aati h pehli batch search krne m problm dusra batch open nhi hota teesra batch lecture full screen nhi aa rhe chautha app bhot tagda network mangta h jo ki gaav m dikkat hoti h PW tech team 🤡😮‍💨",
      "churn": false
     },
     {
@@ -11006,16 +10976,6 @@
      "churn": false
     },
     {
-     "id": "cb437994-3361-4d6e-90cd-5499224c3a99",
-     "app": "PW",
-     "rating": 4,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "not getting access to pw cash",
-     "text": "the batch and faculties are awesome but there are minor problems in the xp part and I am also not getting access to pw cash and I have infinity pro but my friend is getting access to the pw cash but he has infinity if you can look out through this problem",
-     "churn": false
-    },
-    {
      "id": "4f317c07-75a5-4629-b3e4-eb871a661622",
      "app": "Vedantu",
      "rating": 5,
@@ -11054,19 +11014,29 @@
      "quote": "batch me problem ho rahi hai",
      "text": "batch me problem ho rahi hai",
      "churn": false
+    },
+    {
+     "id": "958b96da-6f53-42c6-9fad-42052f285872",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "access for mpboard wallah batch",
+     "text": "It is wonderful app i just want to request that i had purchased arjuna and lakshay both but i also need to prepare for my boards so can you please give me the access for mpboard wallah batch?",
+     "churn": false
     }
    ]
   },
   {
    "name": "Sales Calls & Telemarketing Frequency",
-   "count": 32,
+   "count": 31,
    "by_app": {
     "Unacademy": 27,
     "ALLEN": 2,
     "Vedantu": 1,
-    "PW": 2
+    "PW": 1
    },
-   "avg_rating": 1.25,
+   "avg_rating": 1.26,
    "churn": 7,
    "neg_share": 0.94,
    "confidence": "ok",
@@ -11189,16 +11159,6 @@
      "thumbs": 1,
      "quote": "how many times you people will call",
      "text": "how many times you people will call ,there's a limit for everything you call from new numbers if i block one. what kind of behavior is this?if we want any course from you we'll purchase it.Why you people disturb so much",
-     "churn": false
-    },
-    {
-     "id": "5f814990-87fd-4e32-92b0-1354ca67574e",
-     "app": "Unacademy",
-     "rating": 1,
-     "date": "2026-08-30",
-     "thumbs": 1,
-     "quote": "लगातार कॉल्स करके परेशान करते रहते हैं",
-     "text": "यह ऐप और इनकी टीम यूजर को मानसिक रूप से बेहद परेशान करती है। एक बार नंबर रजिस्टर होने के बाद ये लगातार कॉल्स करके परेशान करते रहते हैं। आप मना भी कर दें, फिर भी इनकी स्पैम कॉल्स बंद नहीं होतीं। मानसिक दबाव बनाने और बार-बार फोन करके तंग करने में इन्होंने सारी हदें पार कर दी हैं। इतने गैर-जिम्मेदार और ढीठ मैनेजमेंट को बिल्कुल बर्दाश्त नहीं किया जाना चाहिए",
      "churn": false
     },
     {
@@ -11342,16 +11302,6 @@
      "churn": false
     },
     {
-     "id": "1288d6c5-f326-4117-8440-bec43fa1e505",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "rude call from their representative",
-     "text": "Explored PW batches for my friend preparing for JEE, and got a rude call from their representative. When I said I didn’t need a batch, he said, “Nahi chahiye toh dekha mat karo.” Seriously? Just exploring courses doesn’t mean someone has to buy them. Very unprofessional behaviour by PW! PW should seriously work on how its sales representatives communicate with people.",
-     "churn": false
-    },
-    {
      "id": "432e10b3-e1ca-494c-8c72-97bdff02fadc",
      "app": "PW",
      "rating": 1,
@@ -11359,6 +11309,16 @@
      "thumbs": 0,
      "quote": "unsolicited sales calls",
      "text": "I opened my account less than 24 hours ago and was already receiving unsolicited sales calls. This aggressive sales approach is extremely unprofessional and frustrating. Customers should not be subjected to persistent sales calls immediately after signing up. This experience has left a very negative first impression and seriously undermined my trust in the platform. If this is how the company treats new users, I would not recommend this platform to others.",
+     "churn": false
+    },
+    {
+     "id": "3835c909-855c-456c-b86a-8beab185d8c2",
+     "app": "Unacademy",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "after installation they start calling you and spaming.",
+     "text": "don't install app. after installation they start calling you and spaming.",
      "churn": false
     },
     {
@@ -11394,263 +11354,17 @@
    ]
   },
   {
-   "name": "Book Delivery & Logistics",
-   "count": 23,
-   "by_app": {
-    "Vedantu": 4,
-    "Unacademy": 6,
-    "ALLEN": 2,
-    "PW": 11
-   },
-   "avg_rating": 1.48,
-   "churn": 2,
-   "neg_share": 0.87,
-   "confidence": "ok",
-   "quotes": [
-    {
-     "id": "ff6d7a84-7f50-43d7-8f89-57708807bf37",
-     "app": "Unacademy",
-     "rating": 1,
-     "date": "2026-08-30",
-     "thumbs": 5,
-     "quote": "supposed to deliver physical notes at my address but they didn't deliver",
-     "text": "Very poor response. I bought an Iconic course subscription where they were supposed to deliver physical notes at my address but they didn't deliver even after repeated complaints. There is no response at all from Unacademy side",
-     "churn": false
-    },
-    {
-     "id": "094855e4-8083-4ea5-b33f-a8023eba7ec7",
-     "app": "Unacademy",
-     "rating": 1,
-     "date": "2026-09-01",
-     "thumbs": 4,
-     "quote": "Haven't Received Physical Notes",
-     "text": "One Of The Worst UI Ever. Help & Support Section Is Also Useless. Unacademy Is Very Aggressive At Marketing Before You Enroll But Lord Knows What They Do After Enrollment. Haven't Received Physical Notes After Many Weeks And Whenever I Go To Help & Support App Says \" Ticket Raised. You'll Receive Email About Update\" But There Is No Email Even After Countless Raised Tickets.",
-     "churn": false
-    },
-    {
-     "id": "cec73698-be60-4341-af8f-74f7c83fd165",
-     "app": "Vedantu",
-     "rating": 5,
-     "date": "2026-08-07",
-     "thumbs": 3,
-     "quote": "till now I had not received them",
-     "text": "I dont will to give 1 star also, it's a trap. They told that in 3600 they will be providing 4 digest of std 10th SSC board, till now I had not received them & think that will not be providing too.....",
-     "churn": false
-    },
-    {
-     "id": "fef217ff-d9f0-40e6-bc9b-d7d14c26f054",
-     "app": "Unacademy",
-     "rating": 1,
-     "date": "2026-09-19",
-     "thumbs": 1,
-     "quote": "did not deliver all the books",
-     "text": "its been more than two months i purchased the batch. But they did not deliver all the books till now. I repeatedly mail them but got no useful response from them. Now they are telling that book will be delivered 2 months latter. No PDF nothing is provided. My batch will end in the next month and they will deliver the book after the batch ends. Very disappointed.",
-     "churn": false
-    },
-    {
-     "id": "de01a59d-33bd-4ee4-baee-d82e53e676df",
-     "app": "Unacademy",
-     "rating": 1,
-     "date": "2026-10-07",
-     "thumbs": 1,
-     "quote": "waiting for books and no one is solving the issue",
-     "text": "the worst experience i have with books dept. no one is caring..just delay delay and delay .since 1 and half month waiting for books and no one is solving the issue just blaming each other. due to this my attempt will be delayed and time will be wasted . literally just tired of filing complaint. worstt service . i will.ask for the compensatio and damage regarding this...i m..totally tired fedup and..exhausted. everyday doing messages to UA ..their agents their books dept..but no one responds",
-     "churn": false
-    },
-    {
-     "id": "33e36229-5f67-4f31-b8fb-df1dbd1599b7",
-     "app": "Unacademy",
-     "rating": 1,
-     "date": "2026-10-14",
-     "thumbs": 1,
-     "quote": "they dont dispatch book",
-     "text": "i order book from unacademy app but they dont dispatch book and also there is no any helpline , I email many times there is no any response .",
-     "churn": false
-    },
-    {
-     "id": "49db4bd0-21d9-4639-ad90-32034c37738d",
-     "app": "Vedantu",
-     "rating": 1,
-     "date": "2026-07-31",
-     "thumbs": 0,
-     "quote": "it doesn't update the textbooks",
-     "text": "it doesn't update the textbooks",
-     "churn": false
-    },
-    {
-     "id": "d7b3027b-4999-4141-863d-6d299d9c8bd2",
-     "app": "Unacademy",
-     "rating": 1,
-     "date": "2026-09-16",
-     "thumbs": 0,
-     "quote": "haven't received my physical books",
-     "text": "There is no option for changing address. Due to which I haven't received my physical books. I have mailed many times but the response is always same that \"We're prioritizing your request, and I will make sure this issue is resolved over the weekend. Thanks for your patience!\". 😠 2 Month se jayda ho gaye call v nahi lagta h.....",
-     "churn": false
-    },
-    {
-     "id": "e50e8927-1b28-4a11-9891-42f8be1f1df0",
-     "app": "ALLEN",
-     "rating": 1,
-     "date": "2026-09-22",
-     "thumbs": 0,
-     "quote": "didn't send me my study material",
-     "text": "they didn't send me my study material 😭🥺",
-     "churn": false
-    },
-    {
-     "id": "c88dfa7e-bf86-4ff2-9aaa-04b6b27eb0f1",
-     "app": "Vedantu",
-     "rating": 1,
-     "date": "2026-10-07",
-     "thumbs": 0,
-     "quote": "I feel it's useless",
-     "text": "I'm unable to open the QR codes provided in the VEDANTU TATVA PRACTICE BOOKS -2027 latest edition. I've bought 5 volumes for 2400/- I feel it's useless show the error loading page with scanned code",
-     "churn": true
-    },
-    {
-     "id": "a2249826-70f7-42ae-8850-1c1567272fca",
-     "app": "Vedantu",
-     "rating": 1,
-     "date": "2026-10-07",
-     "thumbs": 0,
-     "quote": "they just forgot to send my book",
-     "text": "worst app.. they don't help you with you i ordered books by prepaid It's been 20 days no support for their side. they just forgot to send my book i ordered. scammer It's so frustrating. whatsapp helpdesk is useless no proper help . I ordered Dopa book for zoology and botany.",
-     "churn": false
-    },
-    {
-     "id": "1b1a3bdc-f231-4616-b991-63ffff2baf06",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "I placed books order on 4 th October you guys didn't delivery books after waiting 20 days",
-     "text": "I placed books order on 4 th October you guys didn't delivery books after waiting 20 days ...your e mail response simply say we don't have inventory we will delivery as soon as .....just close your shop if you u don't have time to delivery on time ........why should u take order ????........ concerned authority what you people doing????",
-     "churn": false
-    },
-    {
-     "id": "c64dd3e5-9274-4f58-8441-5918978ed6a3",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "haven't received it's 20 th",
-     "text": "this is a good app for education but i have ordered a package on 2oct and haven't received it's 20 th when I call to pw support the reciver was sooooo rude very bad pw not exepted from u",
-     "churn": false
-    },
-    {
-     "id": "b1f5714f-07b7-4cfa-a408-1206fb132e4b",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "Late delivery, false delivery claims",
-     "text": "⭐ Very poor service! Late delivery, false delivery claims by the delivery partner, and no response from customer support. My order was returned without proper delivery. No accountability, no resolution. Extremely disappointing experience!",
-     "churn": false
-    },
-    {
-     "id": "787fa133-7185-422d-8142-ad56cfc869e1",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-21",
-     "thumbs": 0,
-     "quote": "Maine class 10th social science ka question bank order kiya tha Jo deliver hua 14 ko",
-     "text": "Maine class 10th social science ka question bank order kiya tha Jo deliver hua 14 ko and uska return date 21 tak tha lekin jab Main use return karne ja raha hun to adress Kah Raha Hai change karne ko adress change kar liya to bhi vah return nahin Ho Pa raha hai again a bol raha hai ki adress change karo ab batao main Kaisa adress dalu jab usi adress per deliver hua hai to vah use adress se return hona chahie na kyon nahin ho raha hai aaj date bhi khatm ho jaega return ka I am very disappointment",
-     "churn": false
-    },
-    {
-     "id": "ad64d7ed-72eb-4c03-a809-9e1dea49fea1",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "it has been 20 days I have not received my order",
-     "text": "I ordered some books during the fest happened on 1st and it has been 20 days I have not received my order",
-     "churn": false
-    },
-    {
-     "id": "e7a6fe33-be35-4d28-a7d1-2e1d8b166e5d",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "money wasted never order from pw store",
-     "text": "I ordered an item it is showing delivered but didn't came money wasted never order from pw store but batches are good",
-     "churn": true
-    },
-    {
-     "id": "70935352-51be-4ae6-9461-02a9ec739564",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-22",
-     "thumbs": 0,
-     "quote": "I ordered a book, excepted delivery date was 15th October, today is 22nd October,I didn't get my order",
-     "text": "I ordered a book, excepted delivery date was 15th October, today is 22nd October,I didn't get my order.I also email to pw but no response.Why such irresponsible act? Shame on PW",
-     "churn": false
-    },
-    {
-     "id": "97ff6922-bec7-4383-9629-a4667843a310",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-21",
-     "thumbs": 0,
-     "quote": "books do not arrive on time",
-     "text": "Don't buy anything from PW store especially when there is an offer going on. They take the payment but the books do not arrive on time. They will give date after date. Books which are supposed to arrive in 5-10 days take 1-2 months and even then they do not deliver them. Meaning, maybe he will bring it to you after your exams are over.The entire delivery system is arthritis.",
-     "churn": false
-    },
-    {
-     "id": "3d769f5f-706d-4f00-9cfa-c5454b5f1311",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-21",
-     "thumbs": 0,
-     "quote": "the orders are so late to delivery",
-     "text": "the orders are so late to delivery I can't imagine",
-     "churn": false
-    },
-    {
-     "id": "f54324da-a691-4ae1-9e6b-a57007c267cc",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-22",
-     "thumbs": 0,
-     "quote": "still they have not delivered the book yet",
-     "text": "worst pw store experience, i ordered some books on 2nd October but today is 22 october and still they have not delivered the book yet",
-     "churn": false
-    },
-    {
-     "id": "7c232861-83f9-4ecc-916d-6d78901d52d4",
-     "app": "ALLEN",
-     "rating": 4,
-     "date": "2026-08-24",
-     "thumbs": 0,
-     "quote": "dpp should be in hard copy",
-     "text": "modules are good but dpp should be in hard copy",
-     "churn": false
-    },
-    {
-     "id": "c7a79ab6-23ac-43bc-8247-5d33814d14ff",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-21",
-     "thumbs": 0,
-     "quote": "my books are still not delivered",
-     "text": "infinite stars for making all the goated teachers available for us by alakh sir 🙏🙏 and 2.1 stars for pw store , its so buggy , my books are still not delivered that i ordered on 1st oct , chat with us option is not at all helpful.",
-     "churn": false
-    }
-   ]
-  },
-  {
    "name": "Account Access & Device Restrictions",
-   "count": 21,
+   "count": 26,
    "by_app": {
     "Vedantu": 5,
-    "Unacademy": 5,
+    "Unacademy": 6,
     "ALLEN": 7,
-    "PW": 4
+    "PW": 8
    },
-   "avg_rating": 2.52,
+   "avg_rating": 2.54,
    "churn": 0,
-   "neg_share": 0.86,
+   "neg_share": 0.77,
    "confidence": "ok",
    "quotes": [
     {
@@ -11784,6 +11498,26 @@
      "churn": false
     },
     {
+     "id": "6328df65-2024-40cb-8912-a56584d54276",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "app is not available for pc",
+     "text": "app is not available for pc",
+     "churn": false
+    },
+    {
+     "id": "013daef7-b5c5-45a6-bf50-9ffba748eeb1",
+     "app": "Unacademy",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "I'm unable to login into my own paid account.",
+     "text": "I'm unable to login into my own paid account. This is really frustrating. I was away for about 5-6 days and now I can't access my account anymore. And I had blocked most of their numbers also, they kept on calling me during class time, nearly 10 calls every day but now doing nothing to help solve my problem -_-",
+     "churn": false
+    },
+    {
      "id": "a75a37ee-9297-4b99-81c7-9e968053b78e",
      "app": "Vedantu",
      "rating": 2,
@@ -11791,6 +11525,16 @@
      "thumbs": 0,
      "quote": "purchased courses often not be seen",
      "text": "need to update it even more and purchased courses often not be seen in my courses page due to technical glitches/errors 😐😡",
+     "churn": false
+    },
+    {
+     "id": "dca6a65e-b682-4828-8ffe-d8987533bb0b",
+     "app": "PW",
+     "rating": 2,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "no way I can attend my lectures",
+     "text": "Although it is a good app yet i had given it 2 stars because of the problems faced by me when my mobile phone is unavailable due to some reasons and there is no way I can attend my lectures. So in conclusion, I want ur group to add PW(This learning Platform) in Laptops and Smart TVs. Hoping to get a positive reply.",
      "churn": false
     },
     {
@@ -11834,6 +11578,16 @@
      "churn": false
     },
     {
+     "id": "de12e42c-1f3d-441f-8b59-67d4d7c1bac1",
+     "app": "PW",
+     "rating": 4,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "not available on smart TV",
+     "text": "App is good learning platform. but this app is not available on smart TV airtel can this be upgraded",
+     "churn": false
+    },
+    {
      "id": "3a5176db-0551-429a-8013-ab3292f1fbfb",
      "app": "Vedantu",
      "rating": 5,
@@ -11862,21 +11616,277 @@
      "quote": "not able to get otp to login",
      "text": "why am I not able to get otp to login",
      "churn": false
+    },
+    {
+     "id": "62048d10-85e5-484e-9584-d5010404206c",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "creat a pw app for laptops",
+     "text": "it's the best app for studying the teachers are awesome everything's good but plz creat a pw app for laptops and pc as well the web version consumes a lot of data",
+     "churn": false
+    }
+   ]
+  },
+  {
+   "name": "Book Delivery & Logistics",
+   "count": 23,
+   "by_app": {
+    "Vedantu": 4,
+    "Unacademy": 5,
+    "ALLEN": 2,
+    "PW": 12
+   },
+   "avg_rating": 1.48,
+   "churn": 1,
+   "neg_share": 0.91,
+   "confidence": "ok",
+   "quotes": [
+    {
+     "id": "094855e4-8083-4ea5-b33f-a8023eba7ec7",
+     "app": "Unacademy",
+     "rating": 1,
+     "date": "2026-09-01",
+     "thumbs": 4,
+     "quote": "Haven't Received Physical Notes",
+     "text": "One Of The Worst UI Ever. Help & Support Section Is Also Useless. Unacademy Is Very Aggressive At Marketing Before You Enroll But Lord Knows What They Do After Enrollment. Haven't Received Physical Notes After Many Weeks And Whenever I Go To Help & Support App Says \" Ticket Raised. You'll Receive Email About Update\" But There Is No Email Even After Countless Raised Tickets.",
+     "churn": false
+    },
+    {
+     "id": "cec73698-be60-4341-af8f-74f7c83fd165",
+     "app": "Vedantu",
+     "rating": 5,
+     "date": "2026-08-07",
+     "thumbs": 3,
+     "quote": "till now I had not received them",
+     "text": "I dont will to give 1 star also, it's a trap. They told that in 3600 they will be providing 4 digest of std 10th SSC board, till now I had not received them & think that will not be providing too.....",
+     "churn": false
+    },
+    {
+     "id": "fef217ff-d9f0-40e6-bc9b-d7d14c26f054",
+     "app": "Unacademy",
+     "rating": 1,
+     "date": "2026-09-19",
+     "thumbs": 1,
+     "quote": "did not deliver all the books",
+     "text": "its been more than two months i purchased the batch. But they did not deliver all the books till now. I repeatedly mail them but got no useful response from them. Now they are telling that book will be delivered 2 months latter. No PDF nothing is provided. My batch will end in the next month and they will deliver the book after the batch ends. Very disappointed.",
+     "churn": false
+    },
+    {
+     "id": "de01a59d-33bd-4ee4-baee-d82e53e676df",
+     "app": "Unacademy",
+     "rating": 1,
+     "date": "2026-10-07",
+     "thumbs": 1,
+     "quote": "waiting for books and no one is solving the issue",
+     "text": "the worst experience i have with books dept. no one is caring..just delay delay and delay .since 1 and half month waiting for books and no one is solving the issue just blaming each other. due to this my attempt will be delayed and time will be wasted . literally just tired of filing complaint. worstt service . i will.ask for the compensatio and damage regarding this...i m..totally tired fedup and..exhausted. everyday doing messages to UA ..their agents their books dept..but no one responds",
+     "churn": false
+    },
+    {
+     "id": "33e36229-5f67-4f31-b8fb-df1dbd1599b7",
+     "app": "Unacademy",
+     "rating": 1,
+     "date": "2026-10-14",
+     "thumbs": 1,
+     "quote": "they dont dispatch book",
+     "text": "i order book from unacademy app but they dont dispatch book and also there is no any helpline , I email many times there is no any response .",
+     "churn": false
+    },
+    {
+     "id": "49db4bd0-21d9-4639-ad90-32034c37738d",
+     "app": "Vedantu",
+     "rating": 1,
+     "date": "2026-07-31",
+     "thumbs": 0,
+     "quote": "it doesn't update the textbooks",
+     "text": "it doesn't update the textbooks",
+     "churn": false
+    },
+    {
+     "id": "d7b3027b-4999-4141-863d-6d299d9c8bd2",
+     "app": "Unacademy",
+     "rating": 1,
+     "date": "2026-09-16",
+     "thumbs": 0,
+     "quote": "haven't received my physical books",
+     "text": "There is no option for changing address. Due to which I haven't received my physical books. I have mailed many times but the response is always same that \"We're prioritizing your request, and I will make sure this issue is resolved over the weekend. Thanks for your patience!\". 😠 2 Month se jayda ho gaye call v nahi lagta h.....",
+     "churn": false
+    },
+    {
+     "id": "e50e8927-1b28-4a11-9891-42f8be1f1df0",
+     "app": "ALLEN",
+     "rating": 1,
+     "date": "2026-09-22",
+     "thumbs": 0,
+     "quote": "didn't send me my study material",
+     "text": "they didn't send me my study material 😭🥺",
+     "churn": false
+    },
+    {
+     "id": "c88dfa7e-bf86-4ff2-9aaa-04b6b27eb0f1",
+     "app": "Vedantu",
+     "rating": 1,
+     "date": "2026-10-07",
+     "thumbs": 0,
+     "quote": "I feel it's useless",
+     "text": "I'm unable to open the QR codes provided in the VEDANTU TATVA PRACTICE BOOKS -2027 latest edition. I've bought 5 volumes for 2400/- I feel it's useless show the error loading page with scanned code",
+     "churn": true
+    },
+    {
+     "id": "a2249826-70f7-42ae-8850-1c1567272fca",
+     "app": "Vedantu",
+     "rating": 1,
+     "date": "2026-10-07",
+     "thumbs": 0,
+     "quote": "they just forgot to send my book",
+     "text": "worst app.. they don't help you with you i ordered books by prepaid It's been 20 days no support for their side. they just forgot to send my book i ordered. scammer It's so frustrating. whatsapp helpdesk is useless no proper help . I ordered Dopa book for zoology and botany.",
+     "churn": false
+    },
+    {
+     "id": "787fa133-7185-422d-8142-ad56cfc869e1",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-21",
+     "thumbs": 0,
+     "quote": "Maine class 10th social science ka question bank order kiya tha Jo deliver hua 14 ko",
+     "text": "Maine class 10th social science ka question bank order kiya tha Jo deliver hua 14 ko and uska return date 21 tak tha lekin jab Main use return karne ja raha hun to adress Kah Raha Hai change karne ko adress change kar liya to bhi vah return nahin Ho Pa raha hai again a bol raha hai ki adress change karo ab batao main Kaisa adress dalu jab usi adress per deliver hua hai to vah use adress se return hona chahie na kyon nahin ho raha hai aaj date bhi khatm ho jaega return ka I am very disappointment",
+     "churn": false
+    },
+    {
+     "id": "ad64d7ed-72eb-4c03-a809-9e1dea49fea1",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-20",
+     "thumbs": 0,
+     "quote": "it has been 20 days I have not received my order",
+     "text": "I ordered some books during the fest happened on 1st and it has been 20 days I have not received my order",
+     "churn": false
+    },
+    {
+     "id": "70935352-51be-4ae6-9461-02a9ec739564",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-22",
+     "thumbs": 0,
+     "quote": "I ordered a book, excepted delivery date was 15th October, today is 22nd October,I didn't get my order",
+     "text": "I ordered a book, excepted delivery date was 15th October, today is 22nd October,I didn't get my order.I also email to pw but no response.Why such irresponsible act? Shame on PW",
+     "churn": false
+    },
+    {
+     "id": "97ff6922-bec7-4383-9629-a4667843a310",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-21",
+     "thumbs": 0,
+     "quote": "books do not arrive on time",
+     "text": "Don't buy anything from PW store especially when there is an offer going on. They take the payment but the books do not arrive on time. They will give date after date. Books which are supposed to arrive in 5-10 days take 1-2 months and even then they do not deliver them. Meaning, maybe he will bring it to you after your exams are over.The entire delivery system is arthritis.",
+     "churn": false
+    },
+    {
+     "id": "3d769f5f-706d-4f00-9cfa-c5454b5f1311",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-21",
+     "thumbs": 0,
+     "quote": "the orders are so late to delivery",
+     "text": "the orders are so late to delivery I can't imagine",
+     "churn": false
+    },
+    {
+     "id": "f54324da-a691-4ae1-9e6b-a57007c267cc",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-22",
+     "thumbs": 0,
+     "quote": "still they have not delivered the book yet",
+     "text": "worst pw store experience, i ordered some books on 2nd October but today is 22 october and still they have not delivered the book yet",
+     "churn": false
+    },
+    {
+     "id": "0d24a0f4-d928-43a1-b6e7-bddaa7f9af97",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "send my books speedly",
+     "text": "I put an order in the app it says it takes 3to5 days or if any causes it takes 15 to 20 days maximum but now it takes 22 days but it is also doubt 😭😭😭😔😔..if you want to change the rating then you contact me (call) me as quickly you can send my books speedly..😡 today is october 24 not in my delivery 😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡",
+     "churn": false
+    },
+    {
+     "id": "81450bbf-1cec-4e4b-ab1a-469cffc48700",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "currently not shipped",
+     "text": "We buy books from pw store and it show 6 october delivery time and now it's showing 30 october and currently not shipped, and also order not cancel, it's fake app for buying any books or note book.",
+     "churn": false
+    },
+    {
+     "id": "74b5fe92-af0e-4e5f-8bbd-49e9e7b91f19",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "order continue deley",
+     "text": "Mene book order Kiya tha 10 din hogye pr abhi tk nai aaya aur order continue deley ho raha hai what this pw my batches are continue and I don't have any kind of book there kya yaarr 1 Tarik ko order banvaya tha vr ab 23 date as gayi 23 days ho gaye abi tak order aaya nai shiksha mohtsv tha ei liye order Kiya tha kya paga app hai kitna 🫩",
+     "churn": false
+    },
+    {
+     "id": "516bb12f-f33f-4e31-823b-916383d53719",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "books nhi aati hai",
+     "text": "paise kat jate hai, order successful ho jata hai or PW ki taraf se whatsapp par msg bhi aa jata hai - \"Dear Student, *Great news!* Your order PW1876871 has been *confirmed*. Everything is in place, and we’re getting your learning essentials ready for dispatch. \" lekin books nhi aati hai or na hi order track show karta hai. fir karte raho e-mail.",
+     "churn": false
+    },
+    {
+     "id": "772dd1cf-98a4-47d8-8966-5b8483dc3191",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "haven't recieved yet",
+     "text": "i have ordered a book upon 17 oct but I haven't recieved yet and there is no. update form your side for my order",
+     "churn": false
+    },
+    {
+     "id": "7c232861-83f9-4ecc-916d-6d78901d52d4",
+     "app": "ALLEN",
+     "rating": 4,
+     "date": "2026-08-24",
+     "thumbs": 0,
+     "quote": "dpp should be in hard copy",
+     "text": "modules are good but dpp should be in hard copy",
+     "churn": false
+    },
+    {
+     "id": "c7a79ab6-23ac-43bc-8247-5d33814d14ff",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-21",
+     "thumbs": 0,
+     "quote": "my books are still not delivered",
+     "text": "infinite stars for making all the goated teachers available for us by alakh sir 🙏🙏 and 2.1 stars for pw store , its so buggy , my books are still not delivered that i ordered on 1st oct , chat with us option is not at all helpful.",
+     "churn": false
     }
    ]
   },
   {
    "name": "Live Class Engagement Tools",
-   "count": 18,
+   "count": 15,
    "by_app": {
     "Vedantu": 3,
     "Unacademy": 5,
     "ALLEN": 2,
-    "PW": 8
+    "PW": 5
    },
-   "avg_rating": 3.33,
+   "avg_rating": 2.87,
    "churn": 0,
-   "neg_share": 0.44,
+   "neg_share": 0.53,
    "confidence": "ok",
    "quotes": [
     {
@@ -11940,26 +11950,6 @@
      "churn": false
     },
     {
-     "id": "edf1d14f-34fa-4fd7-b734-fef3e9b77972",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 1,
-     "quote": "Teachers also takes poll for questions which is very interesting.",
-     "text": "PW is such a great learning platform for online learning and the teachers are superb. The classes are very interactive you can ask questions, doubts. Teachers also takes poll for questions which is very interesting. I can bet that this platform definitely increase your marks related to any subject including in it because the teachers are very very Nice who can explain complex topics in a very simple way. Lots of Love to PW❤️❤️",
-     "churn": false
-    },
-    {
-     "id": "86c32ca7-0634-46c4-bf59-c2bf8baa8e63",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 1,
-     "quote": "poll is not working properly",
-     "text": "this app help to learn study in easy and very intresting way this app provides his own materials in this app many types batches are available but i request pw the poll is not working properly so please fixed this problem quickly",
-     "churn": false
-    },
-    {
      "id": "f898309a-6106-4c3c-8310-31fae1353734",
      "app": "Unacademy",
      "rating": 1,
@@ -11987,6 +11977,16 @@
      "thumbs": 0,
      "quote": "issue is orientation of page with respect to screen size",
      "text": "i have trouble with cource page. when i try to open cource page in a large sized (12.5 inch)tablet it will appear only half part (i think maybe the issue is orientation of page with respect to screen size ). some one should do anything about this matter. if you don't understand my quiery try watching a lecture in tablet of 12.5 inch/",
+     "churn": false
+    },
+    {
+     "id": "d7de9f09-3ca0-450b-b3c1-1163c915028c",
+     "app": "PW",
+     "rating": 3,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "poll not conduct",
+     "text": "all good teacher explanation is good but technical issue poll not conduct and data is too used in a single class",
      "churn": false
     },
     {
@@ -12038,41 +12038,21 @@
      "quote": "make the 1.5 hour lectures shorter and more interactive",
      "text": "please make the 1.5 hour lectures shorter and more interactive.Everthing is great at allen. it would be better if the lectures were a little shorter.",
      "churn": false
-    },
-    {
-     "id": "839395e1-9baa-4d18-bd12-62266c7ca708",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "some cartoons are come in pole",
-     "text": "it is very nice experience 😄 in the class we have many watch fun and Mansi ma'am is my favourite ma'am and we have very much fun and enjoy in class and Mansi Mam and teachers came a soft toy and it was very nice experience and in some time some cartoons are come in pole and the pole is very good question paper 📜🗞️ write the end of maximum period the maximum make a big of heart and in the class we so much Himanshu and told that call me about name of Mansi jiju and when the tuition is clear",
-     "churn": false
-    },
-    {
-     "id": "6d9e1735-8fd5-4117-82ab-9d41c6d0a3fa",
-     "app": "PW",
-     "rating": 5,
-     "date": "2026-10-19",
-     "thumbs": 0,
-     "quote": "spammers and discard their membership",
-     "text": "exceptional faculties clear concepts and good amount of questions consisting of pyqs and other higher level questions in tests and dpps i would like pw to find out spammers and discard their membership as they disturb the whole class and geniune hard working students ♥️",
-     "churn": false
     }
    ]
   },
   {
    "name": "Notification Relevance & Scheduling",
-   "count": 8,
+   "count": 7,
    "by_app": {
     "Vedantu": 3,
     "ALLEN": 2,
     "Unacademy": 1,
-    "PW": 2
+    "PW": 1
    },
-   "avg_rating": 3.0,
+   "avg_rating": 3.29,
    "churn": 0,
-   "neg_share": 0.88,
+   "neg_share": 0.86,
    "confidence": "low",
    "quotes": [
     {
@@ -12165,7 +12145,7 @@
      "app": "Vedantu",
      "rating": 5,
      "date": "2026-09-07",
-     "thumbs": 18,
+     "thumbs": 19,
      "quote": "Harsh Sir's mentorship keeps you on the right track",
      "text": "Vedantu is an amazing platform for JEE preparation and other. The Eklavya test series is top-notch for practice, and Harsh Sir's guidance is invaluable. Highly recommended! Must-Have for JEE Aspirants! Great experience with Vedantu! The Eklavya test series really helps boost your JEE score, and Harsh Sir's mentorship keeps you on the right track. Highly recommended!",
      "churn": false
@@ -12224,16 +12204,16 @@
   },
   {
    "name": "Other / unclear",
-   "count": 34,
+   "count": 39,
    "by_app": {
     "Vedantu": 4,
     "Unacademy": 12,
     "ALLEN": 11,
-    "PW": 7
+    "PW": 12
    },
-   "avg_rating": 2.62,
+   "avg_rating": 2.85,
    "churn": 2,
-   "neg_share": 0.5,
+   "neg_share": 0.46,
    "confidence": "ok",
    "quotes": [
     {
@@ -12417,16 +12397,6 @@
      "churn": false
     },
     {
-     "id": "cb69e40e-84a5-4ed9-8683-aabb2659cc35",
-     "app": "PW",
-     "rating": 1,
-     "date": "2026-10-20",
-     "thumbs": 0,
-     "quote": "I don't like this",
-     "text": "I don't like this",
-     "churn": false
-    },
-    {
      "id": "543f236c-f0fb-4da6-af2c-ef770ba0747d",
      "app": "PW",
      "rating": 1,
@@ -12445,6 +12415,16 @@
      "quote": "waste app waste school.",
      "text": "waste app waste school.",
      "churn": true
+    },
+    {
+     "id": "de1ac0ef-abcd-4b67-b11f-741fd1f50d6f",
+     "app": "PW",
+     "rating": 1,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "not as expected",
+     "text": "not as expected, what was promised",
+     "churn": false
     },
     {
      "id": "722e70b8-f204-4387-b5b9-a07c8e72a404",
@@ -12497,6 +12477,16 @@
      "churn": false
     },
     {
+     "id": "ba5835ad-8cd1-4339-ba34-c01a88de0b54",
+     "app": "PW",
+     "rating": 3,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "streak system needs to be worked on",
+     "text": "the xp system and streak system needs to be worked on...i watched a 3 hr lecture to get 6 xp 🙄!! and also even though I gave classes , smh it didn't count and my streak broke...Obv they aren't very serious matters but it atleast motivates me to do classes and all.. please work on this asap😭",
+     "churn": false
+    },
+    {
      "id": "935ef4b1-624d-48f9-a2fc-b231c49d8943",
      "app": "PW",
      "rating": 4,
@@ -12504,6 +12494,16 @@
      "thumbs": 0,
      "quote": "we need extta classes",
      "text": "we need extta classes",
+     "churn": false
+    },
+    {
+     "id": "8f7f139b-abb7-427a-b2b2-c52b022e9baa",
+     "app": "PW",
+     "rating": 4,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "or ek Star baad mai dungi",
+     "text": "or ek Star baad mai dungi jab mere papar mai acha number aayega",
      "churn": false
     },
     {
@@ -12575,17 +12575,47 @@
      "quote": "Rell dunga pkd kr",
      "text": "Rell dunga pkd kr",
      "churn": false
+    },
+    {
+     "id": "19c66505-22ea-4daa-801c-6315ad92b073",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-24",
+     "thumbs": 0,
+     "quote": "i could not change it",
+     "text": "nice app but i can't change my profile i change one time only but now i don't want that profile photo so now i want to change it but i could not change it please answer me why 🙏🏻🥺",
+     "churn": false
+    },
+    {
+     "id": "2cac42ca-9a6f-401a-bc39-a1af6d3f2cc6",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "streak system",
+     "text": "very nice platform for studying I would like to give you a suggestion that you have a streak system, so you can add a widget like Duolingo, to let the student take responsibility to save his daily streak and other stuff is best but just decrease the PW ads",
+     "churn": false
+    },
+    {
+     "id": "066daf5a-3e82-4ddc-8d57-b28623a2281b",
+     "app": "PW",
+     "rating": 5,
+     "date": "2026-10-23",
+     "thumbs": 0,
+     "quote": "very good morning",
+     "text": "very good morning at day care center",
+     "churn": false
     }
    ]
   }
  ],
  "recommendations": [
   {
-   "title": "Automated Refund & Subscription Transparency Portal",
+   "title": "Automated Refund Processing & Payment Transparency",
    "theme": "Payments, Refunds & Auto-Renewal",
-   "problem": "38 reviews with a critical 1.63 rating and the highest churn risk (19 mentions). 87% of reviews are negative, focusing on delayed refunds and auto-payment issues.",
-   "proposal": "Build an in-app 'Refund Tracker' and a one-click 'Auto-Renewal Toggle' to reduce friction and rebuild trust in the billing process.",
-   "metric": "Reduction in refund-related churn mentions and improvement in theme average rating.",
+   "problem": "Critical churn risk with 19 mentions and 87% negative share across 38 reviews. Users report delayed refunds and non-responsive teams after payment.",
+   "proposal": "Implement an in-app 'Refund Tracker' and automated processing for requests within the 7-day window to reduce manual support dependency.",
+   "metric": "Reduction in refund-related churn mentions and improvement in theme rating from 1.53.",
    "evidence_ids": [
     "b56f227a-9c8c-4556-827b-b5ac792dcd2c",
     "d54877d8-9e94-48eb-9fc5-5c60ddcdc157",
@@ -12595,41 +12625,13 @@
    "confidence": "ok"
   },
   {
-   "title": "Core Stability & Offline Content Reliability Sprint",
-   "theme": "App Stability & Crash Fixes",
-   "problem": "53 reviews with a 2.23 rating and 72% negative share. Users report frequent glitches, crashes on ChromeOS, and vanishing downloaded content.",
-   "proposal": "Execute a technical debt sprint focusing on local storage persistence for downloads and cross-platform compatibility (ChromeOS/Web).",
-   "metric": "Crash-free session percentage and reduction in 'app not working' keywords in reviews.",
-   "evidence_ids": [
-    "4f4734a8-9e25-4e03-add7-45f3c7424d45",
-    "52f0b66c-ec24-446d-b338-b595a0a42eba",
-    "8083db8f-f6f0-4602-8355-47616ab8c52d",
-    "87a739b5-cb68-4ec4-98de-4ecaf06cbdf3"
-   ],
-   "confidence": "ok"
-  },
-  {
-   "title": "Video Player Optimization & Buffer Management",
-   "theme": "Video Streaming & Playback Performance",
-   "problem": "48 reviews with a 2.33 rating and 75% negative share. Major pain points include constant buffering, playback failures, and UI bugs like 'white panels'.",
-   "proposal": "Implement adaptive bitrate streaming and a 'Report Playback Issue' button that captures logs to fix specific device-level rendering bugs.",
-   "metric": "Average time spent buffering per hour of video and video start failure rate.",
-   "evidence_ids": [
-    "e9e5d954-9b95-4392-bd98-6f22f86e3438",
-    "eeb5ad5f-a84f-4b82-8ea4-99df729fde82",
-    "a06c278a-d4e3-467c-8dad-edd4f411734e",
-    "1072da80-e66b-4433-a78b-54a522039a36"
-   ],
-   "confidence": "ok"
-  },
-  {
-   "title": "Support Desk SLA & Technical Escalation Path",
+   "title": "Support Desk SLA Enforcement & Technical Escalation",
    "theme": "Support Ticket Resolution & Helpdesk",
-   "problem": "38 reviews with the lowest rating (1.61) and 7 churn mentions. Users feel ignored by support teams when facing technical or financial issues.",
-   "proposal": "Integrate a real-time support ticket status in the app and create an automated escalation path for technical bugs that support cannot resolve.",
-   "metric": "First Response Time (FRT) and CSAT score for support interactions.",
+   "problem": "High severity with 81% negative share and 7 churn mentions. Users feel cheated by 'useless' teams and lack of help for technical difficulties.",
+   "proposal": "Deploy a tiered ticketing system with 24-hour SLA for technical issues and a dedicated 'Fraud/Payment' escalation path.",
+   "metric": "Decrease in 'useless team' sentiment and higher ticket resolution satisfaction scores.",
    "evidence_ids": [
-    "a831a3a1-3e44-4131-8f8b-c23016e474a9",
+    "702e6398-62ec-452c-805a-4ab4d73b6108",
     "d3b814b6-0d2f-42ae-b582-a66034830a3a",
     "c44f1ad5-2101-4d4a-8486-3ec04636942c",
     "7ac3e4a8-f00e-4030-ad1e-76c328862b17"
@@ -12637,16 +12639,44 @@
    "confidence": "ok"
   },
   {
-   "title": "Intelligent Course Discovery & Folder Organization",
-   "theme": "Course Discovery & Search Navigation",
-   "problem": "36 reviews with a 2.22 rating. Students struggle to find past lectures and navigate subject-wise content, leading to frustration and uninstalls.",
-   "proposal": "Redesign the 'My Library' section with subject-wise folders, a 'Continue Watching' tray, and an improved search algorithm for recorded classes.",
-   "metric": "Time to start a lecture from the home screen and reduction in 'hard to use' sentiment.",
+   "title": "Video Player Optimization & Buffer Management",
+   "theme": "Video Streaming & Playback Performance",
+   "problem": "Affects 43 reviews with a low 2.4 rating and 77% negative share. Users report constant buffering and inability to play recorded content.",
+   "proposal": "Upgrade to adaptive bitrate streaming (ABR) and implement a 'Download to Watch' feature for low-connectivity regions.",
+   "metric": "Reduction in 'buffering' mentions and increase in average watch time per session.",
    "evidence_ids": [
-    "b1ad79f8-fc65-457d-ac02-ccc561de615c",
-    "e40619d2-d034-4802-a5e0-aea28d1b1e55",
-    "4fe7a7c5-2b43-47d2-956c-4f790ba9dd72",
-    "6992dad9-de4d-4fd5-9919-eeb45dee0ce9"
+    "e9e5d954-9b95-4392-bd98-6f22f86e3438",
+    "eeb5ad5f-a84f-4b82-8ea4-99df729fde82",
+    "a06c278a-d4e3-467c-8dad-edd4f411734e",
+    "2b2696f5-c63d-4adf-b2ef-c13d432d5bff"
+   ],
+   "confidence": "ok"
+  },
+  {
+   "title": "App Stability & Cross-Platform Compatibility",
+   "theme": "App Stability & Crash Fixes",
+   "problem": "High volume (54 reviews) with 74% negative share. Issues include ChromeOS failures, vanishing downloads, and frequent glitches.",
+   "proposal": "Conduct a comprehensive audit of the offline download module and optimize the Android container for ChromeOS/Tablet support.",
+   "metric": "Reduction in crash rates and 'app not working' reviews.",
+   "evidence_ids": [
+    "52f0b66c-ec24-446d-b338-b595a0a42eba",
+    "2944bfe0-4f7c-4445-8c08-34fb5f30f278",
+    "8083db8f-f6f0-4602-8355-47616ab8c52d",
+    "87a739b5-cb68-4ec4-98de-4ecaf06cbdf3"
+   ],
+   "confidence": "ok"
+  },
+  {
+   "title": "Telemarketing Governance & Lead Management",
+   "theme": "Sales Calls & Telemarketing Frequency",
+   "problem": "Lowest rated theme (1.26) with 94% negative share. Aggressive calling (daily/weekly) is driving users to uninstall the app.",
+   "proposal": "Implement a 'Do Not Call' (DNC) toggle in the user profile and cap sales outreach to once per month for active users.",
+   "metric": "Reduction in 'uninstall' mentions related to calls and improved Play Store sentiment.",
+   "evidence_ids": [
+    "ce3a938f-9eac-4d19-92a5-3427786aafc3",
+    "671c27c2-9bce-42e6-974f-06422d9522b0",
+    "8c1a4eac-bbfe-49a1-b351-97e4b960b5f6",
+    "1d782d6f-c470-4337-a209-8caaf6e26a25"
    ],
    "confidence": "ok"
   }
